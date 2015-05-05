@@ -8,6 +8,7 @@
         <link href="/assets/stylesheets/bootstrap.css" rel="stylesheet">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link type="text/css" href="/assets/stylesheets/MyojiCSS.css" rel="stylesheet"/>
+        <script type="text/javascript" src="/assets/javascripts/login.js"></script>
     </head>
   
   
@@ -16,79 +17,6 @@
   	<!-- 					↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ Body Begins ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓						-->
 	<body>
 	
-	<!--================== 고정형 원배너 =============================-->
-	<!--<div class="container-fluid" id="frame_main1">
-		<div class="row">
-			<div class="col-md-6 col-md-offset-3">
-				<div id="Jumbotron_Mainlogo" class="jumbotron">
-		  			<h1 id="JTHeader"><strong>EZstorage,</strong></h1>
-		 		 	<p id="JTParagraph">태그로 쉽고 빠르게.</p>
-				</div>
-			</div>
-		</div>
-	</div>-->
-	
-	<!--================== 메인 프레임 상단 캐러셀 ======================-->
-	<!--<div id="carousel-MainCarousel" class="carousel slide BOXshadower" data-ride="carousel">-->
-		<!-- 지시자 -->
-		<!--<ol class="carousel-indicators">
-			<li data-target="#carousel-MainCarousel" data-slide-to="0" class="active"></li>
-			<li data-target="#carousel-MainCarousel" data-slide-to="1"></li>
-			<li data-target="#carousel-MainCarousel" data-slide-to="2"></li>
-		</ol>-->
-		
-		<!-- 이미지 슬라이드를 위한 컨텐츠 랩 -->
-		<!--<div class="carousel-inner" role="listbox">
-			<div class="item active">
-			  	<div class="container-fluid" id="frame_main1">
-				<div class="row">
-					<div class="col-md-6 col-md-offset-3">
-						<div id="Jumbotron_Mainlogo" class="jumbotron">
-				  			<h1 id="JTHeader"><strong>EZstorage</strong></h1>
-				 		 	<p id="JTParagraph">빠르고, 확실하게.</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		
-		<div class="item">
-			<div class="container-fluid" id="frame_main2">
-			<div class="row">
-				<div class="col-md-6 col-md-offset-3">
-					<div id="Jumbotron_Mainlogo" class="jumbotron">
-			  			<h1 id="JTHeader"><strong>Be easier</strong></h1>
-			 		 	<p id="JTParagraph">간편하고, 손쉽게.</p>
-					</div>
-				</div>
-			</div>
-		</div>
-		</div>
-		
-		<div class="item">
-			<div class="container-fluid" id="frame_main3">
-			<div class="row">
-				<div class="col-md-6 col-md-offset-3">
-					<div id="Jumbotron_Mainlogo" class="jumbotron">
-			  			<h1 id="JTHeader"><strong>With tags</strong></h1>
-			 		 	<p id="JTParagraph">태그를 통해 관리합니다.</p>
-					</div>
-				</div>
-			</div>
-		</div>
-		</div>
-		</div>
-		
-		  	<!-- 컨트롤러 -->
-		  	<!--<a class="left carousel-control" href="#carousel-MainCarousel" role="button" data-slide="prev">
-				<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-				<span class="sr-only">Previous</span>
-		 	</a>
-		  	<a class="right carousel-control" href="#carousel-MainCarousel" role="button" data-slide="next">
-				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-				<span class="sr-only">Next</span>
-		  	</a>
-	</div>-->
 	
 	<!--============================ 중앙 메인 로고 컨테이너 ==============================-->
 	<div class="container-fluid">
@@ -117,13 +45,13 @@
 				<div class="form-group">
 					<label for="inputEmail3" class="col-sm-3 control-label">사용자 계정</label>
 					<div class="col-sm-7">
-						<input type="email" class="form-control" id="inputEmail3" placeholder="사용자 계정">
+						<input type="email" class="form-control" id="userid" placeholder="사용자 계정">
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="inputPassword3" class="col-sm-3 control-label">암호</label>
 					<div class="col-sm-7">
-						<input type="password" class="form-control" id="inputPassword3" placeholder="암호">
+						<input type="password" class="form-control" id="userpw" placeholder="암호">
 					</div>
 				</div>
 				<div class="form-group">
@@ -137,7 +65,7 @@
 				</div>
 				<div class="form-group">
 					<div class="col-sm-offset-3 col-sm-8">
-						<button type="submit" class="btn-primary btn-lg LoginButton"><strong>로그인 </strong></button>
+						<button type="submit" id="login-button" class="btn-primary btn-lg LoginButton" onclick="login()"><strong>로그인 </strong></button>
 						<button type="submit" class="btn-primary btn-lg SigninButton"><strong>가입하기</strong></button>
 					</div>
 				</div>
