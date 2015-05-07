@@ -1,6 +1,3 @@
-/**
- * 
- */
 
 function login(){
 	var id = $("#userid").val()
@@ -22,7 +19,7 @@ function login(){
 		async: false,
 		data: jsondata,
 		success: function(result){
-			alert(result);
+			window.location.assign('admin');
 		},
 		error: function(request, status, error)
 		{
@@ -30,3 +27,4 @@ function login(){
 		}
 	})
 }
+

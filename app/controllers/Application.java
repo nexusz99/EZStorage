@@ -1,18 +1,22 @@
 package controllers;
 
-import play.*;
-import play.mvc.*;
-
-import views.html.*;
+import play.mvc.Controller;
+import play.mvc.Http.Cookie;
+import play.mvc.Result;
+import views.html.index;
 
 public class Application extends Controller {
 
     public static Result index() {
-        return ok(index.render("Your new application is ready."));
+    	Cookie c= request().cookies().get("auth_key");
+    	if(c==null)
+    		return forbidden("접근이 금지되었습니다.");
+    	
+        return ok(index.render("Your new application is ready. " + c.value()));
     }
     
     public static Result login(){
-    	String json2 = request().body().asJson().toString();
-    	return ok(json2);
+    	response().setCookie("auth_key", request().body().asJson().toString());
+    	return ok("asdf");
     }
 }
