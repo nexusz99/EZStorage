@@ -143,7 +143,8 @@ body
 	width : 600px;
 	height : 300px;
 	background-image : url(/assets/images/Tags.png);
-	background-size : cover;
+	background-size : contain;
+	background-position : center center;
 	margin-top:25%;
 }
 
