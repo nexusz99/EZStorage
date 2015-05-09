@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+   		<meta charset="utf-8">
+   		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>EZstorage - with Tags.</title>
+        
+        <link href="/assets/stylesheet/bootstrap.css" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link type="text/css" href="/assets/stylesheet/drive.css" rel="stylesheet"/>
+        <link href="/assets/stylesheet/bootstrap-responsive.css" rel="stylesheet"/>
+    </head>
+  
+	<body>
+		<!-- 상단 프로필 바 -->
+		<nav class="navbar navbar-default navbar-fixed-top bar_profile">
+  			<div class="container-fluid ">
+  				<!-- 프로필 로고 -->
+  				<div class="btn-group pull-left">
+  					<button type="submit" class="btn btn_profile">
+  					<img class="logo_profile" src="/assets/Images/logo_profile.png"/>
+  					<span class = "logo_profile"> EZStorage</span>
+  				</button>
+  				</div>	
+  				<!-- 프로필 메뉴 -->
+				<div class="btn-group pull-right">
+  					<button type="button" class="btn btn_profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+   					<img src="/assets/Images/profile.png" class="img_profile"><span id="UserName"> User Name </span><span class="caret"></span>
+ 					</button>
+ 					<ul class="dropdown-menu dropdown_profile pull-right" role="menu">
+    					<li><a href="#">사용자 정보 수정</a></li>
+    					<li><a href="#">설정</a></li>
+   						<li class="divider"></li>
+    					<li><a href="#">로그 아웃</a></li>
+  					</ul>
+				</div>
+  			</div>
+		</nav>
+	
+		<!-- 검색창/파일메뉴 컨테이너 -->
+		<div class="container-fluid container_searchBarGrid">
+			<div class="row">
+				<div class="form-group col-xs-offset-3 col-xs-5">
+	    			<div class="input-group">
+      					<input type="text" class="form-control" placeholder="태그명 혹은 파일명을 입력해주세요.">
+      					<span class="input-group-btn">
+      						<button type="button" class="btn btn_searchBar dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+      								태그명으로 검색하기<span class="caret"></span>
+      						</button>
+        						<ul class="dropdown-menu" role="menu">
+          							<li><a href="#">태그명으로 검색하기</a></li>
+          							<li><a href="#">파일명으로 검색하기</a></li>
+        						</ul>
+        					<button class="btn btn_searchBar" type="submit"><span class="glyphicon glyphicon-search"></span> 검색</button>
+     					</span>
+   					</div>
+	  			</div>
+  			</div>
+  			<div class="row">
+  				<div class="col-xs-offset-11 ">
+ 				<div class="btn-group">	
+ 					<button type="button" class="btn-lg btn_fileMenu" data-toggle="dropdown" aria-expanded="false">
+ 					<span class="glyphicon glyphicon-menu-hamburger"></span>
+ 					</button>
+ 					<ul class="dropdown-menu pull-right" role="menu">
+					   <li><a href="#"><span class="glyphicon glyphicon-upload"></span> 파일 업로드</a></li>
+					   <li class="disabled"><a href="#"><span class="glyphicon glyphicon-download"></span> 파일 다운로드</a></li>
+					   <li class="disabled"><a href="#"><span class="glyphicon glyphicon-trash"></span> 파일 버리기</a></li>
+					   <li class="divider"></li>
+					   <li><a href="#"><span class="glyphicon glyphicon-th-list"></span> 카테고리 보기</a></li>
+					   <li><a href="#"><span class="glyphicon glyphicon-sort"></span> 정렬 기준</a></li>
+					</ul>
+  				</div>
+  				</div>
+  			</div>
+		</div>
+		<!-- 파일 정보 표시창 컨테이너 -->
+		<div class="container_fileInfoGrid">
+		</div>
+		<!-- 파일 드라이브 컨테이너 -->
+		<!--<div class="row">
+			<ul>
+			<div class="col-md-3">
+				<li>
+					<button type="button">
+					</button>
+				</li>
+			</ul>	
+		</div>	-->
+	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="/assets/javascript/bootstrap.min.js"></script>
+	</body>
+</html>
