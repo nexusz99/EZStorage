@@ -5,10 +5,10 @@
    		<meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>EZstorage - with Tags.</title>
         
-        <link href="/assets/stylesheet/bootstrap.css" rel="stylesheet">
+        <link href="/aseets/stylesheet/bootstrap.css" rel="stylesheet">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link type="text/css" href="/assets/stylesheet/drive.css" rel="stylesheet"/>
-        <link href="/assets/stylesheet/bootstrap-responsive.css" rel="stylesheet"/>
+        <link type="text/css" href="/aseets/stylesheet/drive.css" rel="stylesheet"/>
+        <link href="/aseets/stylesheet/bootstrap-responsive.css" rel="stylesheet"/>
     </head>
   
 	<body>
@@ -18,14 +18,14 @@
   				<!-- 프로필 로고 -->
   				<div class="btn-group pull-left">
   					<button type="submit" class="btn btn_profile">
-  					<img class="logo_profile" src="/assets/Images/logo_profile.png"/>
+  					<img class="logo_profile" src="Images/logo_profile.png"/>
   					<span class = "logo_profile"> EZStorage</span>
   				</button>
   				</div>	
   				<!-- 프로필 메뉴 -->
 				<div class="btn-group pull-right">
   					<button type="button" class="btn btn_profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-   					<img src="/assets/Images/profile.png" class="img_profile"><span id="UserName"> User Name </span><span class="caret"></span>
+   					<img src="Images/profile.png" class="img_profile"><span id="UserName"> User Name </span><span class="caret"></span>
  					</button>
  					<ul class="dropdown-menu dropdown_profile pull-right" role="menu">
     					<li><a href="#">사용자 정보 수정</a></li>
@@ -45,21 +45,21 @@
       					<input type="text" class="form-control" placeholder="태그명 혹은 파일명을 입력해주세요.">
       					<span class="input-group-btn">
       						<button type="button" class="btn btn_searchBar dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-      								태그명으로 검색하기<span class="caret"></span>
+      								태그명으로<span class="caret"></span>
       						</button>
         						<ul class="dropdown-menu" role="menu">
-          							<li><a href="#">태그명으로 검색하기</a></li>
-          							<li><a href="#">파일명으로 검색하기</a></li>
+          							<li><a href="#">태그명으로 </a></li>
+          							<li><a href="#">파일명으로 </a></li>
         						</ul>
-        					<button class="btn btn_searchBar" type="submit"><span class="glyphicon glyphicon-search"></span> 검색</button>
+        					<button class="btn btn_searchBar" type="submit">검색 <span class="glyphicon glyphicon-search"></span></button>
      					</span>
    					</div>
 	  			</div>
   			</div>
   			<div class="row">
-  				<div class="col-xs-offset-11 ">
+  				<div class="pull-right padding_from_right">
  				<div class="btn-group">	
- 					<button type="button" class="btn-lg btn_fileMenu" data-toggle="dropdown" aria-expanded="false">
+ 					<button type="button" class="btn-md btn_fileMenu" data-toggle="dropdown" aria-expanded="false">
  					<span class="glyphicon glyphicon-menu-hamburger"></span>
  					</button>
  					<ul class="dropdown-menu pull-right" role="menu">
@@ -74,21 +74,89 @@
   				</div>
   			</div>
 		</div>
-		<!-- 파일 정보 표시창 컨테이너 -->
-		<div class="container_fileInfoGrid">
+		
+		<!-- 파일 시스템 프레임-->
+		<div id="container_fileSystemGrid">
+			<!-- 파일 정보 표시창 컨테이너 -->
+			<div class="container_fileInfoGrid">
+			<h2>파일명</h2>
+			<br>
+			<p>파일 크기 : --</p>
+			<p>파일 유형 : --</p>
+			<p>업로드 날짜 : --</p>
+			<p>카테고리 : --</p>
+			<p>태그 : --, --, --, --</p>
+			</div>
+			<!-- 파일 드라이브 컨테이너 -->
+			<div id="container_fileDriveGrid">
+				<ol>
+					<!-- 예제 파일 아이콘 리스트-->
+					<li class="grid_fileIcon">
+						<div class="btn-group"><button type="button" class="btn btn_fileIcon" data-toggle="dropdown" aria-expanded="false">
+						<img src="Images/icon_cpp.png"></button>
+						<ul class="dropdown-menu pull-right" role="menu">
+					   		<li><a href="#"><span class="glyphicon glyphicon-download"></span> 파일 다운로드</a></li>
+					   		<li><a href="#"><span class="glyphicon glyphicon-trash"></span> 파일 버리기</a></li>
+					   		<li class="divider"></li>
+					   		<li><a href="#"><span class="glyphicon glyphicon-tag"></span> 태그 수정</a></li>
+					   		<li><a href="#"><span class="glyphicon glyphicon-th-list"></span> 카테고리 수정</a></li>
+						</ul></div>
+						<div class="header_fileIcon">Test1.cpp</div>
+					</li>
+					<li class="grid_fileIcon">
+						<div class="btn-group"><button type="button" class="btn btn_fileIcon" data-toggle="dropdown" aria-expanded="false">
+						<img src="Images/icon_zip.png"></button>
+						<ul class="dropdown-menu pull-right" role="menu">
+					   		<li><a href="#"><span class="glyphicon glyphicon-download"></span> 파일 다운로드</a></li>
+					   		<li><a href="#"><span class="glyphicon glyphicon-trash"></span> 파일 버리기</a></li>
+					   		<li class="divider"></li>
+					   		<li><a href="#"><span class="glyphicon glyphicon-tag"></span> 태그 수정</a></li>
+					   		<li><a href="#"><span class="glyphicon glyphicon-th-list"></span> 카테고리 수정</a></li>
+						</ul></div>
+						<div class="header_fileIcon">Test2.zip</div>
+					</li>
+					<li class="grid_fileIcon">
+						<div class="btn-group"><button type="button" class="btn btn_fileIcon" data-toggle="dropdown" aria-expanded="false">
+						<img src="Images/icon_pdf.png"></button>
+						<ul class="dropdown-menu pull-right" role="menu">
+					   		<li><a href="#"><span class="glyphicon glyphicon-download"></span> 파일 다운로드</a></li>
+					   		<li><a href="#"><span class="glyphicon glyphicon-trash"></span> 파일 버리기</a></li>
+					   		<li class="divider"></li>
+					   		<li><a href="#"><span class="glyphicon glyphicon-tag"></span> 태그 수정</a></li>
+					   		<li><a href="#"><span class="glyphicon glyphicon-th-list"></span> 카테고리 수정</a></li>
+						</ul></div>
+						<div class="header_fileIcon">Test3.pdf</div>
+					</li>
+					<li class="grid_fileIcon">
+						<div class="btn-group"><button type="button" class="btn btn_fileIcon" data-toggle="dropdown" aria-expanded="false">
+						<img src="Images/icon_hwp.png"></button>
+						<ul class="dropdown-menu pull-right" role="menu">
+					   		<li><a href="#"><span class="glyphicon glyphicon-download"></span> 파일 다운로드</a></li>
+					   		<li><a href="#"><span class="glyphicon glyphicon-trash"></span> 파일 버리기</a></li>
+					   		<li class="divider"></li>
+					   		<li><a href="#"><span class="glyphicon glyphicon-tag"></span> 태그 수정</a></li>
+					   		<li><a href="#"><span class="glyphicon glyphicon-th-list"></span> 카테고리 수정</a></li>
+						</ul></div>
+						<div class="header_fileIcon">Test4.hwp</div>
+					</li>
+					<li class="grid_fileIcon">
+						<div class="btn-group"><button type="button" class="btn btn_fileIcon" data-toggle="dropdown" aria-expanded="false">
+						<img src="Images/icon_zip.png"></button>
+						<ul class="dropdown-menu pull-right" role="menu">
+					   		<li><a href="#"><span class="glyphicon glyphicon-download"></span> 파일 다운로드</a></li>
+					   		<li><a href="#"><span class="glyphicon glyphicon-trash"></span> 파일 버리기</a></li>
+					   		<li class="divider"></li>
+					   		<li><a href="#"><span class="glyphicon glyphicon-tag"></span> 태그 수정</a></li>
+					   		<li><a href="#"><span class="glyphicon glyphicon-th-list"></span> 카테고리 수정</a></li>
+						</ul></div>
+						<div class="header_fileIcon">Test5.zip</div>
+					</li>
+				</ol>
+			</div>
 		</div>
-		<!-- 파일 드라이브 컨테이너 -->
-		<!--<div class="row">
-			<ul>
-			<div class="col-md-3">
-				<li>
-					<button type="button">
-					</button>
-				</li>
-			</ul>	
-		</div>	-->
-	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+		
+	<!--<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>-->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	<script src="/assets/javascript/bootstrap.min.js"></script>
-	</body>
+	<script src="/assets/javascript/bootstrap.js"></script>
+	<script src="/assets/javascript/drive.js"></script>
 </html>
