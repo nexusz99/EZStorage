@@ -1,3 +1,4 @@
+package controllers;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -19,13 +20,13 @@ public class loginPractice {
 	   static int cnt;
 	   
 	   
-	   boolean Join(String id,String password,String name)//È¸¿ø°¡ÀÔ
+	   boolean Join(String id,String password,String name)//È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	   {
 		 
-		   password=Hash_MD5(password); //md5·Î password¸¦ hash
+		   password=Hash_MD5(password); //md5ï¿½ï¿½ passwordï¿½ï¿½ hash
 		   PreparedStatement pst;
 		   try{ 
-			  String str="SELECT COUNT(userID) FROM User"; //uid »ý¼ºÀ» À§ÇØ ÇöÀç ÀÖ´Â user°³¼ö¸¦ °¡Á®¿È
+			  String str="SELECT COUNT(userID) FROM User"; //uid ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ userï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			  ResultSet rs= stmt.executeQuery(str);
 			  if(rs.next())
 		   	  {
@@ -34,10 +35,10 @@ public class loginPractice {
 			  else{
 				  cnt=0;
 			  }
-			  pst=conn.prepareStatement("SELECT userID FROM User WHERE userID=?"); // idÁßº¹ Ã£´Â sql
+			  pst=conn.prepareStatement("SELECT userID FROM User WHERE userID=?"); // idï¿½ßºï¿½ Ã£ï¿½ï¿½ sql
 			  pst.setString(1, id);
 			  rs=pst.executeQuery();
-			  if(!rs.next()) //Áßº¹ÀÌ ¾øÀ¸¸é È¸¿ø°¡ÀÔ ¿Ï·á
+			  if(!rs.next()) //ï¿½ßºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½
 			  {
 				  pst=conn.prepareStatement("insert into User (uid,userId,password,name) values (?,?,?,?)");
 				  pst.setInt(1,cnt);
@@ -50,7 +51,7 @@ public class loginPractice {
 				  rs.close();
 				  return true;
 			  }
-			  else //idÁßº¹
+			  else //idï¿½ßºï¿½
 			  {
 				  System.out.println("duplicated ID");
 				  return false;
@@ -70,16 +71,16 @@ public class loginPractice {
 		   return false;
 		}
 		  
-	   boolean login(String id,String password) //·Î±×ÀÎÇÔ¼ö
+	   boolean login(String id,String password) //ï¿½Î±ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½
 	   {
-		   password=Hash_MD5(password); // md5·Î password¸¦ hash 
+		   password=Hash_MD5(password); // md5ï¿½ï¿½ passwordï¿½ï¿½ hash 
 		   PreparedStatement pst;
 		   try{
 			  pst=conn.prepareStatement("SELECT password FROM User WHERE userID=?");
 			  pst.setString(1, id); 
 			  ResultSet rs=pst.executeQuery();
 			  pst.clearParameters();
-			  if(!rs.next())  //¾ÆÀÌµð Á¸ÀçÇÏÁö ¾ÊÀ½
+			  if(!rs.next())  //ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			  {
 				  System.out.println("Not exist");
 				  return false;
@@ -98,7 +99,7 @@ public class loginPractice {
 					  pst.close();
 					  return true;
 				  }
-				  else //ºñ¹Ð¹øÈ£ ºÒÀÏÄ¡
+				  else //ï¿½ï¿½Ð¹ï¿½È£ ï¿½ï¿½ï¿½ï¿½Ä¡
 				  {
 					  System.out.println(password);
 					  System.out.println(rs.getString("password"));
