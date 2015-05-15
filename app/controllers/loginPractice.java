@@ -88,7 +88,7 @@ public class loginPractice {
 			  {
 				  if(rs.getString("password").equals(password))
 				  {
-					  pst=conn.prepareStatement("Insert into Session (id, time ,sessionKey) values (?,?,?)");
+					  pst=conn.prepareStatement("Insert into Session (userId, time ,sessionKey) values (?,?,?)");
 					  pst.setString(1,id);
 					  pst.setLong(2, System.currentTimeMillis());
 					  pst.setString(3, UUID.randomUUID().toString());
@@ -120,6 +120,33 @@ public class loginPractice {
 		return false;
 		   
 	   }
+	   boolean logout(String session)
+	   {
+		   PreparedStatement pst;
+		   try{
+			   	
+				  pst=conn.prepareStatement("UPDATE Session SET expired=1  WHERE sessionKey=?");
+				  pst.setString(1, session);
+				  pst.executeUpdate();
+				  System.out.println("logout");
+				  return true;
+				  
+			   }
+			   catch(SQLException se){
+				      //Handle errors for JDBC
+				   se.printStackTrace();
+				   System.out.println(se.getMessage());
+			   }
+			   catch(Exception e){
+				      //Handle errors for Class.forName
+				      e.printStackTrace();
+				      System.out.println(e.getMessage());
+				}
+			return false;
+			   
+	   }
+	   
+	  
 	   
 	   public static void main(String[] args) {
 		 loginPractice temp=new loginPractice();
@@ -146,6 +173,7 @@ public class loginPractice {
 			   name=scan.next();
 			   temp.Join(id, password, name);
 			   temp.login(id,password);
+			   temp.logout(id);
 		      //STEP 6: Clean-up environment=======================================
 		     
 		      stmt.close();
