@@ -3,7 +3,12 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Assets.at(path="/public", file="index.html")
+GET     /                           controllers.api.Index.index()
+GET		/main						controllers.Assets.at(path="/public", file="drive.html")
+
+# User API
+PUT		/users						controllers.api.UserAPI.signup()
+POST	/users						controllers.api.UserAPI.signin()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

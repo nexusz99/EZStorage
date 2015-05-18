@@ -1,17 +1,4 @@
-﻿
-/* 박스 모델 확인용 프레임라인 */
-*
-{
-	border:1px dashed blue;
-}
-
-/*하단 네비게이션 바를 위한 패딩 공간 설정*/
-body
-{
-	padding-bottom : 35px;
-}
-
-/* 메인 이미지 점보트론 컨테이너 */
+﻿/* 메인 이미지 점보트론 컨테이너 */
 #Jumbotron_Mainlogo
 {
 	position:inherit;

@@ -9,6 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link type="text/css" href="/assets/stylesheets/main.css" rel="stylesheet"/>
         <link href="/assets/stylesheets/bootstrap-responsive.css" rel="stylesheet"/>
+        <script src="/assets/javascripts/index.js"></script>
     </head>
   
 	<body>
@@ -107,35 +108,33 @@
 	<!--============================ 로그인 입력 폼 ====================================-->
 	<div class="row">
 		<div class="col-md-offset-4 col-md-4 LoginBOX">
-			<form class="form-horizontal">
-				<div class="form-group">
-					<label for="inputEmail" class="col-md-3 control-label">사용자 계정</label>
-					<div class="col-md-7">
-						<input type="email" class="form-control" id="inputEmail" placeholder="사용자 계정">
+			<div class="form-group">
+				<label for="inputEmail" class="col-md-3 control-label">사용자 계정</label>
+				<div class="col-md-7">
+					<input type="text" class="form-control" id="username" placeholder="사용자 계정">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputPassword" class="col-md-3 control-label">암호</label>
+				<div class="col-md-7">
+					<input type="password" class="form-control" id="password" placeholder="암호">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-md-offset-3 col-md-8">
+					<div class="checkbox">
+						<label>
+							<input type="checkbox">로그인 유지
+						</label>
 					</div>
 				</div>
-				<div class="form-group">
-					<label for="inputPassword" class="col-md-3 control-label">암호</label>
-					<div class="col-md-7">
-						<input type="password" class="form-control" id="inputPassword" placeholder="암호">
-					</div>
+			</div>
+			<div class="form-group">
+				<div class="col-md-offset-3 col-md-8">
+					<button type="submit" onclick="signin()" class="btn-primary btn-lg LoginButton" data-toggle="tooltip" data-placement="top" title="사용자 계정으로 로그인합니다." ><strong>로그인 </strong></button>
+					<button type="button" class="btn-primary btn-lg SigninButton" data-toggle="modal" data-target="#SignInModal" data-toggle="tooltip" data-placement="top" title="EZstorage에 가입합니다."><strong>가입하기</strong></button>
 				</div>
-				<div class="form-group">
-					<div class="col-md-offset-3 col-md-8">
-						<div class="checkbox">
-							<label>
-								<input type="checkbox">로그인 유지
-							</label>
-						</div>
-					</div>
-				</div>
-				<div class="form-group">
-					<div class="col-md-offset-3 col-md-8">
-						<button type="submit" class="btn-primary btn-lg LoginButton" data-toggle="tooltip" data-placement="top" title="사용자 계정으로 로그인합니다." ><strong>로그인 </strong></button>
-						<button type="button" class="btn-primary btn-lg SigninButton" data-toggle="modal" data-target="#SignInModal" data-toggle="tooltip" data-placement="top" title="EZstorage에 가입합니다."><strong>가입하기</strong></button>
-					</div>
-				</div>
-			</form>
+			</div>
 		</div>
 	</div>
 
@@ -155,31 +154,41 @@
 					</p>
 				</div>
 				<div class="modal-body">
-					<form class="form-horizontal">
-						<div class="form-group">
-							<label for="inputNewEmail" class="col-md-3 control-label">사용자 계정</label>
-							<div class="col-md-8">
-								<input type="email" class="form-control" id="inputNewEmail" placeholder="사용자 계정">
-							</div>
+					<div class="form-group">
+						<label class="col-md-3 control-label">사용자 계정</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="newusername" placeholder="사용자 계정">
 						</div>
-						<div class="form-group">
-							<label for="inputNewPassword" class="col-md-3 control-label">암호</label>
-							<div class="col-md-8">
-								<input type="password" class="form-control" id="inputNewPassword" placeholder="암호">
-							</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-3 control-label">암호</label>
+						<div class="col-md-8">
+							<input type="password" class="form-control" id="newpassword" placeholder="암호">
 						</div>
-						<div class="form-group has-error has-feedback">
-							<label class="control-label col-md-3" for="confirmPW">암호 확인</label>
-							<div class="col-md-8">
-								<input type="password" class="form-control" id="confirmPW" placeholder="암호 확인" aria-describedby="notConfirmed">
-								<span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
-								<span id="notConfirmed" class="sr-only">(error)</span>
-							</div>
+					</div>
+					<div class="form-group has-error has-feedback">
+						<label class="control-label col-md-3" for="confirmPW">암호 확인</label>
+						<div class="col-md-8">
+							<input type="password" class="form-control" id="confirmPW" placeholder="암호 확인" aria-describedby="notConfirmed">
+							<span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+							<span id="notConfirmed" class="sr-only">(error)</span>
 						</div>
-					</form>
+					</div>
+					<div class="form-group">
+						<label class="col-md-3 control-label">성</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="lastname" placeholder="성">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-3 control-label">이름</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" id="firstname" placeholder="이름">
+						</div>
+					</div>
 				</div>
 			<div class="modal-footer">
-				<button type="submit" class="btn button_blue">가입하기</button>
+				<button type="submit" class="btn button_blue" onclick="signup()">가입하기</button>
 				<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 			</div>
 			</div>
@@ -200,7 +209,7 @@
 		</div>
 	</nav>
 
-	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script src="/assets/javascripts/bootstrap.min.js"></script>
 	</body>
