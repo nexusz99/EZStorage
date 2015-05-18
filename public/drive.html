@@ -84,7 +84,7 @@
 						<h4 class="modal-title" id="myModalLabel">파일 업로드</h4>
 				  	</div>
 				  	<div class="modal-body">
-					    <form name="file_fileUpload" action="file_fileUpload.php" method="POST" enctype="multipart/form-data">
+					    <form id="form_fileUpload" name="file_fileUpload" action="file_fileUpload.php" method="POST" enctype="multipart/form-data">
                     		<label for="btn_fileUpload">드라이브에 올릴 파일을 선택해주세요.</label>
                     		<input class="btn_fileUpload" type="file" name="uploadedFile" id="btn_fileUpload" onchange="document.getElementById('name_fileUpload').value=this.value;" value="this.value"/>
                     		<div class="form-group form_fileUpload">
@@ -95,8 +95,8 @@
                 			<div class="divder_modal"></div>
                 			<label>파일에 붙일 태그를 입력해주세요.</label>
                 			<div class=>
-                				<div class="form_fileTag">
-	    							<input type="text" data-role="tagsinput" style="display : none;"/>
+                				<div id="form_fileTag" class="form_fileTag">
+	    							<input type="text" id="tagsArea" data-role="tagsinput" value="" style="display : none;"/>
 	    							<p class="help-block">태그와 태그 사이는 쉼표(<kbd>,</kbd>)로 구분됩니다.</p>
                 					<!--&nbsp;&nbsp;<button type="button" class="btn btn-primary" id="btn_createTag">태그 추가</button>
                 					<button type="button" class="btn btn-danger" id="btn_deleteTag">태그 제거</button>-->
@@ -106,7 +106,7 @@
                 	</div>
 				  	<div class="modal-footer">
 				  		<input type="submit" class="btn btn-primary"></input>
-						<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal" id="btn_cancle_fileUpload">취소</button>
 				  	</div>
 				</div>
 		  	</div>

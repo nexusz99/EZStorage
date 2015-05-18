@@ -36,6 +36,19 @@ $(function()
 });*/
 
 
+// 파일 업로드 모달 취소 버튼 액션
+$(function()
+{
+	$('#btn_cancle_fileUpload').click(function()
+	{
+	
+		$('#name_fileUpload').val("");
+		$('#btn_fileUpload').val("");
+		$('#tagsArea').val("");
+		$('.bootstrap-tagsinput > span').remove();
+	});
+});
+
 // Bootstrap - Tags Input 컴포넌트
 (function ($) {
   "use strict";
