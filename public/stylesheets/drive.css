@@ -211,10 +211,13 @@
 
 .txt_fileUpload
 {
+	margin-top:4px;
 	margin-bottom:10px;
 	width:70%;
 	border:0px;
 	display:inline-block;
+	background-color:RGBA(200,200,200,0.3);
+	text-align:center;
 }
 .form_fileTag
 {
@@ -227,6 +230,7 @@
 	display:inline-block;
 	padding:0px;
 }
+/*
 #btn_createTag
 {
 	margin-top:5px;
@@ -238,14 +242,15 @@
 	margin-top:5px;
 	margin-right:8px;
 	vertical-align:top;
-}
+}*/
 ol.list_fileTag > li
 {
 	display:inline-block;
-	margin:5px 5px;
 	padding:0px 0px 0px 0px;
 	width:80px;
 	list-style-type:none;
+	margin-top:8px;
+	margin-bottom:0px;
 }
 .txt_fileTag
 {
@@ -274,4 +279,64 @@ ol>li:nth-child(3) >div.btn-group>button
 	text-align:center;
 	vertical-align: center;
 	text-shadow:2px 2px 2px RGBA(100,100,100,0.4);
+}
+.divider_modal
+{
+	height:1px;
+	width:98%;
+	border:2px solid RGBA(100,100,100,1.0);
+}
+.help-block
+{
+	font-size:12px;
+}
+
+/* Bootstrap - Tags Input 컴포넌트*/
+.bootstrap-tagsinput {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  display: inline-block;
+  padding: 4px 6px;
+  margin-bottom: 10px;
+  color: #555;
+  vertical-align: middle;
+  border-radius: 4px;
+  max-width: 100%;
+  min-width: 450px;
+  line-height: 26px;
+  cursor: text;
+}
+.bootstrap-tagsinput input {
+  border: none;
+  box-shadow: none;
+  outline: none;
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+  width: auto !important;
+  max-width: inherit;
+}
+.bootstrap-tagsinput input:focus {
+  border: none;
+  box-shadow: none;
+}
+.bootstrap-tagsinput .tag {
+  margin: 5px 2px;
+  color: white;
+  font-size:12px;
+}
+.bootstrap-tagsinput .tag [data-role="remove"] {
+  margin-left: 8px;
+  cursor: pointer;
+}
+.bootstrap-tagsinput .tag [data-role="remove"]:after {
+  content: "x";
+  padding: 0px 2px;
+}
+.bootstrap-tagsinput .tag [data-role="remove"]:hover {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+.bootstrap-tagsinput .tag [data-role="remove"]:hover:active {
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }

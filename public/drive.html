@@ -88,20 +88,18 @@
                     		<label for="btn_fileUpload">드라이브에 올릴 파일을 선택해주세요.</label>
                     		<input class="btn_fileUpload" type="file" name="uploadedFile" id="btn_fileUpload" onchange="document.getElementById('name_fileUpload').value=this.value;" value="this.value"/>
                     		<div class="form-group form_fileUpload">
-                				&nbsp;&nbsp;<input type="text" class="txt_fileUpload" id="name_fileUpload" name="name_fileUpload" placeholder="파일 선택" readonly/><br>
-                    			<input type="button" class="btn btn-primary" value="파일 선택" onclick="document.getElementById('btn_fileUpload').click();"></button>	                    		
-
+                				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                				<input type="text" class="txt_fileUpload" id="name_fileUpload" name="name_fileUpload" placeholder="파일 선택" readonly/>
+                    			<input type="button" class="btn btn-success pull-left" value="파일 선택" onclick="document.getElementById('btn_fileUpload').click();"></button>	                    		
                 			</div>
-                		</form>                
-                		<form name="tag_fileUpload" action="tag_fileUpload.php" method="POST">
+                			<div class="divder_modal"></div>
                 			<label>파일에 붙일 태그를 입력해주세요.</label>
                 			<div class=>
                 				<div class="form_fileTag">
-                					<ol id="list_fileTag" class="form-group list_fileTag">
-                						<li><input type="text" class="txt_fileTag"></li>
-                					</ol>
-                					&nbsp;&nbsp;<button type="button" class="btn btn-primary" id="btn_createTag">태그 추가</button>
-                					<button type="button" class="btn btn-danger" id="btn_deleteTag">태그 제거</button>
+	    							<input type="text" data-role="tagsinput" style="display : none;"/>
+	    							<p class="help-block">태그와 태그 사이는 쉼표(<kbd>,</kbd>)로 구분됩니다.</p>
+                					<!--&nbsp;&nbsp;<button type="button" class="btn btn-primary" id="btn_createTag">태그 추가</button>
+                					<button type="button" class="btn btn-danger" id="btn_deleteTag">태그 제거</button>-->
                 				</div>  			
                 			</div>                			              			
                 		</form>
