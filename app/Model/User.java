@@ -2,6 +2,7 @@ package Model;
 
 public class User {
 	
+	private int userId;
 	private String username;
 	private String passwd;
 	private String firstname;
@@ -37,6 +38,12 @@ public class User {
 	}
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
+	}
+	public int getUserId() {
+		return userId;
+	}
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 	
 }

@@ -75,13 +75,12 @@ public class UserController {
 				throw new PasswordNotCorrectException();
 			}
 			
-			String session = Session.makeNewSession(username, remoteAddr);
-			
 			u = new User();
 			u.setUsername(username);
 			u.setFirstname(re.getString("firstname"));
 			u.setLastname(re.getString("lastname"));
-			u.setSession(session);
+			
+			Session.makeNewSession(u, remoteAddr);
 			
 		} catch (SQLException e) {
 			Logger.error("Database Error", e);
