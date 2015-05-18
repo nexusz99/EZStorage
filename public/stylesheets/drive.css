@@ -1,4 +1,8 @@
-
+/* 박스 모델 확인용 프레임라인 */
+*
+{
+	/*border:1px dashed blue;*/
+}
 .padding_from_right
 {
 	margin-right:5%;
@@ -8,12 +12,12 @@
 	margin-right:4px;
 	margin-left:4px;
 }
-/*프로필바 디자인 클래스 */
+/* 프로필 바 디자인 */
 .bar_profile
 {
 	position:absolute;
 	z-index:99;
-	background-color : black;
+	background-color:black;
 	color:white;
 	margin-bottom:10px;
 	padding-right:5% !important;
@@ -127,7 +131,7 @@
 	box-shadow:0px 0px 4px RGBA(100,100,100,0.5);
 }
 
-/* 파일 시스템 프레임 클래스 */
+/* 파일 시스템 프레임 디자인 */
 #container_fileSystemGrid
 {
 	width:100%;
@@ -139,7 +143,7 @@
 	display:inline-block;
 	min-height:400px !important;
 }
-/* 파일 정보 표시창 컨테이너 클래스*/
+/* 파일 정보 표시창 컨테이너 디자인*/
 .container_fileInfoGrid
 {
 	float:left;
@@ -153,7 +157,7 @@
 	padding-top:40px;
 }
 
-/* 파일 드라이브 표시창 컨테이너 클래스*/
+/* 파일 드라이브 표시창 컨테이너 디자인*/
 #container_fileDriveGrid
 {
 	position:absolute;
@@ -169,7 +173,7 @@
 }
 .grid_fileIcon
 {
-	margin:50px 35px ;
+	margin:35px 20px ;
 	width:150px;
 	height:170px;
 
@@ -188,6 +192,67 @@
 	border-bottom-right-radius:16px !important;
 	border:4px solid RGBA(150,240,255,0.1);
 }
+
+/* 파일 업로드 폼 디자인 */
+.btn_fileUpload
+{
+	position:absolute;
+	top:-100px;
+	width:0;
+	height:0;
+	opacity:0;
+	display:none;
+}
+.form_fileUpload
+{
+	margin:10px 10px;
+	margin-bottom:30px;
+}
+
+.txt_fileUpload
+{
+	margin-bottom:10px;
+	width:70%;
+	border:0px;
+	display:inline-block;
+}
+.form_fileTag
+{
+	margin-bottom:30px;
+	display:inline-block;
+}
+.list_fileTag
+{
+	width:100%;
+	display:inline-block;
+	padding:0px;
+}
+#btn_createTag
+{
+	margin-top:5px;
+	margin-right:8px;
+	vertical-align:top;
+}
+#btn_deleteTag
+{
+	margin-top:5px;
+	margin-right:8px;
+	vertical-align:top;
+}
+ol.list_fileTag > li
+{
+	display:inline-block;
+	margin:5px 5px;
+	padding:0px 0px 0px 0px;
+	width:80px;
+	list-style-type:none;
+}
+.txt_fileTag
+{
+	padding:0px 0px 0px 0px;
+	width:100%;
+}
+/* 파일 아이콘 디자인 */
 ol>li:first-child >div.btn-group>button
 {
 	border:11px solid RGBA(150,240,255,0.8) !important;
