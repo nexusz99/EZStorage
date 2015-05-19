@@ -2,7 +2,7 @@ $(function()
 {
 	$.ajax(
 	{
-		url:"test.json",
+		url:"/assets/javascript/test.json",
 		dataType:"json",
 		success:function(result)
 		{
