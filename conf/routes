@@ -5,6 +5,7 @@
 # Home page
 GET     /                           controllers.api.Index.index()
 GET		/main						controllers.Assets.at(path="/public", file="drive.html")
+GET		/test						controllers.Assets.at(path="/public", file="test.html")
 
 # User API
 PUT		/users						controllers.api.UserAPI.signup()
