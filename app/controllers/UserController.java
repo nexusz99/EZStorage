@@ -79,7 +79,7 @@ public class UserController {
 			u.setUsername(username);
 			u.setFirstname(re.getString("firstname"));
 			u.setLastname(re.getString("lastname"));
-			
+			u.setUserId(re.getInt("id"));
 			Session.makeNewSession(u, remoteAddr);
 			
 		} catch (SQLException e) {

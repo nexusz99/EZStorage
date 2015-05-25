@@ -3,12 +3,17 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.api.Index.index()
+GET		/							controllers.api.Index.index()
 GET		/main						controllers.Assets.at(path="/public", file="drive.html")
 
 # User API
 PUT		/users						controllers.api.UserAPI.signup()
 POST	/users						controllers.api.UserAPI.signin()
+
+# File API
+POST	/files/:user_id				controllers.api.FileAPI.upload(user_id: Integer)
+GET		/files/:user_id/recent		controllers.api.FileAPI.recentList(user_id: Integer)
+GET		/files/:user_id/:file_id	controllers.api.FileAPI.download(user_id: Integer, file_id: String)	
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

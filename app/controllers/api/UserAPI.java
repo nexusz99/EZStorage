@@ -54,9 +54,15 @@ public class UserAPI extends Controller {
 		}
 		
 		Response response = response();
+		response.setCookie("userid", String.valueOf(u.getUserId()));
 		response.setCookie("firstname", u.getFirstname());
 		response.setCookie("lastname", u.getLastname());
 		response.setCookie("auth_key", u.getSession());
+		return ok();
+	}
+	
+	public static Result signout()
+	{
 		return ok();
 	}
 }
