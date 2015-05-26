@@ -4,9 +4,9 @@ function signup()
 	var pw = $("#newpassword").val()
 	var firstname = $("#firstname").val()
 	var lastname = $("#lastname").val()
-	var data = {"username": id, "passwd": pw, "firstname": firstname, "lastname": lastname}
+	var data = {"type": 1, "username": id, "passwd": pw, "firstname": firstname, "lastname": lastname}
 	
-	sendJson(data, "PUT", false)
+	sendJson(data, "PUT")
 }
 
 function signin()
@@ -14,12 +14,19 @@ function signin()
 	var id = $("#username").val()
 	var pw = $("#password").val()
 	
-	var data = {"username": id, "passwd": pw}
+	var data = {"type": 1, "username": id, "passwd": pw}
 	
-	sendJson(data, "POST", true)
+	sendJson(data, "POST")
 }
 
-function sendJson(data, method, redirect)
+function signout()
+{
+	var data = {"type": 2}
+	
+	sendJson(data, "POST");
+}
+
+function sendJson(data, method)
 {
 	var jsondata = JSON.stringify(data)
 	
@@ -35,10 +42,7 @@ function sendJson(data, method, redirect)
 		async: false,
 		data: jsondata,
 		success: function(result){
-			if(redirect)
-				window.location.assign('main');
-			else
-				location.reload();
+			location.reload();
 		},
 		statusCode:{
 			409:function(){

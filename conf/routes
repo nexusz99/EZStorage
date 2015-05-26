@@ -8,7 +8,7 @@ GET		/main						controllers.Assets.at(path="/public", file="drive.html")
 
 # User API
 PUT		/users						controllers.api.UserAPI.signup()
-POST	/users						controllers.api.UserAPI.signin()
+POST	/users						controllers.api.UserAPI.signinorout()
 
 # File API
 POST	/files/:user_id				controllers.api.FileAPI.upload(user_id: Integer)

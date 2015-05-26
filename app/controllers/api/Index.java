@@ -20,8 +20,8 @@ public class Index extends Controller {
 		}
 		
 		String session = a.value();
-		
-		boolean validate = true;
+		String remoteAddr = request().remoteAddress();
+		boolean validate = Session.isValideSession(session, remoteAddr);
 		if(validate)
 			file = Play.application().getFile("/public/drive.html");
 		

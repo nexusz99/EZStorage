@@ -27,11 +27,12 @@ public class UserController {
 		String sql = "insert into ezusers (username, passwd, firstname,"
 		             + " lastname) values (?,?,?,?)";
 		String passwordhash = md5password(u.getPasswd());
-		
+		Connection con = null;
+		PreparedStatement ps = null;
 		try
 		{
-			Connection con = ds.getConnection();
-			PreparedStatement ps = con.prepareStatement(sql);
+			con = ds.getConnection();
+			ps = con.prepareStatement(sql);
 			ps.setString(1, u.getUsername());
 			ps.setString(2, passwordhash);
 			ps.setString(3, u.getFirstname());
@@ -47,6 +48,14 @@ public class UserController {
 				throw e;
 			Logger.error("Database Error", e);
 		}
+		finally
+		{
+        	try {
+				if(ps != null) ps.close();
+	        	if(con != null) con.close();
+			} catch (SQLException e) {
+			}
+		}
 		
 		return ret;
 	}
@@ -57,9 +66,11 @@ public class UserController {
 		User u = null;
 		String passwdhash = md5password(passwd);
 		String sql = "select * from ezusers where username=?";
+		Connection con = null;
+		PreparedStatement ps = null;
 		try {
-			Connection con = ds.getConnection();
-			PreparedStatement ps = con.prepareStatement(sql);
+			con = ds.getConnection();
+			ps = con.prepareStatement(sql);
 			ps.setString(1, username);
 			
 			ResultSet re = ps.executeQuery();
@@ -84,6 +95,14 @@ public class UserController {
 			
 		} catch (SQLException e) {
 			Logger.error("Database Error", e);
+		}
+		finally
+		{
+        	try {
+				if(ps != null) ps.close();
+	        	if(con != null) con.close();
+			} catch (SQLException e) {
+			}
 		}
 		return u;
 	}
