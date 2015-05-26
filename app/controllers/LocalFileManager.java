@@ -1,10 +1,20 @@
 package controllers;
 
-import Model.File;
+import java.io.File;
+
+import Model.EZFile;
+
+import com.typesafe.config.ConfigFactory;
 
 public class LocalFileManager {
-	public String store(File f)
+	
+	public static String base = ConfigFactory.load().getString("basepath");
+	
+	public String store(EZFile f)
 	{
-		return "/tmp/Aiw12/9XzieQp3";
+		File body = f.getBody();
+		File newpath = new File(base, f.getId());
+		boolean r = body.renameTo(newpath);
+		return newpath.getPath();
 	}
 }

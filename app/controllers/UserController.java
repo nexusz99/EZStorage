@@ -26,7 +26,7 @@ public class UserController {
 		boolean ret = false;
 		String sql = "insert into ezusers (username, passwd, firstname,"
 		             + " lastname) values (?,?,?,?)";
-		String passwordhash = md5password(u.getPasswd());
+		String passwordhash = Utils.md5(u.getPasswd());
 		Connection con = null;
 		PreparedStatement ps = null;
 		try
@@ -64,7 +64,7 @@ public class UserController {
 			throws PasswordNotCorrectException, UserNotExistedException
 	{
 		User u = null;
-		String passwdhash = md5password(passwd);
+		String passwdhash = Utils.md5(passwd);
 		String sql = "select * from ezusers where username=?";
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -105,23 +105,5 @@ public class UserController {
 			}
 		}
 		return u;
-	}
-	
-	private String md5password(String passwd)
-	{
-		String hash=null;
-		try {
-			MessageDigest md = MessageDigest.getInstance("MD5");
-			md.update(passwd.getBytes());
-			byte bs[] = md.digest();
-			StringBuffer sb = new StringBuffer();
-			for (byte b : bs) {
-				sb.append(String.format("%02x", b & 0xff));
-			}
-			hash = sb.toString();
-		} catch (NoSuchAlgorithmException e) {
-			Logger.debug("MD5 Hashing fail", e);
-		}
-		return hash;
 	}
 }
