@@ -26,6 +26,17 @@ function signout()
 	sendJson(data, "POST");
 }
 
+function updateUserInfo()
+{
+	var id = $("#newusername").val()
+	var pw = $("#newpassword").val()
+	var firstname = $("#firstname").val()
+	var lastname = $("#lastname").val()
+	var data = {"type": 1, "username": id, "passwd": pw, "firstname": firstname, "lastname": lastname}
+	
+	sendJson(data, "PUT")
+}
+
 function sendJson(data, method)
 {
 	var jsondata = JSON.stringify(data)
@@ -38,7 +49,7 @@ function sendJson(data, method)
 			'Accept': 'application/json',
 			'Content-Type': 'application/json'
 		},
-		url: 'users',
+		url: '/users',
 		async: false,
 		data: jsondata,
 		success: function(result){

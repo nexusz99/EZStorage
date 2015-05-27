@@ -1,3 +1,66 @@
+function loadfile()
+{
+	$.ajax(
+	{
+		url:"http://nb.printf.kr/filelist",
+		dataType:"json",
+		success:function(result)
+		{
+			$.each(result, function(key)
+			{
+				var file = result[key];
+				var content = "<table>";
+				
+				for(i=0; i<file.length; i++)
+				{
+					content += "<tr>";
+					content += "<td>" + file[i].filename + "</td>";
+					content += "<td>" + file[i].file_id + "</td>";
+					content += "<td>" + file[i].filesize + "</td>";
+					content += "<td>" + file[i].uploadtime + "</td>";
+					content += "<td>" + file[i].tags + "</td>";
+					content += "</tr>";
+				}
+				
+				content += "<table>";
+				
+				$("#container_fileDriveGrid").html(content);
+			})
+		}
+	});
+});
+	
+function fileUpload()
+{
+	
+}
+
+function sendJsonUserdata(data, method)
+{
+	var jsondata = JSON.stringify(data)
+	
+	$.ajax
+	({
+		type: method,
+		headers:
+		{
+			'Accept': 'application/json',
+			'Content-Type': 'application/json'
+		},
+		url: '/users',
+		async: false,
+		data: jsondata,
+		success: function(result){
+			location.reload();
+		},
+		statusCode:{
+			409:function(){
+				alert("이미 존재하는 ID입니다.");
+			}
+		}
+	})
+}
+
 function resize_fileGrid() // container_fileSystemGrid의 너비를 윈도우 크기에 맞게 리사이징
 {
     var cont_fileDrive = document.getElementById('container_fileDriveGrid');
