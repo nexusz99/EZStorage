@@ -4,31 +4,31 @@ function loadfile()
 	{
 		url:"http://nb.printf.kr/filelist",
 		dataType:"json",
+		method: "GET",
+		async: false,
 		success:function(result)
 		{
-			$.each(result, function(key)
+			var content = "<table>";
+			for(k = 0; k < result.length; k++)
 			{
-				var file = result[key];
-				var content = "<table>";
+				var file = result[k];
 				
-				for(i=0; i<file.length; i++)
-				{
-					content += "<tr>";
-					content += "<td>" + file[i].filename + "</td>";
-					content += "<td>" + file[i].file_id + "</td>";
-					content += "<td>" + file[i].filesize + "</td>";
-					content += "<td>" + file[i].uploadtime + "</td>";
-					content += "<td>" + file[i].tags + "</td>";
-					content += "</tr>";
-				}
 				
-				content += "<table>";
-				
-				$("#container_fileDriveGrid").html(content);
-			})
+				content += "<tr>";
+				content += "<td>" + file.filename + "</td>";
+				content += "<td>" + file.file_id + "</td>";
+				content += "<td>" + file.filesize + "</td>";
+				content += "<td>" + file.uploadtime + "</td>";
+				content += "<td>" + file.tags + "</td>";
+				content += "</tr>";
+			
+			}
+			content += "</table>";
+			$("#container_fileDriveGrid").html(content);
+		
 		}
-	});
-});
+	})
+}
 	
 function fileUpload()
 {
