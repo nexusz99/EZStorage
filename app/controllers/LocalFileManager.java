@@ -17,4 +17,10 @@ public class LocalFileManager {
 		boolean r = body.renameTo(newpath);
 		return newpath.getPath();
 	}
+	
+	public boolean delete(String path)
+	{
+		File f = new File(path);
+		return f.delete();
+	}
 }

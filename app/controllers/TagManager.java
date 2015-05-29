@@ -14,9 +14,14 @@ import Model.EZFile;
 
 public class TagManager {
 	
-	private DataSource ds = DB.getDataSource();
+	private Connection con = null;
 	
-	public void saveFileTag(EZFile fileinfo)
+	public TagManager(Connection c)
+	{
+		con = c;
+	}
+	
+	public void saveFileTag(EZFile fileinfo) throws SQLException
 	{
 		Iterator<String> tags = fileinfo.iterTags();
 		
@@ -24,12 +29,11 @@ public class TagManager {
 		String query = "insert into eztags (name) values (?)"
 				+ "on duplicate key update reference_count=reference_count+1";
 		String mquery = "insert into eztags_has_storage_file values (?, ?)";
-		Connection con = null;
+		
 		PreparedStatement ps = null, mps = null;
 		
 		try
 		{
-			con = ds.getConnection();
 			while(tags.hasNext())
 			{
 				String t = tags.next();
@@ -53,12 +57,7 @@ public class TagManager {
 		}
 		catch (SQLException e) 
 		{
-			e.printStackTrace();
-			try {
-				con.close();
-			} catch (SQLException e1) {
-			}
-			return;
+			throw e;
 		}
 	}
 }

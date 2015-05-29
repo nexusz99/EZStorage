@@ -6,6 +6,7 @@ import java.util.Iterator;
 import controllers.FileController;
 import controllers.Session;
 import controllers.TagManager;
+import exception.FileUploadException;
 import Model.EZFile;
 import Model.User;
 import play.mvc.Controller;
@@ -18,11 +19,9 @@ import play.mvc.Results;
 public class FileAPI extends Controller {
 	
 	private static FileController fc = new FileController();
-	private static TagManager tm = new TagManager();
 	
 	public static Result upload(int user_id)
 	{
-		// TODO 전체 과정을 Transaction으로 처리하기
 		if(!requestValidation(user_id))
 			return forbidden();
 		
@@ -41,11 +40,28 @@ public class FileAPI extends Controller {
 		User u = new User();
 		u.setUserId(user_id);
 		
-		boolean result = fc.saveNewfile(u, f);
-		if(!result)
-			return status(CONFLICT, "[CONFLICT] File already uploaded");
+		try
+		{
+			boolean result = fc.saveNewfile(u, f);
+			if(!result)
+				return status(CONFLICT, "[CONFLICT] File already uploaded");
+		}
+		catch(FileUploadException e)
+		{
+			return internalServerError(e.getMessage());
+		}
 		
-		tm.saveFileTag(f);
+		return redirect("/");
+	}
+	
+	public static Result delete(int user_id, String file_id)
+	{
+		//if(!requestValidation(user_id))
+		//	return forbidden();
+		
+		boolean result = fc.deleteFile(user_id, file_id);
+		if(!result)
+			return badRequest("해당 파일이 존재하지 않습니다.");
 		
 		return redirect("/");
 	}

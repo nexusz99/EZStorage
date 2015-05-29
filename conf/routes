@@ -13,7 +13,8 @@ POST	/users						controllers.api.UserAPI.signinorout()
 # File API
 POST	/files/:user_id				controllers.api.FileAPI.upload(user_id: Integer)
 GET		/files/:user_id/recent		controllers.api.FileAPI.recentList(user_id: Integer)
-GET		/files/:user_id/:file_id	controllers.api.FileAPI.download(user_id: Integer, file_id: String)	
+GET		/files/:user_id/:file_id	controllers.api.FileAPI.download(user_id: Integer, file_id: String)
+DELETE	/files/:user_id/:file_id	controllers.api.FileAPI.delete(user_id: Integer, file_id: String)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
