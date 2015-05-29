@@ -56,8 +56,8 @@ public class FileAPI extends Controller {
 	
 	public static Result delete(int user_id, String file_id)
 	{
-		//if(!requestValidation(user_id))
-		//	return forbidden();
+		if(!requestValidation(user_id))
+			return forbidden();
 		
 		boolean result = fc.deleteFile(user_id, file_id);
 		if(!result)
