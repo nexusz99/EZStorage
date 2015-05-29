@@ -26,12 +26,13 @@ public class UserController {
 		boolean ret = false;
 		String sql = "insert into ezusers (username, passwd, firstname,"
 		             + " lastname) values (?,?,?,?)";
-		String passwordhash = md5password(u.getPasswd());
-		
+		String passwordhash = Utils.md5(u.getPasswd());
+		Connection con = null;
+		PreparedStatement ps = null;
 		try
 		{
-			Connection con = ds.getConnection();
-			PreparedStatement ps = con.prepareStatement(sql);
+			con = ds.getConnection();
+			ps = con.prepareStatement(sql);
 			ps.setString(1, u.getUsername());
 			ps.setString(2, passwordhash);
 			ps.setString(3, u.getFirstname());
@@ -47,6 +48,14 @@ public class UserController {
 				throw e;
 			Logger.error("Database Error", e);
 		}
+		finally
+		{
+        	try {
+				if(ps != null) ps.close();
+	        	if(con != null) con.close();
+			} catch (SQLException e) {
+			}
+		}
 		
 		return ret;
 	}
@@ -55,11 +64,13 @@ public class UserController {
 			throws PasswordNotCorrectException, UserNotExistedException
 	{
 		User u = null;
-		String passwdhash = md5password(passwd);
+		String passwdhash = Utils.md5(passwd);
 		String sql = "select * from ezusers where username=?";
+		Connection con = null;
+		PreparedStatement ps = null;
 		try {
-			Connection con = ds.getConnection();
-			PreparedStatement ps = con.prepareStatement(sql);
+			con = ds.getConnection();
+			ps = con.prepareStatement(sql);
 			ps.setString(1, username);
 			
 			ResultSet re = ps.executeQuery();
@@ -79,30 +90,20 @@ public class UserController {
 			u.setUsername(username);
 			u.setFirstname(re.getString("firstname"));
 			u.setLastname(re.getString("lastname"));
-			
+			u.setUserId(re.getInt("id"));
 			Session.makeNewSession(u, remoteAddr);
 			
 		} catch (SQLException e) {
 			Logger.error("Database Error", e);
 		}
-		return u;
-	}
-	
-	private String md5password(String passwd)
-	{
-		String hash=null;
-		try {
-			MessageDigest md = MessageDigest.getInstance("MD5");
-			md.update(passwd.getBytes());
-			byte bs[] = md.digest();
-			StringBuffer sb = new StringBuffer();
-			for (byte b : bs) {
-				sb.append(String.format("%02x", b & 0xff));
+		finally
+		{
+        	try {
+				if(ps != null) ps.close();
+	        	if(con != null) con.close();
+			} catch (SQLException e) {
 			}
-			hash = sb.toString();
-		} catch (NoSuchAlgorithmException e) {
-			Logger.debug("MD5 Hashing fail", e);
 		}
-		return hash;
+		return u;
 	}
 }

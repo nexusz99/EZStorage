@@ -6,11 +6,14 @@ import Model.User;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
+import controllers.Session;
 import controllers.UserController;
 import exception.PasswordNotCorrectException;
 import exception.UserNotExistedException;
 import play.*;
 import play.mvc.*;
+import play.mvc.Http.Cookie;
+import play.mvc.Http.Request;
 import play.mvc.Http.Response;
 
 public class UserAPI extends Controller {
@@ -39,7 +42,25 @@ public class UserAPI extends Controller {
 		return ok();
 	}
 	
-	public static Result signin()
+	public static Result signinorout()
+	{
+		JsonNode json = request().body().asJson();
+		int type = json.get("type").asInt();
+		if(type == 1)
+		{
+			return new UserAPI().signin();
+		}
+		else if(type == 2)
+		{
+			return new UserAPI().signout();
+		}
+		else
+		{
+			return badRequest("Incorrect Type value");
+		}
+	}
+	
+	public Result signin()
 	{
 		JsonNode json = request().body().asJson();
 		String username = json.get("username").asText();
@@ -54,9 +75,31 @@ public class UserAPI extends Controller {
 		}
 		
 		Response response = response();
+		response.setCookie("userid", String.valueOf(u.getUserId()));
 		response.setCookie("firstname", u.getFirstname());
 		response.setCookie("lastname", u.getLastname());
 		response.setCookie("auth_key", u.getSession());
+		return ok();
+	}
+	
+	public Result signout()
+	{
+		Cookie a  = request().cookie("auth_key");
+		if(a==null)
+		{
+			return forbidden();
+		}
+		
+		String session = a.value();
+		String remoteAddr = request().remoteAddress();
+		
+		if(!Session.isValideSession(session, remoteAddr))
+		{
+			return forbidden();
+		}
+		
+		Session.expireSession(session);
+		
 		return ok();
 	}
 }

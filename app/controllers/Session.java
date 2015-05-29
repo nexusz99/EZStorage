@@ -30,10 +30,12 @@ public class Session {
         
         String sql = "Insert into ezsession (session_key, ipaddress, last_update, users_id) values (?,?,now(),?)";
         String key= UUID.randomUUID().toString();
+        Connection con = null;
+        PreparedStatement ps = null;
         try
         {
-            Connection con = ds.getConnection();
-            PreparedStatement ps = con.prepareStatement(sql);
+            con = ds.getConnection();
+            ps = con.prepareStatement(sql);
         
             ps.setString(1, key);
             ps.setString(2, remoteAddr);
@@ -42,6 +44,13 @@ public class Session {
         }
         catch(SQLException e){
             Logger.error("Database Error", e);
+        }
+        finally{
+        	try {
+				if(ps != null) ps.close();
+	        	if(con != null) con.close();
+			} catch (SQLException e) {
+			}
         }
         // User 객체에 위에서 만든 세션 키 삽입
         u.setSession(key);
@@ -53,10 +62,12 @@ public class Session {
     {
         String sql="Select * from ezsession where session_key=?";
         ResultSet rs;
+        Connection con = null;
+        PreparedStatement ps = null;
         try
         {
-            Connection con = ds.getConnection();
-            PreparedStatement ps = con.prepareStatement(sql);
+            con = ds.getConnection();
+            ps = con.prepareStatement(sql);
             
             //해당 session값을 갖는 행을 가져옴.
             ps.setString(1, session);
@@ -74,7 +85,7 @@ public class Session {
                 return false;
             
             // 3. 디비에 저장된 ipaddress 와 remoteAddr 이 같은지?
-            if(rs.getString("ipaddress")!=remoteAddr)
+            if(rs.getString("ipaddress").compareTo(remoteAddr)!=0)
                 return false;
             
             // 4. 현재 시간이 last_update 로 부터 600초 이내에 존재하는지?
@@ -84,6 +95,12 @@ public class Session {
         }
         catch(SQLException e){
             Logger.error("Database Error", e);
+        } finally{
+        	try {
+				if(ps != null) ps.close();
+	        	if(con != null) con.close();
+			} catch (SQLException e) {
+			}
         }
         
         
@@ -101,16 +118,24 @@ public class Session {
         // 세션을 파기하는 내용을 구현한다.
        
         String sql = "Update ezsession set expired = 1 where session_key= ?";
+        Connection con = null;
+        PreparedStatement ps = null;
         try// 세션 파기는 expired 를 1 로 설정한다.
         {
-            Connection con = ds.getConnection();
-            PreparedStatement ps = con.prepareStatement(sql);
+            con = ds.getConnection();
+            ps = con.prepareStatement(sql);
             ps.setString(1, session);
             ps.executeUpdate();
             
         }
         catch(SQLException e){
             Logger.error("Database Error", e);
+        } finally{
+        	try {
+				if(ps != null) ps.close();
+	        	if(con != null) con.close();
+			} catch (SQLException e) {
+			}
         }
     }
     
@@ -118,16 +143,23 @@ public class Session {
     {
         // session 의 last_update 값을 갱신하는 코드 작성
         String sql = "Update ezsession set last_update=now() where session_key= ?";
+        Connection con = null;
+        PreparedStatement ps = null;
         try// 세션 파기는 expired 를 1 로 설정한다.
         {
-            Connection con = ds.getConnection();
-            PreparedStatement ps = con.prepareStatement(sql);
+            con = ds.getConnection();
+            ps = con.prepareStatement(sql);
             ps.setString(1, session);
             ps.executeUpdate();
-            
         }
         catch(SQLException e){
             Logger.error("Database Error", e);
+        } finally{
+        	try {
+				if(ps != null) ps.close();
+	        	if(con != null) con.close();
+			} catch (SQLException e) {
+			}
         }
     }
 

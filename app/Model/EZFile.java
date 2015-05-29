@@ -1,10 +1,11 @@
 package Model;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class File {
-	private int id;
+public class EZFile {
+	private String id;
 	private String name;
 	private String localpath;
 	private long size;
@@ -12,10 +13,10 @@ public class File {
 	private File body;
 	private ArrayList<String> tags = new ArrayList<String>();
 	
-	public int getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public String getName() {
