@@ -4,12 +4,25 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class EZFile {
+	
+	@JsonProperty("file_id")
 	private String id;
+	
+	@JsonProperty("filename")
 	private String name;
+	
+	@JsonIgnore
 	private String localpath;
 	private long size;
+	
+	@JsonProperty("uploadtime")
 	private String createDate;
+	
+	@JsonIgnore
 	private File body;
 	private ArrayList<String> tags = new ArrayList<String>();
 	
