@@ -1,20 +1,18 @@
 package controllers.api;
 
-import java.util.ArrayList;
-import java.util.Iterator;
+import java.io.File;
 
-import controllers.FileController;
-import controllers.Session;
-import controllers.TagManager;
-import exception.FileUploadException;
-import Model.EZFile;
-import Model.User;
 import play.mvc.Controller;
 import play.mvc.Http.Cookie;
 import play.mvc.Http.MultipartFormData;
 import play.mvc.Http.MultipartFormData.FilePart;
 import play.mvc.Result;
 import play.mvc.Results;
+import Model.EZFile;
+import Model.User;
+import controllers.FileController;
+import controllers.Session;
+import exception.FileUploadException;
 
 public class FileAPI extends Controller {
 	
@@ -23,7 +21,7 @@ public class FileAPI extends Controller {
 	public static Result upload(int user_id)
 	{
 		if(!requestValidation(user_id))
-			return forbidden();
+			return forbidden("잘못된 접근입니다.");
 		
 		MultipartFormData body = request().body().asMultipartFormData();
 		FilePart file = body.getFile("uploadedFile");
@@ -57,7 +55,7 @@ public class FileAPI extends Controller {
 	public static Result delete(int user_id, String file_id)
 	{
 		if(!requestValidation(user_id))
-			return forbidden();
+			return forbidden("잘못된 접근입니다.");
 		
 		boolean result = fc.deleteFile(user_id, file_id);
 		if(!result)
@@ -68,7 +66,14 @@ public class FileAPI extends Controller {
 	
 	public static Result download(int user_id, String file_id)
 	{
-		return Results.ok(file_id);
+		if(!requestValidation(user_id))
+			return forbidden("잘못된 접근입니다.");
+		
+		EZFile f = fc.getFile(user_id, file_id);
+		if(f == null)
+			return notFound("파일을 찾을 수 없습니다.");
+		response().setHeader("Content-Disposition", "attachment; filename="+f.getName());
+		return Results.ok(f.getBody());
 	}
 	
 	public static Result recentList(int user_id)

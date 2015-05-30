@@ -1,19 +1,18 @@
 package controllers;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;
-import java.util.UUID;
 
 import javax.sql.DataSource;
 
-import exception.FileUploadException;
 import play.Logger;
 import play.db.DB;
 import Model.EZFile;
 import Model.User;
+import exception.FileUploadException;
 
 public class FileController {
 	
@@ -158,6 +157,35 @@ public class FileController {
 			}
 		}
 		return true;
+	}
+	
+	public EZFile getFile(int user_id, String file_id)
+	{
+		EZFile ef = null;
+		
+		Connection con = null;
+		
+		try
+		{
+			con = ds.getConnection();
+			ef = getFileTuple(user_id, file_id, con);
+			if(ef == null)
+				return null;
+			ef.setBody(localfile.get(ef.getLocalpath()));
+		}
+		catch(SQLException e)
+		{
+			Logger.error("Database Error", e);
+		}
+		finally
+		{
+        	try {
+	        	if(con != null) con.close();
+			}
+        	catch (SQLException e) {
+			}
+		}
+		return ef;
 	}
 	
 	private String generateFileUniqueID(EZFile f)

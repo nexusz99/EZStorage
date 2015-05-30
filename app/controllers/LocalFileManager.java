@@ -23,4 +23,9 @@ public class LocalFileManager {
 		File f = new File(path);
 		return f.delete();
 	}
+	public File get(String path)
+	{
+		File f = new File(path);
+		return f;
+	}
 }
