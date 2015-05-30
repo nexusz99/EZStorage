@@ -83,6 +83,8 @@ public class FileAPI extends Controller {
 	
 	public static Result recentList(int user_id, int marker, int limit)
 	{
+		if(!requestValidation(user_id))
+			return forbidden("잘못된 접근입니다.");
 		ArrayList<EZFile> list = fc.getFileList(user_id, marker, limit);
 		if(list == null)
 			return badRequest("요청이 잘못되었습니다.");
