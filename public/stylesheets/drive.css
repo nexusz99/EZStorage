@@ -1,3 +1,55 @@
+/* Bootstrap - Tags Input 컴포넌트*/
+.bootstrap-tagsinput {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  display: inline-block;
+  padding: 4px 6px;
+  margin-bottom: 10px;
+  color: #555;
+  vertical-align: middle;
+  border-radius: 4px;
+  max-width: 100%;
+  min-width: 450px;
+  line-height: 26px;
+  cursor: text;
+}
+.bootstrap-tagsinput input {
+  border: none;
+  box-shadow: none;
+  outline: none;
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+  width: auto !important;
+  max-width: inherit;
+}
+.bootstrap-tagsinput input:focus {
+  border: none;
+  box-shadow: none;
+}
+.bootstrap-tagsinput .tag {
+  margin: 5px 2px;
+  color: white;
+  font-size:12px;
+}
+.bootstrap-tagsinput .tag [data-role="remove"] {
+  margin-left: 8px;
+  cursor: pointer;
+}
+.bootstrap-tagsinput .tag [data-role="remove"]:after {
+  content: "x";
+  padding: 0px 2px;
+}
+.bootstrap-tagsinput .tag [data-role="remove"]:hover {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+.bootstrap-tagsinput .tag [data-role="remove"]:hover:active {
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+
+
+/*********************************************************/
 /* 박스 모델 확인용 프레임라인 */
 *
 {
@@ -17,7 +69,7 @@
 {
 	position:absolute;
 	z-index:99;
-	background-color:black;
+	background-color:#5BC0DE;
 	color:white;
 	margin-bottom:10px;
 	padding-right:5% !important;
@@ -31,7 +83,7 @@
 	margin-top:0%;
 	margin-bottom:0%;
 	height:55px;
-	background-color:black;
+	background-color:#5BC0DE;
 	border-radius:0px;
 }
 .btn_profile:hover,
@@ -51,7 +103,7 @@
 }
 .dropdown_profile
 {
-	background-color:black;
+	background-color:#5BC0DE;
 	color:white !important;
 	top:96%;
 }
@@ -144,7 +196,7 @@
 	min-height:400px !important;
 }
 /* 파일 정보 표시창 컨테이너 디자인*/
-.container_fileInfoGrid
+.container_categoryGrid
 {
 	float:left;
 	height:100%;
@@ -291,52 +343,30 @@ ol>li:nth-child(3) >div.btn-group>button
 	font-size:12px;
 }
 
-/* Bootstrap - Tags Input 컴포넌트*/
-.bootstrap-tagsinput {
-  background-color: #fff;
-  border: 1px solid #ccc;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  display: inline-block;
-  padding: 4px 6px;
-  margin-bottom: 10px;
-  color: #555;
-  vertical-align: middle;
-  border-radius: 4px;
-  max-width: 100%;
-  min-width: 450px;
-  line-height: 26px;
-  cursor: text;
+/* 카테고리 목록 디자인 */
+.item_category
+{
+	color:black;
+	text-decoration:none;
 }
-.bootstrap-tagsinput input {
-  border: none;
-  box-shadow: none;
-  outline: none;
-  background-color: transparent;
-  padding: 0;
-  margin: 0;
-  width: auto !important;
-  max-width: inherit;
+.item_category : hover,
+.item_category : focus,
+.item_category : active
+{
+	color:black !important;
+	text-decoration:none !important;
 }
-.bootstrap-tagsinput input:focus {
-  border: none;
-  box-shadow: none;
+
+/* 파일 아이콘 드랍다운 메뉴 */
+#dropdown_fileIcon
+{
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1001;
+  display:none;
 }
-.bootstrap-tagsinput .tag {
-  margin: 5px 2px;
-  color: white;
-  font-size:12px;
-}
-.bootstrap-tagsinput .tag [data-role="remove"] {
-  margin-left: 8px;
-  cursor: pointer;
-}
-.bootstrap-tagsinput .tag [data-role="remove"]:after {
-  content: "x";
-  padding: 0px 2px;
-}
-.bootstrap-tagsinput .tag [data-role="remove"]:hover {
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
-}
-.bootstrap-tagsinput .tag [data-role="remove"]:hover:active {
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+.selected_fileIcon
+{
+	box-shadow:0px 0px 5px 5px RGBA(200,200,200,0.5);
 }
