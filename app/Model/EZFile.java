@@ -22,6 +22,8 @@ public class EZFile {
 	@JsonProperty("uploadtime")
 	private String createDate;
 	
+	private int type;
+	
 	@JsonIgnore
 	private File body;
 	private ArrayList<String> tags = new ArrayList<String>();
@@ -69,5 +71,11 @@ public class EZFile {
 	
 	public Iterator<String> iterTags(){
 		return tags.iterator();
+	}
+	public int getType() {
+		return type;
+	}
+	public void setType(int type) {
+		this.type = type;
 	}
 }

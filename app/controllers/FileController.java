@@ -1,5 +1,6 @@
 package controllers;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -57,14 +58,16 @@ public class FileController {
     		
     		ps.close();
     		// ezstorage_file table에 새로운 파일을 등록한다.
-    		sql="insert into ezstorage_file(id, name, path, size, users_id) "
-    				+ "values (?,?,?,?,?) ";
+    		sql="insert into ezstorage_file"
+    				+ "(id, name, path, size, users_id, type_id) "
+    				+ "values (?,?,?,?,?, ?) ";
     		ps=con.prepareStatement(sql);
     		ps.setString(1, fileinfo.getId());
     		ps.setString(2, fileinfo.getName());
     		ps.setString(3, localpath);
     		ps.setLong(4, fileinfo.getSize());
     		ps.setInt(5, user.getUserId());
+    		ps.setInt(6, getFileType(fileinfo.getName(), con));
     		ps.executeUpdate();
     		
     		tm.saveFileTag(fileinfo);
@@ -254,6 +257,7 @@ public class FileController {
 			f.setSize(rs.getLong("size"));
 			f.setLocalpath(rs.getString("path"));
 			f.setName(rs.getString("name"));
+			f.setType(rs.getInt("type_id"));
 			list.add(f);
 		}
 		
@@ -278,5 +282,24 @@ public class FileController {
 	private void stopTransaction(Connection con) throws SQLException
 	{
 		con.rollback();
+	}
+	
+	private int getFileType(String filename, Connection con) throws SQLException
+	{
+		String extension = filename.substring(filename.lastIndexOf('.')+1,
+											  filename.length());
+		String sql = "select id from ezfile_type where extension=?";
+		
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, extension);
+		
+		ResultSet rs = ps.executeQuery();
+		
+		if(!rs.next())
+			return -1;
+		int type = rs.getInt("id");
+		rs.close();
+		ps.close();
+		return type;
 	}
 }
