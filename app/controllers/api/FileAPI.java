@@ -81,7 +81,7 @@ public class FileAPI extends Controller {
 		return Results.ok("Recent List User id : " + user_id);
 	}
 	
-	public static void parseTagList(EZFile f, String tags)
+	private static void parseTagList(EZFile f, String tags)
 	{
 		String[] sp= tags.split(",");
 		
@@ -93,7 +93,7 @@ public class FileAPI extends Controller {
 		}
 	}
 	
-	public static boolean requestValidation(int user_id)
+	private static boolean requestValidation(int user_id)
 	{
 		Cookie s = request().cookie("userid");
 		
