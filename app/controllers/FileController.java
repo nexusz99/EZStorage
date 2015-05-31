@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.sql.DataSource;
 
@@ -57,14 +58,16 @@ public class FileController {
     		
     		ps.close();
     		// ezstorage_file table에 새로운 파일을 등록한다.
-    		sql="insert into ezstorage_file(id, name, path, size, users_id) "
-    				+ "values (?,?,?,?,?) ";
+    		sql="insert into ezstorage_file"
+    				+ "(id, name, path, size, users_id, type_id) "
+    				+ "values (?,?,?,?,?, ?) ";
     		ps=con.prepareStatement(sql);
     		ps.setString(1, fileinfo.getId());
     		ps.setString(2, fileinfo.getName());
     		ps.setString(3, localpath);
     		ps.setLong(4, fileinfo.getSize());
     		ps.setInt(5, user.getUserId());
+    		ps.setInt(6, getFileType(fileinfo.getName(), con));
     		ps.executeUpdate();
     		
     		tm.saveFileTag(fileinfo);
@@ -125,7 +128,7 @@ public class FileController {
 		try
 		{
 			con = ds.getConnection();
-			EZFile f = getFileTuple(user_id, file_id, con);
+			EZFile f = getFileTuples(user_id, file_id, null, con).get(0);
 			
 			if(f == null)
 				return false;
@@ -168,7 +171,7 @@ public class FileController {
 		try
 		{
 			con = ds.getConnection();
-			ef = getFileTuple(user_id, file_id, con);
+			ef = getFileTuples(user_id, file_id, null, con).get(0);
 			if(ef == null)
 				return null;
 			ef.setBody(localfile.get(ef.getLocalpath()));
@@ -188,6 +191,35 @@ public class FileController {
 		return ef;
 	}
 	
+	public ArrayList<EZFile> getFileList(int user_id, int marker, int limit)
+	{
+		ArrayList<EZFile> list = null;
+		String option = " order by created limit " + marker + ", " + limit;
+		
+		Connection con = null;
+		try
+		{
+			con = ds.getConnection();
+			list = getFileTuples(user_id, null, option, con);
+			if(list.get(0) == null)
+				return null;
+		}
+		catch(SQLException e)
+		{
+			Logger.error("Database Error", e);
+		}
+		finally
+		{
+        	try {
+	        	if(con != null) con.close();
+			}
+        	catch (SQLException e) {
+			}
+		}
+		
+		return list;
+	}
+	
 	private String generateFileUniqueID(EZFile f)
 	{
 		String id = "";
@@ -197,31 +229,44 @@ public class FileController {
 		return id;
 	}
 	
-	private EZFile getFileTuple(int user_id, String file_id, Connection c) 
+	private ArrayList<EZFile> getFileTuples(int user_id, String file_id, String option, Connection c) 
 			throws SQLException
 	{
-		EZFile f = null;
-		String sql = "select * from ezstorage_file where users_id=? and id=?";
+		ArrayList<EZFile> list = new ArrayList<EZFile>();
+		String sql = "select * from ezstorage_file where users_id=?";
+		
+		if(file_id!=null)
+			sql += " and id=?";
+		
+		if(option != null)
+			sql += option;
 		
 		PreparedStatement ps = c.prepareStatement(sql);
 		ps.setInt(1, user_id);
-		ps.setString(2, file_id);
+		
+		if(file_id!=null)
+			ps.setString(2, file_id);
 		
 		ResultSet rs = ps.executeQuery();
 		
-		f = new EZFile();
-		f.setId(file_id);
-		if(!rs.next())
-			return null;
-		
-		f.setCreateDate(rs.getTimestamp("created").toString());
-		f.setSize(rs.getLong("size"));
-		f.setLocalpath(rs.getString("path"));
-		f.setName(rs.getString("name"));
+		while(rs.next())
+		{
+			EZFile f = new EZFile();
+			f.setId(rs.getString("id"));
+			f.setCreateDate(rs.getTimestamp("created").toString());
+			f.setSize(rs.getLong("size"));
+			f.setLocalpath(rs.getString("path"));
+			f.setName(rs.getString("name"));
+			f.setType(rs.getInt("type_id"));
+			list.add(f);
+		}
 		
 		rs.close();
 		ps.close();
-		return f;
+		
+		if(list.size() == 0)
+			list.add(null);
+		return list;
 	}
 	
 	private void startTransaction(Connection con) throws SQLException
@@ -237,5 +282,24 @@ public class FileController {
 	private void stopTransaction(Connection con) throws SQLException
 	{
 		con.rollback();
+	}
+	
+	private int getFileType(String filename, Connection con) throws SQLException
+	{
+		String extension = filename.substring(filename.lastIndexOf('.')+1,
+											  filename.length());
+		String sql = "select id from ezfile_type where extension=?";
+		
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setString(1, extension);
+		
+		ResultSet rs = ps.executeQuery();
+		
+		if(!rs.next())
+			return -1;
+		int type = rs.getInt("id");
+		rs.close();
+		ps.close();
+		return type;
 	}
 }

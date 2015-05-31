@@ -1,7 +1,8 @@
 package controllers.api;
 
-import java.io.File;
+import java.util.ArrayList;
 
+import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Http.Cookie;
 import play.mvc.Http.MultipartFormData;
@@ -10,6 +11,9 @@ import play.mvc.Result;
 import play.mvc.Results;
 import Model.EZFile;
 import Model.User;
+
+import com.fasterxml.jackson.databind.JsonNode;
+
 import controllers.FileController;
 import controllers.Session;
 import exception.FileUploadException;
@@ -76,12 +80,19 @@ public class FileAPI extends Controller {
 		return Results.ok(f.getBody());
 	}
 	
-	public static Result recentList(int user_id)
+	
+	public static Result recentList(int user_id, int marker, int limit)
 	{
-		return Results.ok("Recent List User id : " + user_id);
+		if(!requestValidation(user_id))
+			return forbidden("잘못된 접근입니다.");
+		ArrayList<EZFile> list = fc.getFileList(user_id, marker, limit);
+		if(list == null)
+			return badRequest("요청이 잘못되었습니다.");
+		JsonNode jn = Json.toJson(list);
+		return Results.ok(Json.toJson(list));
 	}
 	
-	public static void parseTagList(EZFile f, String tags)
+	private static void parseTagList(EZFile f, String tags)
 	{
 		String[] sp= tags.split(",");
 		
@@ -93,7 +104,7 @@ public class FileAPI extends Controller {
 		}
 	}
 	
-	public static boolean requestValidation(int user_id)
+	private static boolean requestValidation(int user_id)
 	{
 		Cookie s = request().cookie("userid");
 		
