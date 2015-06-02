@@ -100,6 +100,6 @@ public class UserAPI extends Controller {
 		
 		Session.expireSession(session);
 		
-		return ok();
+		return redirect("/");
 	}
 }
