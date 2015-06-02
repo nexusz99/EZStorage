@@ -73,8 +73,8 @@ function clickMouse(type, userid, fileid)
 	
 
 	content += "<ul class=\"dropdown-menu pull-right\" role=\"menu\">" +
-	"<li><a href=\"/files/"+userid+"/"+fileid+"\" action = \"\" id=\"fileDownload\"><span class=\"glyphicon glyphicon-download\"></span>다운로드</a></li>" +
-	"<li><a href=\"#\"><span class=\"glyphicon glyphicon-trash\"></span>삭제하기</a></li>" +
+	"<li><a href=\"/files/"+userid+"/"+fileid+"\" ><span class=\"glyphicon glyphicon-download\"></span>다운로드</a></li>" +
+	"<li><a href=\"#\" fileid=\""+fileid+"\" onclick=\"filedelete(this.getAttribute(\"fileid\"))\"><span class=\"glyphicon glyphicon-trash\"></span>삭제하기</a></li>" +
 	"<li class=\"divider\"></li>" +
 	"<li><a href=\"#\"><span class=\"glyphicon glyphicon-tag\"></span>태그보기</a></li>" +
 	"<li><a href=\"#\"><span class=\"glyphicon glyphicon-th-list\"></span>뀨?</a></li>" +

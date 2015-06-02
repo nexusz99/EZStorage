@@ -11,6 +11,11 @@ function fileuploadsubmit()
 	$("#form_fileUpload").submit();
 }
 
+function filedelete(file_id)
+{
+	alert("asdf");
+}
+
 function getCookie(cname) {
     var name = cname + "=";
     var ca = document.cookie.split(';');
