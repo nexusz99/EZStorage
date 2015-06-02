@@ -11,6 +11,24 @@ function fileuploadsubmit()
 	$("#form_fileUpload").submit();
 }
 
+function filedelete(file_id)
+{
+	var user_id = getCookie("userid");
+	if(user_id == "")
+	{
+		alert("asdf");
+		return;
+	}
+	
+	var url = "/files/"+user_id+"/"+ file_id;
+	
+	$.ajax({
+		type: "DELETE",
+		url: url,
+		async: false
+	})
+}
+
 function getCookie(cname) {
     var name = cname + "=";
     var ca = document.cookie.split(';');
