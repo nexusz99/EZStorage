@@ -13,7 +13,20 @@ function fileuploadsubmit()
 
 function filedelete(file_id)
 {
-	alert("asdf");
+	var user_id = getCookie("userid");
+	if(user_id == "")
+	{
+		alert("asdf");
+		return;
+	}
+	
+	var url = "/files/"+user_id+"/"+ file_id;
+	
+	$.ajax({
+		type: "DELETE",
+		url: url,
+		async: false
+	})
 }
 
 function getCookie(cname) {
