@@ -1,9 +1,3 @@
-// (디자인 요소) 툴팁 초기화 함수
-$(function () {
-  $('[data-toggle="tooltip"]').tooltip();
-});
-
-
 $(function() {
 	loadfile();
 });

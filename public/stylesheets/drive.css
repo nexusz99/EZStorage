@@ -157,23 +157,6 @@
 {
 	height:32px;
 }
-.form_searchTag
-{
-	width:550px;
-	margin-left:15%;
-}
-.bootstrap-tagsinput
-{
-	display:inline-block !important;
-	width:550px !important;
-	overflow:auto;
-}
-.input-group-btn
-{
-	position:relative;
-	top:-42px;
-	display:inline-block !important;
-}
 .btn_searchBar
 {
 	background-color:RGBA(255,255,255,1);
@@ -181,18 +164,12 @@
 	color:black;
 	border:1px solid RGBA(150,150,150,0.8);
 	border-radius:2px;
-	height:35.5px;
-	display:inline-block;
+	height:31.5px;
 }
 .btn_serachIcon
 {
 	font-size:15px;
 	font-weight:bold;
-}
-.form_searchTag
-{
-	display:inline-block !important;
-	max-height:31.5px !important;
 }
 .btn_fileMenu
 {
@@ -378,18 +355,4 @@ ol>li:nth-child(3) >div.btn-group>button
 {
 	color:black !important;
 	text-decoration:none !important;
-}
-
-/* 파일 아이콘 드랍다운 메뉴 */
-#dropdown_fileIcon
-{
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1001;
-  display:none;
-}
-.selected_fileIcon
-{
-	box-shadow:0px 0px 5px 5px RGBA(200,200,200,0.5);
 }

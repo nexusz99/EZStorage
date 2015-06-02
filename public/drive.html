@@ -42,20 +42,34 @@
 		<!-- 검색창/파일메뉴 컨테이너 -->
 		<div class="container-fluid container_searchBarGrid">
 			<div class="row">
-				<div class="pull-right padding_from_right">
- 					<button type="button" id="icon_fileUpload" class="btn-md btn_fileMenu" data-toggle="tooltip" data-placement="left" title="버튼을 눌러 파일을 업로드합니다!">
+				<div class="form-group col-xs-offset-3 col-xs-5">
+	    			<div class="input-group">
+      					<input type="text" class="form-control" placeholder="태그명 혹은 파일명을 입력해주세요.">
+      					<span class="input-group-btn">
+      						<button type="button" class="btn btn_searchBar dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+      								태그명으로<span class="caret"></span>
+      						</button>
+        						<ul class="dropdown-menu" role="menu">
+          							<li><a href="#">태그명으로 </a></li>
+          							<li><a href="#">파일명으로 </a></li>
+        						</ul>
+        					<button class="btn btn_searchBar" type="submit">검색 <span class="glyphicon glyphicon-search"></span></button>
+     					</span>
+   					</div>
+	  			</div>
+  			</div>
+  			<div class="row">
+  				<div class="pull-right padding_from_right">
+ 				<div class="btn-group">	
+ 					<button type="button" class="btn-md btn_fileMenu" data-toggle="dropdown" aria-expanded="false" >
  						<a href="#" type="button" data-toggle="modal" data-target="#modal_fileUpload">
  						<span class="glyphicon glyphicon-open" style="color:#31B0D5 !important;"></span></a>
+ 					</button>&nbsp;&nbsp;&nbsp;
+ 					<button type="button" class="btn-md btn_fileMenu">
+ 						<a href="#"><span class="glyphicon glyphicon-sort" style="color:#31B0D5 !important;"></span></a>
  					</button>
   				</div>
-				<div id="form_searchTag" class="form_searchTag">
-					<input type="text"  data-role="tagsinput" value="" style="display : none;" id="tagsArea_search"/>
-					
-					<p class="help-block"> 태그와 태그 사이는 쉼표(<kbd>,</kbd>)로 구분됩니다.</p>
-				</div> 	
-				<div class="input-group-btn">
-					<button class="btn btn_searchBar" type="submit">검색 <span class="glyphicon glyphicon-search"></span></button>
- 				</div>
+  				</div>
   			</div>
 		</div>
 		
