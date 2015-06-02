@@ -24,7 +24,7 @@ function loadfile()
 					for(k = 0; k < result.length; k++)
 					{
 						var file = result[k];
-						content += clickMouse(file.type);
+						content += clickMouse(file.type, user_id, file.file_id);
 						content += file.filename;
 						content += "</div></li>";
 
@@ -47,7 +47,7 @@ function getCookie(cname) {
     return "";
 }
 
-function clickMouse(type)
+function clickMouse(type, userid, fileid)
 {
 	var content = "<li class=\"grid_fileIcon\">" +
 
@@ -73,19 +73,14 @@ function clickMouse(type)
 	
 
 	content += "<ul class=\"dropdown-menu pull-right\" role=\"menu\">" +
-	"<li><a href=\"#\"><span class=\"glyphicon glyphicon-download\"></span>다운로드</a></li>" +
+	"<li><a href=\"/files/"+userid+"/"+fileid+"\" action = \"\" id=\"fileDownload\"><span class=\"glyphicon glyphicon-download\"></span>다운로드</a></li>" +
 	"<li><a href=\"#\"><span class=\"glyphicon glyphicon-trash\"></span>삭제하기</a></li>" +
 	"<li class=\"divider\"></li>" +
 	"<li><a href=\"#\"><span class=\"glyphicon glyphicon-tag\"></span>태그보기</a></li>" +
 	"<li><a href=\"#\"><span class=\"glyphicon glyphicon-th-list\"></span>뀨?</a></li>" +
 	"</ul></div>" +
-	"<div class=\"header_fileIcon\">";
+	"<div class=\"header_fileIcon\" id=\"fileName\">";
 	return content;
-
-}
-
-function fileUpload()
-{
 
 }
 
