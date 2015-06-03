@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 import Model.Category;
@@ -95,4 +96,36 @@ public class TagManager {
 			throw e;
 		}
 	}
+
+	public ArrayList<String> getTagList(String table, Object key) throws SQLException
+	{
+		ArrayList<String> list = new ArrayList<String>();
+		
+		String sql = "select name from "+table+" join eztags on tags_id = id where ";
+		if(table.compareTo("eztags_has_categories") ==0)
+		{
+			sql += "categories_id=?";
+		}
+		else if(table.compareTo("eztags_has_storage_files") == 0)
+		{
+			sql += "storage_file_id=?";
+		}
+		
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setObject(1, key);
+		
+		ResultSet rs = ps.executeQuery();
+		
+		
+		while(rs.next())
+		{
+			list.add(rs.getString("name"));
+		}
+		
+		rs.close();
+		ps.close();
+		
+		return list;
+	}
+
 }

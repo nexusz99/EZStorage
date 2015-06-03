@@ -16,7 +16,6 @@ import exception.CategoryException;
 
 public class CategoryController {
 	private DataSource ds = DB.getDataSource();
-	private TagManager tm;
 	
 	private void startTransaction(Connection con) throws SQLException
 	{
@@ -33,7 +32,7 @@ public class CategoryController {
 		con.rollback();
 	}
 	
-	private ArrayList<Category> getCategorys(String name, int user_id)
+	private ArrayList<Category> getCategorys(String name, int user_id, int category_id)
 	{
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -45,6 +44,9 @@ public class CategoryController {
 		if(name != null)
 			sql += " and name=?";
 		
+		if(category_id != -1)
+			sql += " and id=?";
+		
 		try
 		{
 			con = ds.getConnection();
@@ -52,6 +54,9 @@ public class CategoryController {
 			ps.setInt(1, user_id);
 			if(name != null)
 				ps.setString(2, name);
+			if(category_id != -1)
+				ps.setInt(2, category_id);
+			
 			ResultSet rs = ps.executeQuery();
 			while(rs.next())
 			{
@@ -89,7 +94,7 @@ public class CategoryController {
 		
 		try
 		{
-			int s = getCategorys(c.getName(), user_id).size();
+			int s = getCategorys(c.getName(), user_id, -1).size();
 			if(s != 0)
 			{
 				throw new CategoryException();
@@ -107,7 +112,7 @@ public class CategoryController {
 			rs.next();
 			c.setId(rs.getInt(1));
 			
-			tm = new TagManager(con);
+			TagManager tm = new TagManager(con);
 			tm.saveCategoryTag(c);
 			endTransaction(con);
 		}
@@ -141,7 +146,39 @@ public class CategoryController {
 
 	public ArrayList<Category> getCategoryList(int user_id)
 	{
-		ArrayList<Category> list = getCategorys(null, user_id);
+		ArrayList<Category> list = getCategorys(null, user_id, -1);
 		return list;
+	}
+	
+	public Category getCategory(int user_id, int category_id) throws CategoryException, SQLException
+	{
+		ArrayList<Category> l = getCategorys(null, user_id, category_id);
+		if(l.size() == 0)
+			throw new CategoryException("존재하지 않는 카테고리입니다.");
+		
+		Category c = l.get(0);
+		
+		Connection con = null;
+		try
+		{
+			con = ds.getConnection();
+			TagManager tm = new TagManager(con);
+			c.addTag(tm.getTagList("eztags_has_categories", c.getId()));
+		}
+		catch(SQLException e)
+		{
+			Logger.error("Database Error", e);
+			throw e;
+		}
+		finally
+		{
+        	try {
+	        	if(con != null) con.close();
+	        }
+        	catch (SQLException e) {
+			}
+		}
+		
+		return c;
 	}
 }

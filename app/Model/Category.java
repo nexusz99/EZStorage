@@ -3,10 +3,14 @@ package Model;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Category {
 	private int id;
 	private String name;
 	private String created;
+	
+	@JsonProperty("tags")
 	private ArrayList<String> tags = new ArrayList<String>();
 	
 	public int getId() {
@@ -33,5 +37,13 @@ public class Category {
 	
 	public Iterator<String> iterTags(){
 		return tags.iterator();
+	}
+	
+	public void addTag(ArrayList<String> list)
+	{
+		for(String t : list)
+		{
+			addTag(t);
+		}
 	}
 }

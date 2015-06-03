@@ -1,8 +1,11 @@
 package controllers.api;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 
 import controllers.CategoryController;
@@ -56,9 +59,17 @@ public class CategoryAPI extends Controller {
 		return Results.ok(Json.toJson(list));
 	}
 	
-	public static Result get(int user_id, int category_id)
+	public static Result get(int user_id, int category_id) throws JsonProcessingException
 	{
-		return Results.ok();
+		Category c = null;
+		try {
+			c = cc.getCategory(user_id, category_id);
+		} catch (CategoryException e) {
+			return notFound(e.getMessage());
+		} catch (SQLException e) {
+			return internalServerError(e.getMessage());
+		}
+		return Results.ok(new ObjectMapper().writeValueAsString(c));
 	}
 	
 	public static Result delete(int user_id, int category_id)
