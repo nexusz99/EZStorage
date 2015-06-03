@@ -60,30 +60,41 @@ function clickMouse(type, userid, fileid)
 	"<div class=\"btn-group\"><button type=\"button\" class=\"btn btn_fileIcon\" data-toggle=\"dropdown\" aria-expanded=\"false\">";
 
 
-	if(type ==1)
+	if(type ==1)	// Document file (.hwp .docx .pdf ...)
 	{
-		content +=	"<img src=\"/assets/images/icon_hwp.png\"></button>";
+		content +=	"<img class=\"img_fileIcon\" src=\"/assets/images/icons/word.png\"></button>";
 	}
-	else if(type ==2)
+	else if(type ==2)	// Compressed file (.zip .rar .jar .iso ...)
 	{
-		content += "<img src=\"/assets/images/icon_zip.png\"></button>";
+		content += "<img class=\"img_fileIcon\" src=\"/assets/images/icons/zip.png\"></button>";
 	}
-	else if(type ==3)
+	else if(type ==3)	// Code file (.cpp .java ...)
 	{
-		content +=  "<img src=\"/assets/images/icon_cpp.png\"></button>";
+		content +=  "<img class=\"img_fileIcon\" src=\"/assets/images/icons/code.png\"></button>";
 	}
-	else
+	else if(type ==4)	// Image file (.jpg .gif .png ...)
 	{
-		content += "<img src=\"/assets/images/icon_zip.png\"></button>";
+		content +=  "<img class=\"img_fileIcon\" src=\"/assets/images/icons/picture.png\"></button>";
+	}
+	else if(type ==5)	// Media file (.mp3 .mp4 .avi .wav ...)
+	{
+		content +=  "<img class=\"img_fileIcon\" src=\"/assets/images/icons/media.png\"></button>";
+	}
+	else if(type ==6)	// PPT file (.ppt .pptx .show ...)
+	{
+		content +=  "<img class=\"img_fileIcon\" src=\"/assets/images/icons/PPT.png\"></button>";
+	}
+	else				// etc. file (all other types ...)
+	{
+		content += "<img class=\"img_fileIcon\" src=\"/assets/images/icons/etc.png\"></button>";
 	}
 	
 
 	content += "<ul class=\"dropdown-menu pull-right\" role=\"menu\">" +
-	"<li><a href=\"/files/"+userid+"/"+fileid+"\" ><span class=\"glyphicon glyphicon-download\"></span>다운로드</a></li>" +
-	"<li><a href=\"#\" fileid=\""+fileid+"\" onclick='filedelete(this.getAttribute(\"fileid\"))'><span class=\"glyphicon glyphicon-trash\"></span>삭제하기</a></li>" +
+	"<li><a href=\"/files/"+userid+"/"+fileid+"\" ><span class=\"glyphicon glyphicon-download\"></span>&nbsp;&nbsp;다운로드</a></li>" +
+	"<li><a href=\"#\" fileid=\""+fileid+"\" onclick='filedelete(this.getAttribute(\"fileid\"))'><span class=\"glyphicon glyphicon-trash\"></span>&nbsp;&nbsp;삭제하기</a></li>" +
 	"<li class=\"divider\"></li>" +
-	"<li><a href=\"#\"><span class=\"glyphicon glyphicon-tag\"></span>태그보기</a></li>" +
-	"<li><a href=\"#\"><span class=\"glyphicon glyphicon-th-list\"></span>카테고리보기</a></li>" +
+	"<li><a href=\"#\"><span class=\"glyphicon glyphicon-info-sign\"></span>&nbsp;&nbsp;파일 정보</a></li>" +
 	"</ul></div>" +
 	"<div class=\"header_fileIcon\" id=\"fileName\">";
 	return content;

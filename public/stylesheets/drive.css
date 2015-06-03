@@ -248,24 +248,29 @@
 }
 .grid_fileIcon
 {
-	margin:35px 20px ;
-	width:150px;
-	height:170px;
-
-	list-style-type:none;
+	margin:25px 15px ;
+	width:120px;
+	height:165px;
 	display:inline-block;
-	padding: 15px 15px;
+	list-style-type:none;
+
 	padding-bottom:0px;
+	vertical-align:top;
 }
 .btn_fileIcon
 {
-	width:120px;
-	height:120px;
+	width:100px;
+	height:100px;
 	background-color:white;
 	border-radius:16px;
 	border-top-right-radius:16px !important;
 	border-bottom-right-radius:16px !important;
 	border:4px solid RGBA(150,240,255,0.1);
+}
+.img_fileIcon
+{
+	width:80px;
+	height:80px;
 }
 
 /* 파일 업로드 폼 디자인 */
@@ -332,28 +337,17 @@ ol.list_fileTag > li
 	padding:0px 0px 0px 0px;
 	width:100%;
 }
-/* 파일 아이콘 디자인 */
-ol>li:first-child >div.btn-group>button
-{
-	border:11px solid RGBA(150,240,255,0.8) !important;
-}
-ol>li:nth-child(2) >div.btn-group>button
-{
-	border:9px solid RGBA(150,240,255,0.5) !important;
-}
-ol>li:nth-child(3) >div.btn-group>button
-{
-	border:6px solid RGBA(150,240,255,0.2) !important;
-}
+
 .header_fileIcon
 {
 	padding-top:10px;
-	width:120px;
+	width:100px;
 	height:30px;
-	overflow:hidden;
+	overflow:visible;
 	text-align:center;
 	vertical-align: center;
 	text-shadow:2px 2px 2px RGBA(100,100,100,0.4);
+	position:static;
 }
 .divider_modal
 {
