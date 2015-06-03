@@ -61,6 +61,8 @@ public class CategoryAPI extends Controller {
 	
 	public static Result get(int user_id, int category_id) throws JsonProcessingException
 	{
+		if(!requestValidation(user_id))
+			return forbidden("잘못된 접근입니다.");
 		Category c = null;
 		try {
 			c = cc.getCategory(user_id, category_id);
