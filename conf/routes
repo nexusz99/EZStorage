@@ -16,5 +16,13 @@ GET		/files/:user_id/recent		controllers.api.FileAPI.recentList(user_id: Integer
 GET		/files/:user_id/:file_id	controllers.api.FileAPI.download(user_id: Integer, file_id: String)
 DELETE	/files/:user_id/:file_id	controllers.api.FileAPI.delete(user_id: Integer, file_id: String)
 
+# Category API
+PUT		/category/:user_id			controllers.api.CategoryAPI.create(user_id: Integer)
+GET		/category/:user_id/lists	controllers.api.CategoryAPI.lists(user_id: Integer)
+GET	/category/:user_id/:category_id	controllers.api.CategoryAPI.get(user_id: Integer, category_id: Integer)
+DELETE	/category/:user_id/:category_id	controllers.api.CategoryAPI.delete(user_id: Integer, category_id: Integer)
+POST	/category/:user_id/:category_id	controllers.api.CategoryAPI.update(user_id: Integer, category_id: Integer)
+
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

@@ -7,9 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Iterator;
 
-import javax.sql.DataSource;
-
-import play.db.DB;
+import Model.Category;
 import Model.EZFile;
 
 public class TagManager {
@@ -19,6 +17,43 @@ public class TagManager {
 	public TagManager(Connection c)
 	{
 		con = c;
+	}
+	
+	public void saveCategoryTag(Category c) throws SQLException
+	{
+		Iterator<String> tags = c.iterTags();
+		String query = "insert into eztags (name) values (?) on duplicate key update reference_count=reference_count+1";
+		String mquery = "insert into eztags_has_categories values (?, ?)";
+		
+		PreparedStatement ps = null, mps = null;
+		
+		try
+		{
+			while(tags.hasNext())
+			{
+				String t = tags.next();
+				ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+				ps.setString(1, t);
+				ps.executeUpdate();
+				ResultSet rs = ps.getGeneratedKeys();
+				rs.next();
+				int tagid = rs.getInt(1);
+				rs.close();
+				ps.close();
+				ps = null;
+				
+				mps = con.prepareStatement(mquery);
+				mps.setInt(2, c.getId());
+				mps.setInt(1, tagid);
+				mps.executeUpdate();
+				mps.close();
+				mps = null;
+			}
+		}
+		catch (SQLException e) 
+		{
+			throw e;
+		}
 	}
 	
 	public void saveFileTag(EZFile fileinfo) throws SQLException

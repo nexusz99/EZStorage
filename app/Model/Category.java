@@ -1,0 +1,37 @@
+package Model;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public class Category {
+	private int id;
+	private String name;
+	private String created;
+	private ArrayList<String> tags = new ArrayList<String>();
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getCreated() {
+		return created;
+	}
+	public void setCreated(String created) {
+		this.created = created;
+	}
+	public void addTag(String tag){
+		tags.add(tag);
+	}
+	
+	public Iterator<String> iterTags(){
+		return tags.iterator();
+	}
+}
