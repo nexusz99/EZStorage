@@ -76,6 +76,16 @@ public class CategoryAPI extends Controller {
 	
 	public static Result delete(int user_id, int category_id)
 	{
+		if(!requestValidation(user_id))
+			return forbidden("잘못된 접근입니다.");
+		
+		try {
+			cc.deleteCategory(user_id, category_id);
+		} catch (CategoryException e) {
+			return notFound(e.getMessage());
+		} catch (SQLException e) {
+			return internalServerError(e.getMessage());
+		}
 		return Results.ok();
 	}
 	

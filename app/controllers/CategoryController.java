@@ -181,4 +181,38 @@ public class CategoryController {
 		
 		return c;
 	}
+
+	public void deleteCategory(int user_id, int category_id) throws CategoryException, SQLException
+	{
+		String sql = "delete from ezcategories where users_id=? and id=?";
+		Connection con = null;
+		PreparedStatement ps = null;
+		try
+		{
+			ArrayList<Category> l = getCategorys(null, user_id, category_id);
+			if(l.size() == 0)
+				throw new CategoryException("존재하지 않는 카테고리입니다.");
+			
+			con = ds.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, user_id);
+			ps.setInt(2, category_id);
+			ps.executeUpdate();
+		}
+		catch(SQLException e)
+		{
+			Logger.error("Database Error", e);
+			throw e;
+		}
+		finally
+		{
+        	try {
+	        	if(con != null) con.close();
+	        	if(ps != null) ps.close();
+			}
+        	catch (SQLException e) {
+			}
+		}
+	}
+
 }
