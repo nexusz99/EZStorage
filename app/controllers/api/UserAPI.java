@@ -15,6 +15,7 @@ import play.mvc.*;
 import play.mvc.Http.Cookie;
 import play.mvc.Http.Request;
 import play.mvc.Http.Response;
+import play.utils.UriEncoding;
 
 public class UserAPI extends Controller {
 	
@@ -75,8 +76,8 @@ public class UserAPI extends Controller {
 		}
 		
 		Response response = response();
-		response.setCookie("userid", String.valueOf(u.getUserId()));
-		response.setCookie("firstname", u.getFirstname());
+		response.setCookie("userid", UriEncoding.encodePathSegment(String.valueOf(u.getUserId()), "utf-8"));
+		response.setCookie("firstname", UriEncoding.encodePathSegment(u.getFirstname(), "utf-8"));
 		response.setCookie("lastname", u.getLastname());
 		response.setCookie("auth_key", u.getSession());
 		return ok();
