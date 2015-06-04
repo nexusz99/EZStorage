@@ -58,7 +58,30 @@
   			</div>
 		</div>
 		
-		<!-- #modal_fileUpload -->
+		
+		<!-- 파일 속성 모달 -->
+		<div class="modal fade" id="info_file" tabindex="-1" role="dialog" aria-labelledby="Modal_fileInfo" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+  					<div class="modal-header">
+    					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    					<h4 class="modal-title" id="myModalLabel">파일 정보</h4>
+  					</div>
+  					<div class="modal-body">
+			        	<h5>파일명</h5>
+			        	<h5>업로드 날짜</h5>
+			        	<h5>파일 크기</h5>
+			        	<h5>카테고리</h5>
+			        	<h5>태그</h5>
+			      	</div>
+  					<div class="modal-footer">
+    					<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+  					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- 파일 업로드 모달 -->
 		<div class="modal fade" id="modal_fileUpload" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		  	<div class="modal-dialog">
 				<div class="modal-content">
@@ -106,8 +129,10 @@
 				</ul>
 			</div>
 			<!-- 파일 드라이브 컨테이너 -->
+			
 			<div id="container_fileDriveGrid"/>
-			<!-- 파일 아이콘 예제 (형식 참고용 주석 코드, 지우지 말 것)
+			<!-- 파일 아이콘 예제 (형식 참고용 주석 코드, 지우지 말 것)-->
+			
 			<ol>
 				<li class="grid_fileIcon">
 					<div class="btn-group">
@@ -123,17 +148,17 @@
 								<span class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;삭제하기</a></li><li class="divider">
 							</li>
 							
-							<li><a href="#">
+							<li><a href="#" data-toggle="modal" data-target="#info_file">
 								<span class="glyphicon glyphicon-info-sign"></span>&nbsp;&nbsp;파일 정보</a>
 							</li>
 						</ul>
 					</div>
 					<div class="header_fileIcon" id="fileName">
-						정보보호_설계계획서.docx
+						ㅁㄴㅇㄹ.etc
 					</div>
 				</li>
 			</ol>
-			</div>-->
+			</div>
 		
 	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>

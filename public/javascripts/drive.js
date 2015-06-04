@@ -94,7 +94,7 @@ function clickMouse(type, userid, fileid)
 	"<li><a href=\"/files/"+userid+"/"+fileid+"\" ><span class=\"glyphicon glyphicon-download\"></span>&nbsp;&nbsp;다운로드</a></li>" +
 	"<li><a href=\"#\" fileid=\""+fileid+"\" onclick='filedelete(this.getAttribute(\"fileid\"))'><span class=\"glyphicon glyphicon-trash\"></span>&nbsp;&nbsp;삭제하기</a></li>" +
 	"<li class=\"divider\"></li>" +
-	"<li><a href=\"#\"><span class=\"glyphicon glyphicon-info-sign\"></span>&nbsp;&nbsp;파일 정보</a></li>" +
+	"<li><a href=\"#\" data-toggle=\"modal\" data-target=\"#info_file\"><span class=\"glyphicon glyphicon-info-sign\"></span>&nbsp;&nbsp;파일 정보</a></li>" +
 	"</ul></div>" +
 	"<div class=\"header_fileIcon\" id=\"fileName\">";
 	return content;
