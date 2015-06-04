@@ -288,7 +288,7 @@ public class FileController {
 	{
 		String extension = filename.substring(filename.lastIndexOf('.')+1,
 											  filename.length());
-		String sql = "select id from ezfile_type where extension=?";
+		String sql = "select value from ezfile_type where extension=?";
 		
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, extension);
@@ -297,7 +297,7 @@ public class FileController {
 		
 		if(!rs.next())
 			return -1;
-		int type = rs.getInt("id");
+		int type = rs.getInt("value");
 		rs.close();
 		ps.close();
 		return type;
