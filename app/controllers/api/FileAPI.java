@@ -9,6 +9,7 @@ import play.mvc.Http.MultipartFormData;
 import play.mvc.Http.MultipartFormData.FilePart;
 import play.mvc.Result;
 import play.mvc.Results;
+import play.utils.UriEncoding;
 import Model.EZFile;
 import Model.User;
 
@@ -82,7 +83,8 @@ public class FileAPI extends Controller {
 		EZFile f = fc.getFile(user_id, file_id, false);
 		if(f == null)
 			return notFound("파일을 찾을 수 없습니다.");
-		response().setHeader("Content-Disposition", "attachment; filename="+f.getName());
+		String encoded = UriEncoding.encodePathSegment(f.getName(), "utf-8");
+		response().setHeader("Content-Disposition", "attachment; filename="+encoded);
 		return Results.ok(f.getBody());
 	}
 	
