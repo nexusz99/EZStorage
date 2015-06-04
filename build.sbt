@@ -14,5 +14,6 @@ libraryDependencies ++= Seq(
 )
 
 libraryDependencies += "mysql" % "mysql-connector-java" % "5.1.35"
+libraryDependencies += "net.coobird" % "thumbnailator" % "0.4.8"
 
 fork in run := true
