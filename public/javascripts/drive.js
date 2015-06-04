@@ -51,7 +51,14 @@ function getCookie(cname) {
         if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
     }
     return "";
-}
+};
+
+// 프로필 바_사용자 이름 출력
+$(function()
+{
+	var UserName = $.cookie('lastname') + ' ' + $.cookie('firstname');
+	$('#UserName').html(UserName);
+});
 
 function clickMouse(type, userid, fileid)
 {
@@ -60,36 +67,56 @@ function clickMouse(type, userid, fileid)
 	"<div class=\"btn-group\"><button type=\"button\" class=\"btn btn_fileIcon\" data-toggle=\"dropdown\" aria-expanded=\"false\">";
 
 
-	if(type ==1)
+	if(type ==1)	// Document file (.hwp .docx .pdf ...)
 	{
-		content +=	"<img src=\"/assets/images/icon_hwp.png\"></button>";
+		content +=	"<img class=\"img_fileIcon\" src=\"/assets/images/icons/word.png\"></button>";
 	}
-	else if(type ==2)
+	else if(type ==2)	// Compressed file (.zip .rar .jar .iso ...)
 	{
-		content += "<img src=\"/assets/images/icon_zip.png\"></button>";
+		content += "<img class=\"img_fileIcon\" src=\"/assets/images/icons/zip.png\"></button>";
 	}
-	else if(type ==3)
+	else if(type ==3)	// Code file (.cpp .java ...)
 	{
-		content +=  "<img src=\"/assets/images/icon_cpp.png\"></button>";
+		content +=  "<img class=\"img_fileIcon\" src=\"/assets/images/icons/code.png\"></button>";
 	}
-	else
+	else if(type ==4)	// Image file (.jpg .gif .png ...)
 	{
-		content += "<img src=\"/assets/images/icon_zip.png\"></button>";
+		content +=  "<img class=\"img_fileIcon\" src=\"/assets/images/icons/picture.png\"></button>";
+	}
+	else if(type ==5)	// Media file (.mp3 .mp4 .avi .wav ...)
+	{
+		content +=  "<img class=\"img_fileIcon\" src=\"/assets/images/icons/media.png\"></button>";
+	}
+	else if(type ==6)	// PPT file (.ppt .pptx .show ...)
+	{
+		content +=  "<img class=\"img_fileIcon\" src=\"/assets/images/icons/PPT.png\"></button>";
+	}
+	else				// etc. file (all other types ...)
+	{
+		content += "<img class=\"img_fileIcon\" src=\"/assets/images/icons/etc.png\"></button>";
 	}
 	
 
-	content += "<ul class=\"dropdown-menu pull-right\" role=\"menu\">" +
-	"<li><a href=\"/files/"+userid+"/"+fileid+"\" ><span class=\"glyphicon glyphicon-download\"></span>다운로드</a></li>" +
-	"<li><a href=\"#\" fileid=\""+fileid+"\" onclick='filedelete(this.getAttribute(\"fileid\"))'><span class=\"glyphicon glyphicon-trash\"></span>삭제하기</a></li>" +
+	content += "<ul id=" + fileid + " class=\"dropdown-menu pull-right\" role=\"menu\">" +
+	"<li><a href=\"/files/"+userid+"/"+fileid+"\" ><span class=\"glyphicon glyphicon-download\"></span>&nbsp;&nbsp;다운로드</a></li>" +
+	"<li><a id=\"btn_delete\" href=\"#\" fileid=\""+fileid+"\" onclick='filedelete(this.getAttribute(\"fileid\"))'><span class=\"glyphicon glyphicon-trash\"></span>&nbsp;&nbsp;삭제하기</a></li>" +
 	"<li class=\"divider\"></li>" +
-	"<li><a href=\"#\"><span class=\"glyphicon glyphicon-tag\"></span>태그보기</a></li>" +
-	"<li><a href=\"#\"><span class=\"glyphicon glyphicon-th-list\"></span>카테고리보기</a></li>" +
+	"<li><a href=\"#\" data-toggle=\"modal\" data-target=\"#modal_fileInfo\"><span class=\"glyphicon glyphicon-info-sign\"></span>&nbsp;&nbsp;파일 정보</a></li>" +
 	"</ul></div>" +
 	"<div class=\"header_fileIcon\" id=\"fileName\">";
 	return content;
+};
 
-}
-
+// 파일 삭제 시 UI상에서 파일 아이콘을 제거하는 함수
+$(function()
+{
+	$('#btn_delete').click(function()
+	{
+		var fileid_to_delete = $(this).parent().parent().parent().next().html();
+		if(confirm( fileid_to_delete +" 파일이 삭제됩니다! 계속하시겠습니까?"))
+		{$(this).parent().parent().parent().parent().remove();}
+	});
+});
 function sendJsonUserdata(data, method)
 {
 	var jsondata = JSON.stringify(data)
@@ -156,16 +183,15 @@ $(function()
 
 //파일 업로드 모달 취소 버튼 액션
 $(function()
-		{
+{
 	$('#btn_cancle_fileUpload').click(function()
-			{
-
-		$('#name_fileUpload').val("");
-		$('#btn_fileUpload').val("");
-		$('#tagsArea').val("");
-		$('.bootstrap-tagsinput > span').remove();
-			});
+		{
+			$('#name_fileUpload').val("");
+			$('#btn_fileUpload').val("");
+			$('#tagsArea').val("");
+			$('.bootstrap-tagsinput > span').remove();
 		});
+});
 
 //Bootstrap - Tags Input 컴포넌트
 (function ($) {

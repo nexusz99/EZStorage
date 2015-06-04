@@ -69,21 +69,21 @@
 {
 	position:absolute;
 	z-index:99;
-	background-color:#5BC0DE;
+	background: linear-gradient(to bottom,RGBA(130,90,180,1),RGBA(80,50,120,1));
 	color:white;
 	margin-bottom:10px;
 	padding-right:5% !important;
 	padding-left:5% !important;
 	padding-bottom:2px;
 	height:55px;
-	box-shadow:0px 2px 2px RGBA(140,140,140, 0.7);
+	box-shadow:0px 1px 4px 1px RGBA(140,140,140, 0.2);
 }
 .btn_profile
 {
 	margin-top:0%;
 	margin-bottom:0%;
 	height:55px;
-	background-color:#5BC0DE;
+	background: linear-gradient(to bottom,RGBA(130,90,180,1),RGBA(80,50,120,1));
 	border-radius:0px;
 }
 .btn_profile:hover,
@@ -91,7 +91,7 @@
 .btn_profile:active
 {
 	color:white !important;
-	background-color:RGBA(111,111,111,0.5) !important;
+	background-color:RGBA(110,110,110,0.5) !important;
 	box-shadow:0px 0px 22px RGBA(250,250,250,0.6);
 }
 #UserName
@@ -103,7 +103,7 @@
 }
 .dropdown_profile
 {
-	background-color:#5BC0DE;
+	background-color:RGBA(110,80,160,1);
 	color:white !important;
 	top:96%;
 }
@@ -116,13 +116,13 @@
 .dropdown-menu > li :active
 {
 	color: black !important;
-  	background-color: #B9DEF0 !important;
+  	background-color:RGBA(255,255,255,0.3) !important;
   	font-weight: :bold !important;
 }
 .dropdown_profile .divider
 {
 	margin-left:5%;
-	background-color:RGBA(90,90,90,0.9);
+	background-color:RGBA(90,90,90,0.85);
 	width:90%;
 }
 .img_profile
@@ -248,24 +248,29 @@
 }
 .grid_fileIcon
 {
-	margin:35px 20px ;
-	width:150px;
-	height:170px;
-
-	list-style-type:none;
+	margin:25px 15px ;
+	width:120px;
+	height:165px;
 	display:inline-block;
-	padding: 15px 15px;
+	list-style-type:none;
+
 	padding-bottom:0px;
+	vertical-align:top;
 }
 .btn_fileIcon
 {
-	width:120px;
-	height:120px;
+	width:100px;
+	height:100px;
 	background-color:white;
 	border-radius:16px;
 	border-top-right-radius:16px !important;
 	border-bottom-right-radius:16px !important;
 	border:4px solid RGBA(150,240,255,0.1);
+}
+.img_fileIcon
+{
+	width:80px;
+	height:80px;
 }
 
 /* 파일 업로드 폼 디자인 */
@@ -332,28 +337,17 @@ ol.list_fileTag > li
 	padding:0px 0px 0px 0px;
 	width:100%;
 }
-/* 파일 아이콘 디자인 */
-ol>li:first-child >div.btn-group>button
-{
-	border:11px solid RGBA(150,240,255,0.8) !important;
-}
-ol>li:nth-child(2) >div.btn-group>button
-{
-	border:9px solid RGBA(150,240,255,0.5) !important;
-}
-ol>li:nth-child(3) >div.btn-group>button
-{
-	border:6px solid RGBA(150,240,255,0.2) !important;
-}
+
 .header_fileIcon
 {
 	padding-top:10px;
-	width:120px;
+	width:100px;
 	height:30px;
-	overflow:hidden;
+	overflow:visible;
 	text-align:center;
 	vertical-align: center;
 	text-shadow:2px 2px 2px RGBA(100,100,100,0.4);
+	position:static;
 }
 .divider_modal
 {
@@ -392,4 +386,12 @@ ol>li:nth-child(3) >div.btn-group>button
 .selected_fileIcon
 {
 	box-shadow:0px 0px 5px 5px RGBA(200,200,200,0.5);
+}
+
+/* 모달 다이얼로그 디자인 */
+#modal_fileUpload> div> div
+{
+	position:fixed;
+	margin-top:20%;
+	left:0%;
 }
