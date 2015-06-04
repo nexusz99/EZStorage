@@ -106,7 +106,7 @@ public class FileAPI extends Controller {
 		
 		for(int i = 0 ; i < splen; i++)
 		{
-			f.addTag(sp[i]);
+			f.addTag(sp[i].trim());
 		}
 	}
 	

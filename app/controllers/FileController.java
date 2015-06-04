@@ -67,7 +67,7 @@ public class FileController {
     		ps.setString(3, localpath);
     		ps.setLong(4, fileinfo.getSize());
     		ps.setInt(5, user.getUserId());
-    		ps.setInt(6, getFileType(fileinfo.getName(), con));
+    		ps.setInt(6, getTypeID(fileinfo.getName(), con));
     		ps.executeUpdate();
     		
     		tm.saveFileTag(fileinfo);
@@ -264,7 +264,7 @@ public class FileController {
 			f.setSize(rs.getLong("size"));
 			f.setLocalpath(rs.getString("path"));
 			f.setName(rs.getString("name"));
-			f.setType(rs.getInt("type_id"));
+			f.setType(getTypeValue(rs.getInt("type_id"), c));
 			list.add(f);
 		}
 		
@@ -291,14 +291,32 @@ public class FileController {
 		con.rollback();
 	}
 	
-	private int getFileType(String filename, Connection con) throws SQLException
+	private int getTypeID(String filename, Connection con) throws SQLException
 	{
 		String extension = filename.substring(filename.lastIndexOf('.')+1,
 											  filename.length());
-		String sql = "select value from ezfile_type where extension=?";
+		String sql = "select id from ezfile_type where extension=?";
 		
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, extension);
+		
+		ResultSet rs = ps.executeQuery();
+		
+		if(!rs.next())
+			return -1;
+		int type = rs.getInt("id");
+		rs.close();
+		ps.close();
+		return type;
+	}
+	
+	private int getTypeValue(int type_id, Connection con) throws SQLException
+	{
+		
+		String sql = "select value from ezfile_type where id = ?";
+		
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setInt(1, type_id);
 		
 		ResultSet rs = ps.executeQuery();
 		

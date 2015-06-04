@@ -58,6 +58,52 @@ function loadfile()
 			})
 }
 
+function search()
+{
+	var user_id = getCookie("userid");
+	if(user_id == "")
+	{
+		alert("비정상적인 접근!");
+		return;
+	}
+	var tags = $('#tagsArea_search').val().split(",");
+	var str = {"user_id": user_id, "tags": tags}
+	
+	var jsondata = JSON.stringify(str);
+	
+	$.ajax
+	({
+		type: 'POST',
+		headers:
+		{
+			'Accept': 'application/json',
+			'Content-Type': 'application/json'
+		},
+		url: '/search/file',
+		async: false,
+		data: jsondata,
+		success: function(result){
+			var content = "<ol>";
+			for(k = 0; k < result.length; k++)
+			{
+				var file = result[k];
+				content += clickMouse(file.type, user_id, file.id);
+				content += file.file_name;
+				content += "</div></li>";
+
+			}
+			content += "</ol>";
+			$("#container_fileDriveGrid").html(content);
+		},
+		statusCode:{
+			409:function(){
+				alert("이미 존재하는 ID입니다.");
+			}
+		}
+	})
+}
+
+
 function getCookie(cname) {
     var name = cname + "=";
     var ca = document.cookie.split(';');
@@ -169,16 +215,6 @@ function getfileinfo(fileid)
 };
 
 
-// 파일 삭제 시 UI상에서 파일 아이콘을 제거하는 함수
-$(function()
-{
-	$('#btn_delete').click(function()
-	{
-		var fileid_to_delete = $(this).parent().parent().parent().next().html();
-		if(confirm( fileid_to_delete +" 파일이 삭제됩니다! 계속하시겠습니까?"))
-		{$(this).parent().parent().parent().parent().remove();}
-	});
-});
 function sendJsonUserdata(data, method)
 {
 	var jsondata = JSON.stringify(data)

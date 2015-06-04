@@ -24,6 +24,9 @@ GET	/category/:user_id/:category_id	controllers.api.CategoryAPI.get(user_id: Int
 DELETE	/category/:user_id/:category_id	controllers.api.CategoryAPI.delete(user_id: Integer, category_id: Integer)
 POST	/category/:user_id/:category_id	controllers.api.CategoryAPI.update(user_id: Integer, category_id: Integer)
 
+# Search API
+POST	/search/file				controllers.api.SearchAPI.searchByTag()
+
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
