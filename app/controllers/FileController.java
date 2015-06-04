@@ -162,7 +162,7 @@ public class FileController {
 		return true;
 	}
 	
-	public EZFile getFile(int user_id, String file_id)
+	public EZFile getFile(int user_id, String file_id, boolean withtag)
 	{
 		EZFile ef = null;
 		
@@ -175,6 +175,13 @@ public class FileController {
 			if(ef == null)
 				return null;
 			ef.setBody(localfile.get(ef.getLocalpath()));
+			
+			if(withtag)
+			{
+				TagManager tm = new TagManager(con);
+				ArrayList<String> list = tm.getTagList("eztags_has_storage_file", file_id);
+				ef.addTag(list);
+			}
 		}
 		catch(SQLException e)
 		{

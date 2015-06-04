@@ -14,9 +14,9 @@ $(function () {
     
     
    	setTimeout(function () {
-            btn.button('reset');
+            $btn.button('reset');
    
-   }, 3000);
+   }, 1000);
 });
 
 
@@ -122,11 +122,52 @@ function clickMouse(type, userid, fileid)
 	"<li><a href=\"/files/"+userid+"/"+fileid+"\" ><span class=\"glyphicon glyphicon-download\"></span>&nbsp;&nbsp;다운로드</a></li>" +
 	"<li><a id=\"btn_delete\" href=\"#\" fileid=\""+fileid+"\" onclick='filedelete(this.getAttribute(\"fileid\"))'><span class=\"glyphicon glyphicon-trash\"></span>&nbsp;&nbsp;삭제하기</a></li>" +
 	"<li class=\"divider\"></li>" +
-	"<li><a href=\"#\" data-toggle=\"modal\" data-target=\"#modal_fileInfo\"><span class=\"glyphicon glyphicon-info-sign\"></span>&nbsp;&nbsp;파일 정보</a></li>" +
+	"<li><a href=\"#\" fileid=\""+fileid+"\" data-toggle=\"modal\" data-target=\"#modal_fileInfo\" onclick=getfileinfo(this.getAttribute(\"fileid\"))><span class=\"glyphicon glyphicon-info-sign\"></span>&nbsp;&nbsp;파일 정보</a></li>" +
 	"</ul></div>" +
 	"<div class=\"header_fileIcon\" id=\"fileName\">";
 	return content;
 };
+
+function getfileinfo(fileid)
+{
+	var user_id = getCookie("userid");
+	$('#fileinfo_tinput').tagsinput('removeAll');
+	if(user_id == "")
+	{
+		alert("비정상적인 접근!");
+		return;
+	}
+	var u = "/files/"+user_id+"/"+fileid+"/info";
+	$.ajax(
+	{
+		url: u,
+		dataType:"json",
+		method: "GET",
+		async: false,
+		success:function(result)
+		{
+			$('#fileinfo_name').html(result.filename);
+			$('#fileinfo_date').html(result.uploadtime);
+			
+			var size = result.size;
+			var rsize = result.size + "Bytes";
+			if(size >= 1024 && size < 1024*1024)
+				rsize = (size / 1024).toFixed(3) + " KB";
+			else if(size >= 1024*1024 && size < 1024*1024*1024)
+				rsize = (size / (1024*1024)).toFixed(3) + " MB";
+			else if(size >= 1024*1024*1024)
+				rsize = (size / (1024*1024*1024)).toFixed(3) + " GB";
+			
+			$('#fileinfo_size').html(rsize);
+			for(i = 0; i < result.tags.length; i++)
+			{
+				$('#fileinfo_tinput').tagsinput("add", result.tags[i]);
+			}
+			$('#fileinfo_tinput').tagsinput("refresh");
+		}
+	})
+};
+
 
 // 파일 삭제 시 UI상에서 파일 아이콘을 제거하는 함수
 $(function()

@@ -30,6 +30,7 @@ public class EZFile {
 	@JsonIgnore
 	private int user_id;
 	
+	@JsonProperty("tags")
 	private ArrayList<String> tags = new ArrayList<String>();
 	
 	public String getId() {
@@ -71,6 +72,14 @@ public class EZFile {
 	
 	public void addTag(String tag){
 		tags.add(tag);
+	}
+	
+	public void addTag(ArrayList<String> list)
+	{
+		for(String t : list)
+		{
+			addTag(t);
+		}
 	}
 	
 	public Iterator<String> iterTags(){

@@ -69,12 +69,17 @@ public class FileAPI extends Controller {
 		return redirect("/");
 	}
 	
+	public static Result info(int user_id, String file_id)
+	{
+		return Results.ok(Json.toJson(fc.getFile(user_id, file_id, true)));
+	}
+	
 	public static Result download(int user_id, String file_id)
 	{
 		if(!requestValidation(user_id))
 			return forbidden("잘못된 접근입니다.");
 		
-		EZFile f = fc.getFile(user_id, file_id);
+		EZFile f = fc.getFile(user_id, file_id, false);
 		if(f == null)
 			return notFound("파일을 찾을 수 없습니다.");
 		response().setHeader("Content-Disposition", "attachment; filename="+f.getName());

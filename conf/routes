@@ -14,6 +14,7 @@ POST	/users						controllers.api.UserAPI.signinorout()
 POST	/files/:user_id				controllers.api.FileAPI.upload(user_id: Integer)
 GET		/files/:user_id/recent		controllers.api.FileAPI.recentList(user_id: Integer, marker: Integer ?= 0 , limit: Integer ?= 100)
 GET		/files/:user_id/:file_id	controllers.api.FileAPI.download(user_id: Integer, file_id: String)
+GET		/files/:user_id/:file_id/info	controllers.api.FileAPI.info(user_id: Integer, file_id: String)
 DELETE	/files/:user_id/:file_id	controllers.api.FileAPI.delete(user_id: Integer, file_id: String)
 
 # Category API
