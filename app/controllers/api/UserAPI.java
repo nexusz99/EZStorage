@@ -76,9 +76,9 @@ public class UserAPI extends Controller {
 		}
 		
 		Response response = response();
-		response.setCookie("userid", UriEncoding.encodePathSegment(String.valueOf(u.getUserId()), "utf-8"));
+		response.setCookie("userid",String.valueOf(u.getUserId()));
 		response.setCookie("firstname", UriEncoding.encodePathSegment(u.getFirstname(), "utf-8"));
-		response.setCookie("lastname", u.getLastname());
+		response.setCookie("lastname",  UriEncoding.encodePathSegment(u.getLastname(), "utf-8"));
 		response.setCookie("auth_key", u.getSession());
 		return ok();
 	}
