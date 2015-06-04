@@ -64,7 +64,7 @@ public class TagManager {
 		// 태그를 iterator 하면서 eztags 테이블에 태그를 등록
 		String query = "insert into eztags (name) values (?)"
 				+ "on duplicate key update reference_count=reference_count+1";
-		String mquery = "insert into eztags_has_storage_file values (?, ?)";
+		String mquery = "insert into eztags_has_storage_file values (?, ?, ?)";
 		
 		PreparedStatement ps = null, mps = null;
 		
@@ -84,8 +84,9 @@ public class TagManager {
 				ps = null;
 				
 				mps = con.prepareStatement(mquery);
-				mps.setString(2, fileinfo.getId());
+				mps.setString(3, fileinfo.getId());
 				mps.setInt(1, tagid);
+				mps.setInt(2, fileinfo.getUser_id());
 				mps.executeUpdate();
 				mps.close();
 				mps = null;

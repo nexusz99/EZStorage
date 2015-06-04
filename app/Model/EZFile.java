@@ -26,6 +26,10 @@ public class EZFile {
 	
 	@JsonIgnore
 	private File body;
+	
+	@JsonIgnore
+	private int user_id;
+	
 	private ArrayList<String> tags = new ArrayList<String>();
 	
 	public String getId() {
@@ -77,5 +81,11 @@ public class EZFile {
 	}
 	public void setType(int type) {
 		this.type = type;
+	}
+	public int getUser_id() {
+		return user_id;
+	}
+	public void setUser_id(int user_id) {
+		this.user_id = user_id;
 	}
 }

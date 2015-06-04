@@ -36,6 +36,7 @@ public class FileAPI extends Controller {
 		EZFile f = new EZFile();
 		f.setBody(file.getFile());
 		f.setName(filename);
+		f.setUser_id(user_id);
 		f.setSize(file.getFile().length());
 		parseTagList(f, tags);
 		
