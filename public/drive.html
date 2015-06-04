@@ -26,7 +26,7 @@
   				<!-- 프로필 메뉴 -->
 				<div class="btn-group pull-right">
   					<button type="button" class="btn btn_profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-   					<img src="/assets/images/profile.png" class="img_profile"><span id="UserName"> User Name </span><span class="caret"></span>
+   					<img src="/assets/images/profile.png" class="img_profile"><span id="UserName">사용자</span><span class="caret"></span>
  					</button>
  					<ul class="dropdown-menu dropdown_profile pull-right" role="menu">
     					<li><a href="#">사용자 정보 수정</a></li>
@@ -44,7 +44,7 @@
 				<div class="pull-right padding_from_right">
  					<button type="button" id="icon_fileUpload" class="btn-md btn_fileMenu" data-toggle="tooltip" data-placement="left" title="버튼을 눌러 파일을 업로드합니다!">
  						<a href="#" type="button" data-toggle="modal" data-target="#modal_fileUpload">
- 						<span class="glyphicon glyphicon-open" style="color:#31B0D5 !important;"></span></a>
+ 						<span class="glyphicon glyphicon-open" style="color:RGBA(80,50,120,1); !important;"></span></a>
  					</button>
   				</div>
 				<div id="form_searchTag" class="form_searchTag">
@@ -60,7 +60,7 @@
 		
 		
 		<!-- 파일 속성 모달 -->
-		<div class="modal fade" id="info_file" tabindex="-1" role="dialog" aria-labelledby="Modal_fileInfo" aria-hidden="true">
+		<div class="modal fade" id="modal_fileInfo" tabindex="-1" role="dialog" aria-labelledby="Modal_fileInfo" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
   					<div class="modal-header">
@@ -68,11 +68,11 @@
     					<h4 class="modal-title" id="myModalLabel">파일 정보</h4>
   					</div>
   					<div class="modal-body">
-			        	<h5>파일명</h5>
-			        	<h5>업로드 날짜</h5>
-			        	<h5>파일 크기</h5>
-			        	<h5>카테고리</h5>
-			        	<h5>태그</h5>
+			        	<h5><strong>파일명</strong></h5>
+			        	<h5><strong>업로드 날짜</strong></h5>
+			        	<h5><strong>파일 크기</strong></h5>
+			        	<h5><strong>카테고리</strong></h5>
+			        	<h5><strong>태그</strong></h5>
 			      	</div>
   					<div class="modal-footer">
     					<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
@@ -130,38 +130,40 @@
 			</div>
 			<!-- 파일 드라이브 컨테이너 -->
 			
-			<div id="container_fileDriveGrid"/>
+			<div id="container_fileDriveGrid">
 			<!-- 파일 아이콘 예제 (형식 참고용 주석 코드, 지우지 말 것)-->
 			
 			<ol>
 				<li class="grid_fileIcon">
 					<div class="btn-group">
 						<button type="button" class="btn btn_fileIcon" data-toggle="dropdown" aria-expanded="false">
-							<img class="img_fileIcon" src="/assets/images/icons/etc.png">
+							<img class="img_fileIcon" src="/assets/images/icons/code.png">
 						</button>
 						<ul class="dropdown-menu pull-right" role="menu">
 							<li><a href="/files/1/35ccb69fe2b3cd723c6ed2b9a94ee551">
 								<span class="glyphicon glyphicon-download"></span>&nbsp;&nbsp;다운로드</a>
 							</li>
 							
-							<li><a href="#" fileid="35ccb69fe2b3cd723c6ed2b9a94ee551" onclick="filedelete(this.getAttribute(&quot;fileid&quot;))">
+							<li><a id="btn_delete" href="#" fileid="35ccb69fe2b3cd723c6ed2b9a94ee551" onclick="filedelete(this.getAttribute(&quot;fileid&quot;))">
 								<span class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;삭제하기</a></li><li class="divider">
 							</li>
 							
-							<li><a href="#" data-toggle="modal" data-target="#info_file">
+							<li><a href="#" data-toggle="modal" data-target="#modal_fileInfo">
 								<span class="glyphicon glyphicon-info-sign"></span>&nbsp;&nbsp;파일 정보</a>
 							</li>
 						</ul>
 					</div>
 					<div class="header_fileIcon" id="fileName">
-						ㅁㄴㅇㄹ.etc
+						ㅁㄴㅇㄹ.cpp
 					</div>
 				</li>
 			</ol>
 			</div>
 		
+	</body>
 	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="/assets/javascripts/jquery.cookie.js"></script>
 	<script src="/assets/javascripts/bootstrap.js"></script>
 	<script src="/assets/javascripts/drive.js"></script>
 </html>

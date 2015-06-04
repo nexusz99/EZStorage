@@ -69,21 +69,21 @@
 {
 	position:absolute;
 	z-index:99;
-	background-color:#5BC0DE;
+	background: linear-gradient(to bottom,RGBA(130,90,180,1),RGBA(80,50,120,1));
 	color:white;
 	margin-bottom:10px;
 	padding-right:5% !important;
 	padding-left:5% !important;
 	padding-bottom:2px;
 	height:55px;
-	box-shadow:0px 2px 2px RGBA(140,140,140, 0.7);
+	box-shadow:0px 1px 4px 1px RGBA(140,140,140, 0.2);
 }
 .btn_profile
 {
 	margin-top:0%;
 	margin-bottom:0%;
 	height:55px;
-	background-color:#5BC0DE;
+	background: linear-gradient(to bottom,RGBA(130,90,180,1),RGBA(80,50,120,1));
 	border-radius:0px;
 }
 .btn_profile:hover,
@@ -103,7 +103,7 @@
 }
 .dropdown_profile
 {
-	background-color:#5BC0DE;
+	background-color:RGBA(110,80,160,1);
 	color:white !important;
 	top:96%;
 }
@@ -116,7 +116,7 @@
 .dropdown-menu > li :active
 {
 	color: black !important;
-  	background-color: #B9DEF0 !important;
+  	background-color:RGBA(255,255,255,0.3) !important;
   	font-weight: :bold !important;
 }
 .dropdown_profile .divider
@@ -386,4 +386,12 @@ ol.list_fileTag > li
 .selected_fileIcon
 {
 	box-shadow:0px 0px 5px 5px RGBA(200,200,200,0.5);
+}
+
+/* 모달 다이얼로그 디자인 */
+#modal_fileUpload> div> div
+{
+	position:fixed;
+	margin-top:20%;
+	left:0%;
 }

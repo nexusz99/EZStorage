@@ -51,7 +51,14 @@ function getCookie(cname) {
         if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
     }
     return "";
-}
+};
+
+// 프로필 바_사용자 이름 출력
+$(function()
+{
+	var UserName = $.cookie('lastname') + ' ' + $.cookie('firstname');
+	$('#UserName').html(UserName);
+});
 
 function clickMouse(type, userid, fileid)
 {
@@ -90,17 +97,26 @@ function clickMouse(type, userid, fileid)
 	}
 	
 
-	content += "<ul class=\"dropdown-menu pull-right\" role=\"menu\">" +
+	content += "<ul id=" + fileid + " class=\"dropdown-menu pull-right\" role=\"menu\">" +
 	"<li><a href=\"/files/"+userid+"/"+fileid+"\" ><span class=\"glyphicon glyphicon-download\"></span>&nbsp;&nbsp;다운로드</a></li>" +
-	"<li><a href=\"#\" fileid=\""+fileid+"\" onclick='filedelete(this.getAttribute(\"fileid\"))'><span class=\"glyphicon glyphicon-trash\"></span>&nbsp;&nbsp;삭제하기</a></li>" +
+	"<li><a id=\"btn_delete\" href=\"#\" fileid=\""+fileid+"\" onclick='filedelete(this.getAttribute(\"fileid\"))'><span class=\"glyphicon glyphicon-trash\"></span>&nbsp;&nbsp;삭제하기</a></li>" +
 	"<li class=\"divider\"></li>" +
-	"<li><a href=\"#\" data-toggle=\"modal\" data-target=\"#info_file\"><span class=\"glyphicon glyphicon-info-sign\"></span>&nbsp;&nbsp;파일 정보</a></li>" +
+	"<li><a href=\"#\" data-toggle=\"modal\" data-target=\"#modal_fileInfo\"><span class=\"glyphicon glyphicon-info-sign\"></span>&nbsp;&nbsp;파일 정보</a></li>" +
 	"</ul></div>" +
 	"<div class=\"header_fileIcon\" id=\"fileName\">";
 	return content;
+};
 
-}
-
+// 파일 삭제 시 UI상에서 파일 아이콘을 제거하는 함수
+$(function()
+{
+	$('#btn_delete').click(function()
+	{
+		var fileid_to_delete = $(this).parent().parent().parent().next().html();
+		if(confirm( fileid_to_delete +" 파일이 삭제됩니다! 계속하시겠습니까?"))
+		{$(this).parent().parent().parent().parent().remove();}
+	});
+});
 function sendJsonUserdata(data, method)
 {
 	var jsondata = JSON.stringify(data)
@@ -167,16 +183,15 @@ $(function()
 
 //파일 업로드 모달 취소 버튼 액션
 $(function()
-		{
+{
 	$('#btn_cancle_fileUpload').click(function()
-			{
-
-		$('#name_fileUpload').val("");
-		$('#btn_fileUpload').val("");
-		$('#tagsArea').val("");
-		$('.bootstrap-tagsinput > span').remove();
-			});
+		{
+			$('#name_fileUpload').val("");
+			$('#btn_fileUpload').val("");
+			$('#tagsArea').val("");
+			$('.bootstrap-tagsinput > span').remove();
 		});
+});
 
 //Bootstrap - Tags Input 컴포넌트
 (function ($) {
