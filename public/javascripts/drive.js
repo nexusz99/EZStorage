@@ -4,6 +4,22 @@ $(function () {
 });
 
 
+ $('#btn_apply_fileinfo').on('click', function () {
+    var $btn = $(this).button('loading');
+    
+    
+    
+    // business logic...
+    
+    
+    
+   	setTimeout(function () {
+            btn.button('reset');
+   
+   }, 3000);
+});
+
+
 $(function() {
 	loadfile();
 });
@@ -56,7 +72,12 @@ function getCookie(cname) {
 // 프로필 바_사용자 이름 출력
 $(function()
 {
-	var UserName = $.cookie('lastname') + ' ' + $.cookie('firstname');
+	var lastname = $.cookie('lastname');
+	var firstname = $.cookie('firstname');
+	decodeURIComponent(lastname);
+	decodeURIComponent(firstname);
+	
+	var UserName = lastname+firstname;;
 	$('#UserName').html(UserName);
 });
 
