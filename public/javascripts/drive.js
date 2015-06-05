@@ -38,6 +38,15 @@ $(function()
    	setTimeout(function(){$btn.button('reset');}, 800);
 });
 
+// 카테고리 정보창 '카테고리 제거' 함수
+$(function()
+{
+	$('#btn_delete_categoryInfo').click(function()
+	{
+		$('#categoryname').parent().remove();
+	});
+});
+
 // 카테고리 추가창 '추가' 함수
  $('#btn_apply_categoryadd').on('click', function () {
     var $btn = $(this).button('loading');
