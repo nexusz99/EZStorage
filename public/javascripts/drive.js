@@ -41,12 +41,7 @@ $(function()
 // 카테고리 추가창 '추가' 함수
  $('#btn_apply_categoryadd').on('click', function () {
     var $btn = $(this).button('loading');
-    
-    
-    
-    // business logic...
-    
-    
+
    	setTimeout(function()
    	{
    		$btn.button('reset');
@@ -54,7 +49,6 @@ $(function()
    		$('#categoryadd_tinput').tagsinput('removeAll');
    		$('#modal_categoryadd').modal('hide');
 	}, 800);
-   	
 });
 
 
@@ -95,6 +89,52 @@ function loadfile()
 				}
 			})
 }
+
+function search()
+{
+	var user_id = getCookie("userid");
+	if(user_id == "")
+	{
+		alert("비정상적인 접근!");
+		return;
+	}
+	var tags = $('#tagsArea_search').val().split(",");
+	var str = {"user_id": user_id, "tags": tags}
+	
+	var jsondata = JSON.stringify(str);
+	
+	$.ajax
+	({
+		type: 'POST',
+		headers:
+		{
+			'Accept': 'application/json',
+			'Content-Type': 'application/json'
+		},
+		url: '/search/file',
+		async: false,
+		data: jsondata,
+		success: function(result){
+			var content = "<ol>";
+			for(k = 0; k < result.length; k++)
+			{
+				var file = result[k];
+				content += clickMouse(file.type, user_id, file.id);
+				content += file.file_name;
+				content += "</div></li>";
+
+			}
+			content += "</ol>";
+			$("#container_fileDriveGrid").html(content);
+		},
+		statusCode:{
+			409:function(){
+				alert("이미 존재하는 ID입니다.");
+			}
+		}
+	})
+}
+
 
 function getCookie(cname) {
     var name = cname + "=";
@@ -160,10 +200,50 @@ function clickMouse(type, userid, fileid)
 	"<li><a href=\"/files/"+userid+"/"+fileid+"\" ><span class=\"glyphicon glyphicon-download\"></span>&nbsp;&nbsp;다운로드</a></li>" +
 	"<li><a id=\"btn_delete\" href=\"#\" fileid=\""+fileid+"\" onclick='filedelete(this.getAttribute(\"fileid\"))'><span class=\"glyphicon glyphicon-trash\"></span>&nbsp;&nbsp;삭제하기</a></li>" +
 	"<li class=\"divider\"></li>" +
-	"<li><a href=\"#\" id=\"btn_fileInfo\" data-toggle=\"modal\" data-target=\"#modal_fileInfo\"><span class=\"glyphicon glyphicon-info-sign\"></span>&nbsp;&nbsp;파일 정보</a></li>" +
+	"<li><a href=\"#\" fileid=\""+fileid+"\" data-toggle=\"modal\" data-target=\"#modal_fileInfo\" onclick=getfileinfo(this.getAttribute(\"fileid\"))><span class=\"glyphicon glyphicon-info-sign\"></span>&nbsp;&nbsp;파일 정보</a></li>" +
 	"</ul></div>" +
 	"<div class=\"header_fileIcon\" id=\"fileName\">";
 	return content;
+};
+
+function getfileinfo(fileid)
+{
+	var user_id = getCookie("userid");
+	$('#fileinfo_tinput').tagsinput('removeAll');
+	if(user_id == "")
+	{
+		alert("비정상적인 접근!");
+		return;
+	}
+	var u = "/files/"+user_id+"/"+fileid+"/info";
+	$.ajax(
+	{
+		url: u,
+		dataType:"json",
+		method: "GET",
+		async: false,
+		success:function(result)
+		{
+			$('#fileinfo_name').html(result.filename);
+			$('#fileinfo_date').html(result.uploadtime);
+			
+			var size = result.size;
+			var rsize = result.size + "Bytes";
+			if(size >= 1024 && size < 1024*1024)
+				rsize = (size / 1024).toFixed(3) + " KB";
+			else if(size >= 1024*1024 && size < 1024*1024*1024)
+				rsize = (size / (1024*1024)).toFixed(3) + " MB";
+			else if(size >= 1024*1024*1024)
+				rsize = (size / (1024*1024*1024)).toFixed(3) + " GB";
+			
+			$('#fileinfo_size').html(rsize);
+			for(i = 0; i < result.tags.length; i++)
+			{
+				$('#fileinfo_tinput').tagsinput("add", result.tags[i]);
+			}
+			$('#fileinfo_tinput').tagsinput("refresh");
+		}
+	})
 };
 
 function sendJsonUserdata(data, method)

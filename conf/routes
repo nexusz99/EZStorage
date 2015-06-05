@@ -14,6 +14,7 @@ POST	/users						controllers.api.UserAPI.signinorout()
 POST	/files/:user_id				controllers.api.FileAPI.upload(user_id: Integer)
 GET		/files/:user_id/recent		controllers.api.FileAPI.recentList(user_id: Integer, marker: Integer ?= 0 , limit: Integer ?= 100)
 GET		/files/:user_id/:file_id	controllers.api.FileAPI.download(user_id: Integer, file_id: String)
+GET		/files/:user_id/:file_id/info	controllers.api.FileAPI.info(user_id: Integer, file_id: String)
 DELETE	/files/:user_id/:file_id	controllers.api.FileAPI.delete(user_id: Integer, file_id: String)
 
 # Category API
@@ -22,6 +23,9 @@ GET		/category/:user_id/lists	controllers.api.CategoryAPI.lists(user_id: Integer
 GET	/category/:user_id/:category_id	controllers.api.CategoryAPI.get(user_id: Integer, category_id: Integer)
 DELETE	/category/:user_id/:category_id	controllers.api.CategoryAPI.delete(user_id: Integer, category_id: Integer)
 POST	/category/:user_id/:category_id	controllers.api.CategoryAPI.update(user_id: Integer, category_id: Integer)
+
+# Search API
+POST	/search/file				controllers.api.SearchAPI.searchByTag()
 
 
 # Map static resources from the /public folder to the /assets URL path

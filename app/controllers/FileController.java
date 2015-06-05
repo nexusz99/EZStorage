@@ -67,7 +67,7 @@ public class FileController {
     		ps.setString(3, localpath);
     		ps.setLong(4, fileinfo.getSize());
     		ps.setInt(5, user.getUserId());
-    		ps.setInt(6, getFileType(fileinfo.getName(), con));
+    		ps.setInt(6, getTypeID(fileinfo.getName(), con));
     		ps.executeUpdate();
     		
     		tm.saveFileTag(fileinfo);
@@ -162,7 +162,7 @@ public class FileController {
 		return true;
 	}
 	
-	public EZFile getFile(int user_id, String file_id)
+	public EZFile getFile(int user_id, String file_id, boolean withtag)
 	{
 		EZFile ef = null;
 		
@@ -175,6 +175,13 @@ public class FileController {
 			if(ef == null)
 				return null;
 			ef.setBody(localfile.get(ef.getLocalpath()));
+			
+			if(withtag)
+			{
+				TagManager tm = new TagManager(con);
+				ArrayList<String> list = tm.getTagList("eztags_has_storage_file", file_id);
+				ef.addTag(list);
+			}
 		}
 		catch(SQLException e)
 		{
@@ -257,7 +264,7 @@ public class FileController {
 			f.setSize(rs.getLong("size"));
 			f.setLocalpath(rs.getString("path"));
 			f.setName(rs.getString("name"));
-			f.setType(rs.getInt("type_id"));
+			f.setType(getTypeValue(rs.getInt("type_id"), c));
 			list.add(f);
 		}
 		
@@ -284,7 +291,7 @@ public class FileController {
 		con.rollback();
 	}
 	
-	private int getFileType(String filename, Connection con) throws SQLException
+	private int getTypeID(String filename, Connection con) throws SQLException
 	{
 		String extension = filename.substring(filename.lastIndexOf('.')+1,
 											  filename.length());
@@ -298,6 +305,24 @@ public class FileController {
 		if(!rs.next())
 			return -1;
 		int type = rs.getInt("id");
+		rs.close();
+		ps.close();
+		return type;
+	}
+	
+	private int getTypeValue(int type_id, Connection con) throws SQLException
+	{
+		
+		String sql = "select value from ezfile_type where id = ?";
+		
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setInt(1, type_id);
+		
+		ResultSet rs = ps.executeQuery();
+		
+		if(!rs.next())
+			return -1;
+		int type = rs.getInt("value");
 		rs.close();
 		ps.close();
 		return type;

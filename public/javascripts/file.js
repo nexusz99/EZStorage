@@ -19,9 +19,19 @@ function filedelete(file_id)
 		alert("asdf");
 		return;
 	}
-	
+
+	var ele = event.target.parentNode.parentNode.parentNode.parentNode.childNodes.item(1);
+	var fileid_to_delete = ele.innerText
+	if(confirm( fileid_to_delete +" 파일이 삭제됩니다! 계속하시겠습니까?"))
+	{
+		ele.parentNode.remove();
+	}
+	else
+	{
+		return;
+	}
 	var url = "/files/"+user_id+"/"+ file_id;
-	
+
 	$.ajax({
 		type: "DELETE",
 		url: url,

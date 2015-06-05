@@ -17,11 +17,13 @@
 		<nav class="navbar navbar-default navbar-fixed-top bar_profile">
   			<div class="container-fluid ">
   				<!-- 프로필 로고 -->
+  				<a href="/">
   				<div class="btn-group pull-left">
   					<button type="submit" class="btn btn_profile">
   					<img class="logo_profile" src="/assets/images/logo_profile.png"/>
   					<span class = "logo_profile"> EZStorage</span>
   				</button>
+  				</a>
   				</div>	
   				<!-- 프로필 메뉴 -->
 				<div class="btn-group pull-right">
@@ -53,7 +55,7 @@
 					<p class="help-block"> 태그와 태그 사이는 쉼표(<kbd>,</kbd>)로 구분됩니다.</p>
 				</div> 	
 				<div class="input-group-btn">
-					<button class="btn btn_searchBar" type="submit">검색 <span class="glyphicon glyphicon-search"></span></button>
+					<button class="btn btn_searchBar" type="submit" onclick=search()>검색 <span class="glyphicon glyphicon-search"></span></button>
  				</div>
   			</div>
 		</div>

@@ -1,5 +1,7 @@
 package controllers.api;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 
 import play.libs.Json;
@@ -9,6 +11,7 @@ import play.mvc.Http.MultipartFormData;
 import play.mvc.Http.MultipartFormData.FilePart;
 import play.mvc.Result;
 import play.mvc.Results;
+import play.utils.UriEncoding;
 import Model.EZFile;
 import Model.User;
 
@@ -69,15 +72,36 @@ public class FileAPI extends Controller {
 		return redirect("/");
 	}
 	
-	public static Result download(int user_id, String file_id)
+	public static Result info(int user_id, String file_id)
+	{
+		return Results.ok(Json.toJson(fc.getFile(user_id, file_id, true)));
+	}
+	
+	public static Result download(int user_id, String file_id) throws UnsupportedEncodingException
 	{
 		if(!requestValidation(user_id))
 			return forbidden("잘못된 접근입니다.");
 		
-		EZFile f = fc.getFile(user_id, file_id);
+		EZFile f = fc.getFile(user_id, file_id, false);
 		if(f == null)
 			return notFound("파일을 찾을 수 없습니다.");
-		response().setHeader("Content-Disposition", "attachment; filename="+f.getName());
+		
+		String header = getBrowser();
+		String fileName = f.getName();
+		if (header.contains("MSIE")) {
+		       String docName = URLEncoder.encode(fileName,"UTF-8").replaceAll("\\+", "%20");
+		       response().setHeader("Content-Disposition", "attachment;filename=" + docName + ";");
+		} else if (header.contains("Firefox")) {
+		       String docName = new String(fileName.getBytes("UTF-8"), "ISO-8859-1");
+		       response().setHeader("Content-Disposition", "attachment; filename=\"" + docName + "\"");
+		} else if (header.contains("Opera")) {
+		       String docName = new String(fileName.getBytes("UTF-8"), "ISO-8859-1");
+		       response().setHeader("Content-Disposition", "attachment; filename=\"" + docName + "\"");
+		} else if (header.contains("Chrome")) {
+		       String docName = new String(fileName.getBytes("UTF-8"), "ISO-8859-1");
+		       response().setHeader("Content-Disposition", "attachment; filename=\"" + docName + "\"");
+		}
+		
 		return Results.ok(f.getBody());
 	}
 	
@@ -93,6 +117,18 @@ public class FileAPI extends Controller {
 		return Results.ok(Json.toJson(list));
 	}
 	
+	private static String getBrowser() {
+        String header =request().getHeader("User-Agent");
+        if (header.contains("MSIE")) {
+               return "MSIE";
+        } else if(header.contains("Chrome")) {
+               return "Chrome";
+        } else if(header.contains("Opera")) {
+               return "Opera";
+        }
+        return "Firefox";
+  }
+	
 	private static void parseTagList(EZFile f, String tags)
 	{
 		String[] sp= tags.split(",");
@@ -101,7 +137,7 @@ public class FileAPI extends Controller {
 		
 		for(int i = 0 ; i < splen; i++)
 		{
-			f.addTag(sp[i]);
+			f.addTag(sp[i].trim());
 		}
 	}
 	

@@ -107,7 +107,7 @@ public class TagManager {
 		{
 			sql += "categories_id=?";
 		}
-		else if(table.compareTo("eztags_has_storage_files") == 0)
+		else if(table.compareTo("eztags_has_storage_file") == 0)
 		{
 			sql += "storage_file_id=?";
 		}
