@@ -5,186 +5,203 @@
    		<meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>EZstorage - with Tags.</title>
         
-        <link href="/assets/stylesheets/bootstrap.css" rel="stylesheet">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Examples for creative website header animations using Canvas and JavaScript" />
+		<meta name="keywords" content="header, canvas, animated, creative, inspiration, javascript" />
+		<meta name="author" content="Codrops" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+        <link type="text/css" href="/assets/stylesheets/bootstrap.css" rel="stylesheet"/>
         <link type="text/css" href="/assets/stylesheets/index.css" rel="stylesheet"/>
         <script src="/assets/javascripts/index.js"></script>
     </head>
   
 	<body>
-	
-	
-	<!--================== 메인 프레임 상단 캐러셀 ======================-->
-	<!--<div id="carousel-MainCarousel" class="carousel slide BOXshadower" data-ride="carousel">-->
-		<!-- 지시자 -->
-		<!--<ol class="carousel-indicators">
-			<li data-target="#carousel-MainCarousel" data-slide-to="0" class="active"></li>
-			<li data-target="#carousel-MainCarousel" data-slide-to="1"></li>
-			<li data-target="#carousel-MainCarousel" data-slide-to="2"></li>
-		</ol>-->
+		<!-- 하단 고정 인포메이션 바 -->
+		<nav class="navbar navbar-fixed-bottom container_navbar ">
+	  		<div class="container">
+	   			<span class="pull-left padding_from_left"></span>
+	   			<span class="pull-right padding_from_right"></span>
+	  		</div>
+		</nav>
 		
-		<!-- 이미지 슬라이드를 위한 컨텐츠 랩 -->
-		<!--<div class="carousel-inner" role="listbox">
-			<div class="item active">
-			  	<div class="container-fluid" id="frame_main1">
+		<!-- 벡터 애니메이션 캔버스 -->
+		<div id="container_main" class="container_main">
+			<canvas id="canvas_main"></canvas>
+			<div class="container-fluid" id="header_canvas_main">EZStorage</div>
+			<div class="container-fluid" id="header_canvas_sub">with tags</div>
+			<div class="container-fluid" id="p_canvas">태그와 함께, 쉽고 빠르게.</div>
+		</div>
+
+	
+		<!--================== 메인 프레임 상단 캐러셀 ======================-->
+		<!--<div id="carousel-MainCarousel" class="carousel slide BOXshadower" data-ride="carousel">-->
+			<!-- 지시자 -->
+			<!--<ol class="carousel-indicators">
+				<li data-target="#carousel-MainCarousel" data-slide-to="0" class="active"></li>
+				<li data-target="#carousel-MainCarousel" data-slide-to="1"></li>
+				<li data-target="#carousel-MainCarousel" data-slide-to="2"></li>
+			</ol>-->
+			
+			<!-- 이미지 슬라이드를 위한 컨텐츠 랩 -->
+			<!--<div class="carousel-inner" role="listbox">
+				<div class="item active">
+				  	<div class="container-fluid" id="frame_main1">
+					<div class="row">
+						<div class="col-md-6 col-md-offset-3">
+							<div id="Jumbotron_Mainlogo" class="jumbotron">
+					  			<h1 id="JTHeader"><strong>EZstorage</strong></h1>
+					 		 	<p id="JTParagraph">빠르고, 확실하게.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="item">
+				<div class="container-fluid" id="frame_main2">
 				<div class="row">
 					<div class="col-md-6 col-md-offset-3">
 						<div id="Jumbotron_Mainlogo" class="jumbotron">
-				  			<h1 id="JTHeader"><strong>EZstorage</strong></h1>
-				 		 	<p id="JTParagraph">빠르고, 확실하게.</p>
+				  			<h1 id="JTHeader"><strong>Be easier</strong></h1>
+				 		 	<p id="JTParagraph">간편하고, 손쉽게.</p>
 						</div>
 					</div>
 				</div>
+			</div>
+			</div>
+			
+			<div class="item">
+				<div class="container-fluid" id="frame_main3">
+				<div class="row">
+					<div class="col-md-6 col-md-offset-3">
+						<div id="Jumbotron_Mainlogo" class="jumbotron">
+				  			<h1 id="JTHeader"><strong>With tags</strong></h1>
+				 		 	<p id="JTParagraph">태그를 통해 관리합니다.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			</div>
+			</div>
+			
+			  	<!-- 컨트롤러 -->
+			  	<!--<a class="left carousel-control" href="#carousel-MainCarousel" role="button" data-slide="prev">
+					<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+					<span class="sr-only">Previous</span>
+			 	</a>
+			  	<a class="right carousel-control" href="#carousel-MainCarousel" role="button" data-slide="next">
+					<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+					<span class="sr-only">Next</span>
+			  	</a>
+		</div>
+	
+		<!--============================ 로그인셋 테이블 ====================================-->
+		<div id="container_loginset">
+			<div id="container_loginset_sub">
+				<table id="table_loginset">
+					<tbody>
+					  	<tr>
+					    	<th>사용자 계정</th>
+					    	<td>
+					    		<input type="text" id="username" class="form-control" placeholder="사용자 계정을 입력해주세요"/>
+							</td>
+					  	</tr>
+					  	<tr>
+					    	<th>비밀번호</th>
+					    	<td>
+					    		<input type="password" id="password" class="form-control" placeholder="암호를 입력해주세요"/>
+					    	</td>
+					  	</tr>
+					  	<tr>
+					  		<th>
+					  			<div class="checkbox">
+									<label class="pull-right">
+										<input type="checkbox">로그인 유지
+									</label>
+								</div>
+							</th>
+					  		<td>
+					  			
+					  			<button type="button" onclick="signin()" class="btn btn-primary btn-lg" id="btn_login">로그인</button>
+					    		<button type="button" data-toggle="modal" data-target="#modal_signin" class="btn btn-info btn-lg" id="btn_signin">가입하기</button>
+					  			
+					  		</td>
+					  	</tr>
+					  	<tr>
+					  		<th>&nbsp;</th>
+					    	<td>
+					    		
+					    	</td>
+					  	</tr>
+				  	</tbody>
+				</table>
 			</div>
 		</div>
 		
-		<div class="item">
-			<div class="container-fluid" id="frame_main2">
-			<div class="row">
-				<div class="col-md-6 col-md-offset-3">
-					<div id="Jumbotron_Mainlogo" class="jumbotron">
-			  			<h1 id="JTHeader"><strong>Be easier</strong></h1>
-			 		 	<p id="JTParagraph">간편하고, 손쉽게.</p>
+		<!--============================ 회원가입 모달 =======================================-->
+		<div class="modal fade" id="modal_signin" tabindex="-1" role="dialog" aria-labelledby="modal_signinLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h3 class="modal-title" id="SignInModalLabel">EZstorage 가입하기</h3>
+						<p>	당신이 지금 이 대화창을 보고 있다는 것은, 단 하나의 정보도 거짓으로 입력한다면<br>
+							조장인 11학번 조성수가 지구 끝까지 쫓아가 당신을 때릴 것이라는 것을 의미합니다.
+						</p>
 					</div>
-				</div>
-			</div>
-		</div>
-		</div>
-		
-		<div class="item">
-			<div class="container-fluid" id="frame_main3">
-			<div class="row">
-				<div class="col-md-6 col-md-offset-3">
-					<div id="Jumbotron_Mainlogo" class="jumbotron">
-			  			<h1 id="JTHeader"><strong>With tags</strong></h1>
-			 		 	<p id="JTParagraph">태그를 통해 관리합니다.</p>
-					</div>
-				</div>
-			</div>
-		</div>
-		</div>
-		</div>
-		
-		  	<!-- 컨트롤러 -->
-		  	<!--<a class="left carousel-control" href="#carousel-MainCarousel" role="button" data-slide="prev">
-				<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-				<span class="sr-only">Previous</span>
-		 	</a>
-		  	<a class="right carousel-control" href="#carousel-MainCarousel" role="button" data-slide="next">
-				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-				<span class="sr-only">Next</span>
-		  	</a>
-	</div>
-	
-	<!--============================ 중앙 메인 로고 컨테이너 ==============================-->
-		<!--<div class="row">
-			<div class="col-md-offset-4 col-md-4">
-				<div class="container-fluid logoFrame">
-					<div class="col-md-8 col-md-offset-2 miniTransBox">
-						<h1 id = "MLHeader"><strong>EZstorage</strong></h1>
-						<p id = "MLParagraph">with Tags.</p>
-					</div>
-				</div>
-			</div>
-		</div>-->
-	
-	<!--============================ 로그인 입력 폼 ====================================-->
-	
-	<div class="row">
-		<div class="col-md-offset-4 col-md-4 LoginBOX">
-			<div class="form-group">
-				<label for="inputEmail" class="col-md-3 control-label">사용자 계정</label>
-				<div class="col-md-7">
-					<input type="text" class="form-control" id="username" placeholder="사용자 계정">
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="inputPassword" class="col-md-3 control-label">암호</label>
-				<div class="col-md-7">
-					<input type="password" class="form-control" id="password" placeholder="암호">
-				</div>
-			</div>
-			<div class="form-group">
-				<div class="col-md-offset-3 col-md-8">
-					<div class="checkbox">
-						<label>
-							<input type="checkbox">로그인 유지
-						</label>
-					</div>
-				</div>
-			</div>
-			<div class="form-group">
-				<div class="col-md-offset-3 col-md-8">
-					<button type="submit" onclick="signin()" class="btn-primary btn-lg LoginButton" data-toggle="tooltip" data-placement="top" title="사용자 계정으로 로그인합니다." ><strong>로그인 </strong></button>
-					<button type="button" class="btn-primary btn-lg SigninButton" data-toggle="modal" data-target="#SignInModal" data-toggle="tooltip" data-placement="top" title="EZstorage에 가입합니다."><strong>가입하기</strong></button>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	
-	<!--============================ 회원가입 모달 =======================================-->
-	<!-- Modal -->
-	<div class="modal fade" id="modal_signin" tabindex="-1" role="dialog" aria-labelledby="modal_signinLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h3 class="modal-title" id="SignInModalLabel">EZstorage 가입하기</h3>
-					<p>	당신이 지금 이 대화창을 보고 있다는 것은, 단 하나의 정보도 거짓으로 입력한다면<br>
-						조장인 11학번 조성수가 지구 끝까지 쫓아가 당신을 때릴 것이라는 것을 의미합니다.
-					</p>
-				</div>
-				<div class="modal-body">
-				<!--
-					<div class="form-group">
-						<label class="col-md-3 control-label">사용자 계정</label>
-						<div class="col-md-8">
-							<input type="text" class="form-control" id="newusername" placeholder="사용자 계정">
+					<div class="modal-body">
+					<!--
+						<div class="form-group">
+							<label class="col-md-3 control-label">사용자 계정</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control" id="newusername" placeholder="사용자 계정">
+							</div>
 						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-md-3 control-label">암호</label>
-						<div class="col-md-8">
-							<input type="password" class="form-control" id="newpassword" placeholder="암호">
+						<div class="form-group">
+							<label class="col-md-3 control-label">암호</label>
+							<div class="col-md-8">
+								<input type="password" class="form-control" id="newpassword" placeholder="암호">
+							</div>
 						</div>
-					</div>
-					<div class="form-group has-error has-feedback">
-						<label class="control-label col-md-3" for="confirmPW">암호 확인</label>
-						<div class="col-md-8">
-							<input type="password" class="form-control" id="confirmPW" placeholder="암호 확인" aria-describedby="notConfirmed">
-							<span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
-							<span id="notConfirmed" class="sr-only">(error)</span>
+						<div class="form-group has-error has-feedback">
+							<label class="control-label col-md-3" for="confirmPW">암호 확인</label>
+							<div class="col-md-8">
+								<input type="password" class="form-control" id="confirmPW" placeholder="암호 확인" aria-describedby="notConfirmed">
+								<span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+								<span id="notConfirmed" class="sr-only">(error)</span>
+							</div>
 						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-md-3 control-label">성</label>
-						<div class="col-md-8">
-							<input type="text" class="form-control" id="lastname" placeholder="성">
+						<div class="form-group">
+							<label class="col-md-3 control-label">성</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control" id="lastname" placeholder="성">
+							</div>
 						</div>
+						<div class="form-group">
+							<label class="col-md-3 control-label">이름</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control" id="firstname" placeholder="이름">
+							</div>
+						</div>-->
 					</div>
-					<div class="form-group">
-						<label class="col-md-3 control-label">이름</label>
-						<div class="col-md-8">
-							<input type="text" class="form-control" id="firstname" placeholder="이름">
-						</div>
-					</div>-->
+				<div class="modal-footer">
+					<button type="submit" class="btn button_blue" onclick="signup()">가입하기</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 				</div>
-			<div class="modal-footer">
-				<button type="submit" class="btn button_blue" onclick="signup()">가입하기</button>
-				<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+				</div>
 			</div>
-			</div>
-		</div>
-	</div>
+		</div>	
+	</body>
 	
-	<!-- 하단 고정 인포메이션 바 -->
-	<div>
-		
-	</div>
-
+	<!-- JQuery, Ajax, 부트스트랩 컴포넌트 링킹 -->
 	<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script src="/assets/javascripts/bootstrap.min.js"></script>
-	</body>
+	
+	<!-- 파티클 애니메이션을 위한 JS링킹 -->
+	<script src="/assets/javascripts/animation/vector/TweenLite.min.js"></script>	
+	<script src="/assets/javascripts/animation/vector/EasePack.min.js"></script>
+	<script src="/assets/javascripts/animation/vector/rAF.js"></script>
+	<script src="/assets/javascripts/animation/vector/particle.js"></script>
+	
 </html>
