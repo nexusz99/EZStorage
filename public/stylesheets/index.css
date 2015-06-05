@@ -73,10 +73,179 @@
 }
 
 /*************************** △ 구버전  ▽신버전 ****************************/
-.container_navbar_bottom
+/* 하단 인포메이션 바 */
+body
 {
+	padding-bottom:50px;
+}
+.container_navbar
+{
+	color:white;
+	font-weight:none;
+	font-size:9pt;
+	vertical-align:middle;
 	height:35px;
-	position:fixed;
-	z-index:100;
-	background-color:
+	background-color:RGBA(100,80,150,1);
+	box-shadow:0px 0px 5px 2px RGBA(100,100,100,0.3);
+}
+
+/* 메인 캔버스 컨테이너 */
+.container_main
+{
+	background: linear-gradient(to bottom,RGBA(120,80,160,1),RGBA(80,50,120,1));
+	text-align:center;
+}
+
+/* 사소한 간격 지정자 */
+.padding_from_left
+{
+	padding-left:15px;
+	vertical-align:middle;
+}
+.padding_from_right
+{
+	padding-right:15px;
+	vertical-align:middle;
+}
+#header_canvas_main
+{
+	top:105px;
+	font-size:95px;
+	color:white;
+	position:absolute;
+	z-index: 100;
+	font-weight:bold;
+	text-align:center;
+	width:99%;
+	text-shadow:0px 0px 7px RGBA(100,100,100,1);
+}
+#header_canvas_sub
+{
+	font-weight:bold;
+	position:absolute;
+	top:200px;
+	z-index: 101;
+	font-size:35px;
+	color:RGBA(255,255,255,0.6);
+	text-align:center;
+	width:99%;
+}
+#p_canvas
+{
+	color:RGBA(200,180,255,1);
+	font-size:18pt;
+	position:absolute;
+	top:320px;
+	z-index:102;
+	text-align:center;
+	width:99%;
+	text-shadow:2px 2px 5px RGBA(100,100,100,0.4);
+}
+#p_canvas_copyright
+{
+	text-align:right;
+	color:RGBA(255,255,255,0.6);
+	font-size:9pt;
+	position:absolute;
+	top:375px;
+	left:0px;
+	z-index:102;
+	width:99%;
+	text-shadow:2px 2px 5px RGBA(100,100,100,0.4);
+}
+
+/* 로그인 셋 컨테이너 */
+#container_loginset
+{
+	margin:0px auto !important;
+}
+#container_loginset_sub
+{
+	margin:0px auto;
+	margin-top:7% !important;
+	text-align:center;
+	width:600px;
+	height:auto;
+	padding-right:90px;
+}
+.table_loginset
+{
+	font-size:12pt;
+	vertical-align:middle;
+}
+.table_loginset> tbody> tr
+{
+	border:15px dashed RGBA(255,255,255,0);
+}
+.table_loginset> tbody> tr> th
+{
+	width:150px;
+	text-align:right;
+	padding-right:10px;
+}
+.table_loginset> tbody> tr> td
+{
+	width:290px;
+	text-align:left;
+	padding-left:10px;
+}
+.table_loginset> tbody> tr:nth-child(3)> th> div
+{
+	margin:0 0;
+	height:10px;
+	text-align:left;
+	display:block;
+}
+.table_loginset> tbody> tr:nth-child(3)> td> div
+{
+	padding-top:8px;
+}
+.modal-body> .table_loginset
+{
+	font-size:11pt;
+	vertical-align:middle;
+}
+.modal-body> .table_loginset> tbody> tr> th
+{
+	width:150px;
+	text-align:right;
+	padding-right:10px;
+}
+.modal-body> .table_loginset> tbody> tr> td
+{
+	width:400px;
+	text-align:left;
+	padding-left:10px;
+}
+#btn_login
+{
+	width:130px;
+	color:RGBA(60,30,90,1);
+	font-size:12pt;
+	font-weight:bold;
+	margin-right:5px;
+	border-radius:3px;
+	background: linear-gradient(to bottom,RGBA(255,255,255,1),RGBA(255,255,255,1));
+	border:1px solid RGBA(180,30,30,0.7);
+}
+#btn_signin
+{
+	width:130px;
+	color:RGBA(60,30,90,1);
+	font-size:12pt;
+	font-weight:bold;
+	border-radius:3px;
+	background: linear-gradient(to bottom,RGBA(255,255,255,1),RGBA(255,255,255,1));
+	border:1px solid RGBA(30,60,220,0.7);
+}
+
+/* 회원가입 모달 디자인 */
+p.padding_from_left
+{
+	margin-top:9px;
+}
+
+.container_navbar> div> span
+{
+	padding-top:10px;
 }
