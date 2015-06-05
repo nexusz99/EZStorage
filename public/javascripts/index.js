@@ -1,3 +1,34 @@
+// 비밀번호 확인 함수
+$(function()
+{
+	$('#newpassword').keyup(function()
+	{
+		if($('#newpassword').val() == $('#confirm_newpassword').val())
+		{
+			$('.has-error').addClass('has-success');
+			$('.has-error').removeClass('has-error');
+		}
+		else
+		{
+			$('.has-success').addClass('has-error');
+			$('.has-success').removeClass('has-success');
+		}
+	});
+	$('#confirm_newpassword').keyup(function()
+	{
+		if($('#newpassword').val() == $('#confirm_newpassword').val())
+		{
+			$('.has-error').addClass('has-success');
+			$('.has-error').removeClass('has-error');
+		}
+		else
+		{
+			$('.has-success').addClass('has-error');
+			$('.has-success').removeClass('has-success');
+		}
+	});
+});
+
 function signup()
 {
 	var id = $("#newusername").val();
