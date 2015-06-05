@@ -10,7 +10,7 @@
   color: #555;
   vertical-align: middle;
   border-radius: 4px;
-  max-width: 400px;
+  max-width: 500px;
   min-width: 200px;
   line-height: 26px;
   cursor: text;
@@ -249,12 +249,12 @@
 }
 .grid_fileIcon
 {
-	margin:25px 15px ;
+	margin:25px 20px ;
 	width:120px;
 	height:165px;
 	display:inline-block;
 	list-style-type:none;
-
+	text-align:center;
 	padding-bottom:0px;
 	vertical-align:top;
 }
@@ -343,7 +343,7 @@ ol.list_fileTag > li
 {
 	padding-top:10px;
 	width:100px;
-	height:30px;
+	height:90px;
 	overflow:visible;
 	text-align:center;
 	vertical-align: center;
@@ -366,6 +366,7 @@ ol.list_fileTag > li
 {
 	color:black;
 	text-decoration:none;
+	font-size:11pt;
 }
 .item_category : hover,
 .item_category : focus,
@@ -381,7 +382,7 @@ ol.list_fileTag > li
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 1001;
+  z-index: 101;
   display:none;
 }
 .selected_fileIcon
@@ -403,7 +404,8 @@ ol.list_fileTag > li
 .modal-body > table > tbody > tr > th
 {
 	text-align:right;
-	width:90px;
+	min-width:100px;
+	width:100px;
 	height:40px;
 	padding-right:5px;
 }
@@ -411,9 +413,76 @@ ol.list_fileTag > li
 {
 	text-align:left;
 	height:40px;
-	padding-left:20px;
+	padding-left:15px;
 }
-#fileinfo_tinput :: after
+.modal-body > table > tbody > tr:nth-child(4) >th
+{
+	vertical-align:top;
+	padding-top:20px;
+}
+#fileinfo_tags > div
 {
 	max-width:400px !important;
+}
+#categoryinfo_tags > div
+{
+	max-width:400px !important;
+}
+#categoryadd_tags > div
+{
+	max-width:400px !important;
+}
+#categoryadd_ninput
+{
+	width:400px;
+}
+
+/* 첫번째 파일을 위한 툴팁 디자인 */
+#tooltip_firstfile
+{
+	position:absolute;
+	top:43px;
+	left:327px;
+	width:auto;
+	height:auto;
+	z-index: 120;
+}
+.tooltip
+{
+	width:145px;
+}
+
+/* 카테고리 목록 디자인 */
+.header_category
+{
+	font-size:22pt;
+	margin-bottom:11px;
+	margin-left:3px;
+}
+.header_category > button
+{
+	font-size:11pt;
+	vertical-align:middle;
+}
+.divider_category
+{
+	position:relative;
+	left:-30px;
+	height:1px;
+	width:230px;
+	border:0px; 
+	background-color:RGBA(100,100,100,0.2);
+	margin-bottom:15px;
+}
+.noncolored
+{
+	background-color:transparent;
+}
+.nonbordered
+{
+	border:0px;
+}
+.vertical_mid
+{
+	vertical-align:middle;
 }

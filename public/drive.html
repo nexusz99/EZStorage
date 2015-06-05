@@ -44,7 +44,7 @@
 		<div class="container-fluid container_searchBarGrid">
 			<div class="row">
 				<div class="pull-right padding_from_right">
- 					<button type="button" id="icon_fileUpload" class="btn-md btn_fileMenu" data-toggle="tooltip" data-placement="left" title="버튼을 눌러 파일을 업로드합니다!">
+ 					<button type="button" id="icon_fileUpload" class="btn-md btn_fileMenu" data-toggle="tooltip" data-placement="left" title="버튼을 눌러 파일을 업로드합니다.">
  						<a href="#" type="button" data-toggle="modal" data-target="#modal_fileUpload">
  						<span class="glyphicon glyphicon-open" style="color:RGBA(80,50,120,1); !important;"></span></a>
  					</button>
@@ -62,7 +62,7 @@
 		
 		
 		<!-- 파일 속성 모달 -->
-		<div class="modal fade" id="modal_fileInfo" tabindex="-1" role="dialog" aria-labelledby="Modal_fileInfo" aria-hidden="true">
+		<div class="modal fade" id="modal_fileInfo" tabindex="-1" role="dialog" aria-labelledby="Modal_fileInfoLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
   					<div class="modal-header">
@@ -84,6 +84,7 @@
 	  							<th>태그</th>
 	  							<td id="fileinfo_tags">
 										<input type="text"  data-role="tagsinput" value="" style="display : none;" id="fileinfo_tinput"/>
+										<p class="help-block">입력한 태그를 수정할 수 있습니다.</p>
 	  							</td>
 	  						</tr>
 	  					</table>	
@@ -92,19 +93,19 @@
   						<button type="button" id="btn_apply_fileinfo" data-loading-text="적용 중.." class="btn btn-primary" autocomplete="off">
   							적용
 						</button>
-    					<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+    					<button type="button" id="btn_cancle_fileInfo" class="btn btn-default" data-dismiss="modal">닫기</button>
   					</div>
 				</div>
 			</div>
 		</div>
 		
 		<!-- 파일 업로드 모달 -->
-		<div class="modal fade" id="modal_fileUpload" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal fade" id="modal_fileUpload" tabindex="-1" role="dialog" aria-labelledby="modal_fileuploadLabel" aria-hidden="true">
 		  	<div class="modal-dialog">
 				<div class="modal-content">
 				  	<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						<h4 class="modal-title" id="myModalLabel">파일 업로드</h4>
+						<h4 class="modal-title" id="modal_fileUploadLabel">파일 업로드</h4>
 				  	</div>
 				  	<div class="modal-body">
 					    <form id="form_fileUpload" action = "" name="file_fileUpload" method="POST" enctype="multipart/form-data">
@@ -135,19 +136,97 @@
 		  	</div>
 		</div>
 		
+		<!-- 카테고리 정보창 모달 -->
+		<div class="modal fade" id="modal_categoryinfo" tabindex="-1" role="dialog" aria-labelledby="modal_categoryinfoLabel" aria-hidden="true">
+  			<div class="modal-dialog">
+				<div class="modal-content">
+  					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="myModalLabel">카테고리 정보</h4>
+  					</div>
+	  				<div class="modal-body">
+	  					<table>
+	  						<tr style="border:14px dashed RGBA(255,255,255,0);">
+	  							<th>카테고리 이름</th><td id="categoryinfo_name">임시 카테고리 뿌뿌</td>
+	  						</tr>
+	  						<tr>
+	  							<th style="vertical-align:top; padding-top:17px;">포함된 태그</th>
+	  							<td id="categoryinfo_tags">
+									<input type="text"  data-role="tagsinput" value="임시로,만든,카테고리" style="display : none;" id="categoryinfo_tinput"/>
+									<p class="help-block">입력한 태그를 수정할 수 있습니다.</p>
+	  							</td>
+	  						</tr>
+	  					</table>	
+			      	</div>
+  					<div class="modal-footer">
+  						<button type="button" id="btn_apply_categoryinfo" data-loading-text="적용 중.." class="btn btn-primary" autocomplete="off">
+  							적용
+						</button>
+    					<button type="button" id="btn_cancle_categoryInfo" class="btn btn-default" data-dismiss="modal">닫기</button>
+  					</div>
+				</div>
+  			</div>
+		</div>
+		
+		<!-- 카테고리 추가창 모달 -->
+		<div class="modal fade" id="modal_categoryadd" tabindex="-1" role="dialog" aria-labelledby="modal_categoryaddLabel" aria-hidden="true">
+  			<div class="modal-dialog">
+				<div class="modal-content">
+  					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="modal_categoryaddLabel">카테고리 추가</h4>
+  					</div>
+	  				<div class="modal-body">
+	  					<table>
+	  						<tr style="border:14px dashed RGBA(255,255,255,0);">
+	  							<th>카테고리 이름</th><td id="categoryadd_name"><input type="text" class="form-control" id="categoryadd_ninput" placeholder="카테고리 이름을 입력하세요."></td>
+	  						</tr>
+	  						<tr>
+	  							<th style="vertical-align:top; padding-top:17px;">포함시킬 태그</th>
+	  							<td id="categoryadd_tags">
+									<input type="text"  data-role="tagsinput" value="" style="display : none;" id="categoryadd_tinput"/>
+									<p class="help-block">입력한 태그를 수정할 수 있습니다.</p>
+	  							</td>
+	  						</tr>
+	  					</table>	
+			      	</div>
+  					<div class="modal-footer">
+  						<button type="button" id="btn_apply_categoryadd" data-loading-text="추가 중.." class="btn btn-primary" autocomplete="off">
+  							추가
+						</button>
+    					<button type="button" id="btn_cancle_categoryadd" class="btn btn-default" data-dismiss="modal">닫기</button>
+  					</div>
+				</div>
+  			</div>
+		</div>
+
 		<!-- 파일 시스템 프레임-->
 		<div id="container_fileSystemGrid">
 			<!-- 카테고리 표시창 컨테이너 -->
 			<div class="container_categoryGrid">
-				<h2>카테고리</h2>
-				<br>
+			<div class="row header_category">
+				<span><strong>카테고리</strong></span>
+				<button class="noncolored nonbordered" data-toggle="tooltip" data-placement="top" title="버튼을 눌러 카테고리를 추가합니다.">
+					<span class="glyphicon glyphicon-plus" type="button" data-toggle="modal" data-target="#modal_categoryadd"></span>
+				</button>
+			</div>
+			<div class="divider_category"></div>
 				<ul id="list_category">
-					<li><a class="item_category" href="#">카테고리 없음</a></li>
+					
+					<li><a class="item_category" href="#">카테고리 없음</a>
+						<button class="noncolored nonbordered vertical_mid">
+							<span class="glyphicon glyphicon-info-sign" data-toggle="modal" data-target="#modal_categoryinfo"></span>
+						</button>
+					</li>
+					
 				</ul>
 			</div>
 			<!-- 파일 드라이브 컨테이너 -->
-			
+			<div id="tooltip_firstfile" class="row">
+					<span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="bottom" title="최근에 업로드되었거나 찾는 태그가 가장 많이 포함된 파일입니다."></span>
+			</div>
 			<div id="container_fileDriveGrid">
+				
 			<!-- 파일 아이콘 예제 (형식 참고용 주석 코드, 지우지 말 것)-->
 			<!--
 			<ol>
@@ -165,7 +244,7 @@
 								<span class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;삭제하기</a></li><li class="divider">
 							</li>
 							
-							<li><a href="#" data-toggle="modal" data-target="#modal_fileInfo">
+							<li><a id="btn_fileInfo" href="#" data-toggle="modal" data-target="#modal_fileInfo">
 								<span class="glyphicon glyphicon-info-sign"></span>&nbsp;&nbsp;파일 정보</a>
 							</li>
 						</ul>

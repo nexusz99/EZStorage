@@ -3,7 +3,18 @@ $(function () {
   $('[data-toggle="tooltip"]').tooltip();
 });
 
+// 파일 삭제 시 UI상에서 파일 아이콘을 제거하는 함수
+$(function()
+{
+	$('#btn_delete').click(function()
+	{
+		var fileid_to_delete = $(this).parent().parent().parent().next().html();
+		if(confirm( fileid_to_delete +" 파일이 삭제됩니다! 계속하시겠습니까?"))
+		{$(this).parent().parent().parent().parent().remove();}
+	});
+});
 
+// 파일 정보창 '적용' 함수
  $('#btn_apply_fileinfo').on('click', function () {
     var $btn = $(this).button('loading');
     
@@ -12,11 +23,32 @@ $(function () {
     // business logic...
     
     
+   	setTimeout(function(){$btn.button('reset');}, 800);
+});
+
+// 카테고리 정보창 '적용' 함수
+ $('#btn_apply_categoryinfo').on('click', function () {
+    var $btn = $(this).button('loading');
     
-   	setTimeout(function () {
-            $btn.button('reset');
-   
-   }, 1000);
+    
+    
+    // business logic...
+    
+    
+   	setTimeout(function(){$btn.button('reset');}, 800);
+});
+
+// 카테고리 추가창 '추가' 함수
+ $('#btn_apply_categoryadd').on('click', function () {
+    var $btn = $(this).button('loading');
+
+   	setTimeout(function()
+   	{
+   		$btn.button('reset');
+   		$('#categoryadd_ninput').val("");
+   		$('#categoryadd_tinput').tagsinput('removeAll');
+   		$('#modal_categoryadd').modal('hide');
+	}, 800);
 });
 
 
@@ -214,7 +246,6 @@ function getfileinfo(fileid)
 	})
 };
 
-
 function sendJsonUserdata(data, method)
 {
 	var jsondata = JSON.stringify(data)
@@ -277,7 +308,6 @@ $(function()
 		$('#list_fileTag > li:last').remove();
 	});
 });*/
-
 
 //파일 업로드 모달 취소 버튼 액션
 $(function()
