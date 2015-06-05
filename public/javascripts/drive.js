@@ -26,6 +26,37 @@ $(function()
    	setTimeout(function(){$btn.button('reset');}, 800);
 });
 
+// 카테고리 정보창 '적용' 함수
+ $('#btn_apply_categoryinfo').on('click', function () {
+    var $btn = $(this).button('loading');
+    
+    
+    
+    // business logic...
+    
+    
+   	setTimeout(function(){$btn.button('reset');}, 800);
+});
+
+// 카테고리 추가창 '추가' 함수
+ $('#btn_apply_categoryadd').on('click', function () {
+    var $btn = $(this).button('loading');
+    
+    
+    
+    // business logic...
+    
+    
+   	setTimeout(function()
+   	{
+   		$btn.button('reset');
+   		$('#categoryadd_ninput').val("");
+   		$('#categoryadd_tinput').tagsinput('removeAll');
+   		$('#modal_categoryadd').modal('hide');
+	}, 800);
+   	
+});
+
 
 $(function() {
 	loadfile();
