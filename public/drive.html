@@ -70,18 +70,19 @@
   					<div class="modal-body">
 	  					<table>
 	  						<tr>
-	  							<th>파일명</th><td id="fileinfo_name">123.png</td>
+	  							<th>파일명</th><td id="fileinfo_name"></td>
 	  						</tr>
 	  						<tr>
-	  							<th>업로드 날짜</th><td id="fileinfo_date">2015.06.15</td>
+	  							<th>업로드 날짜</th><td id="fileinfo_date"></td>
 	  						</tr>
 	  						<tr>
-	  							<th>파일 크기</th><td id="fileinfo_size">486KB</td>
+	  							<th>파일 크기</th><td id="fileinfo_size"></td>
 	  						</tr>
 	  						<tr>
 	  							<th>태그</th>
 	  							<td id="fileinfo_tags">
-										<input type="text"  data-role="tagsinput" value="사진, 2015, 123" style="display : none;" id="fileinfo_tinput"/>
+										<input type="text"  data-role="tagsinput" value="123,456" style="display : none;" id="fileinfo_tinput"/>
+										<p class="help-block">입력한 태그를 수정할 수 있습니다.</p>
 	  							</td>
 	  						</tr>
 	  					</table>	
@@ -90,7 +91,7 @@
   						<button type="button" id="btn_apply_fileinfo" data-loading-text="적용 중.." class="btn btn-primary" autocomplete="off">
   							적용
 						</button>
-    					<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+    					<button type="button" id="btn_cancle_fileInfo" class="btn btn-default" data-dismiss="modal">닫기</button>
   					</div>
 				</div>
 			</div>
@@ -163,7 +164,7 @@
 								<span class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;삭제하기</a></li><li class="divider">
 							</li>
 							
-							<li><a href="#" data-toggle="modal" data-target="#modal_fileInfo">
+							<li><a id="btn_fileInfo" href="#" data-toggle="modal" data-target="#modal_fileInfo">
 								<span class="glyphicon glyphicon-info-sign"></span>&nbsp;&nbsp;파일 정보</a>
 							</li>
 						</ul>

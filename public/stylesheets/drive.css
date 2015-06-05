@@ -10,7 +10,7 @@
   color: #555;
   vertical-align: middle;
   border-radius: 4px;
-  max-width: 400px;
+  max-width: 500px;
   min-width: 200px;
   line-height: 26px;
   cursor: text;
@@ -343,7 +343,7 @@ ol.list_fileTag > li
 {
 	padding-top:10px;
 	width:100px;
-	height:30px;
+	height:90px;
 	overflow:visible;
 	text-align:center;
 	vertical-align: center;
@@ -413,7 +413,12 @@ ol.list_fileTag > li
 	height:40px;
 	padding-left:20px;
 }
-#fileinfo_tinput :: after
+.modal-body > table > tbody > tr:nth-child(4) >th
+{
+	vertical-align:top;
+	padding-top:20px;
+}
+#fileinfo_tags > div
 {
 	max-width:400px !important;
 }

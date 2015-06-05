@@ -3,7 +3,18 @@ $(function () {
   $('[data-toggle="tooltip"]').tooltip();
 });
 
+// 파일 삭제 시 UI상에서 파일 아이콘을 제거하는 함수
+$(function()
+{
+	$('#btn_delete').click(function()
+	{
+		var fileid_to_delete = $(this).parent().parent().parent().next().html();
+		if(confirm( fileid_to_delete +" 파일이 삭제됩니다! 계속하시겠습니까?"))
+		{$(this).parent().parent().parent().parent().remove();}
+	});
+});
 
+// 파일 정보창 '적용' 함수
  $('#btn_apply_fileinfo').on('click', function () {
     var $btn = $(this).button('loading');
     
@@ -12,11 +23,7 @@ $(function () {
     // business logic...
     
     
-    
-   	setTimeout(function () {
-            btn.button('reset');
-   
-   }, 3000);
+   	setTimeout(function(){$btn.button('reset');}, 800);
 });
 
 
@@ -122,22 +129,12 @@ function clickMouse(type, userid, fileid)
 	"<li><a href=\"/files/"+userid+"/"+fileid+"\" ><span class=\"glyphicon glyphicon-download\"></span>&nbsp;&nbsp;다운로드</a></li>" +
 	"<li><a id=\"btn_delete\" href=\"#\" fileid=\""+fileid+"\" onclick='filedelete(this.getAttribute(\"fileid\"))'><span class=\"glyphicon glyphicon-trash\"></span>&nbsp;&nbsp;삭제하기</a></li>" +
 	"<li class=\"divider\"></li>" +
-	"<li><a href=\"#\" data-toggle=\"modal\" data-target=\"#modal_fileInfo\"><span class=\"glyphicon glyphicon-info-sign\"></span>&nbsp;&nbsp;파일 정보</a></li>" +
+	"<li><a href=\"#\" id=\"btn_fileInfo\" data-toggle=\"modal\" data-target=\"#modal_fileInfo\"><span class=\"glyphicon glyphicon-info-sign\"></span>&nbsp;&nbsp;파일 정보</a></li>" +
 	"</ul></div>" +
 	"<div class=\"header_fileIcon\" id=\"fileName\">";
 	return content;
 };
 
-// 파일 삭제 시 UI상에서 파일 아이콘을 제거하는 함수
-$(function()
-{
-	$('#btn_delete').click(function()
-	{
-		var fileid_to_delete = $(this).parent().parent().parent().next().html();
-		if(confirm( fileid_to_delete +" 파일이 삭제됩니다! 계속하시겠습니까?"))
-		{$(this).parent().parent().parent().parent().remove();}
-	});
-});
 function sendJsonUserdata(data, method)
 {
 	var jsondata = JSON.stringify(data)
@@ -200,7 +197,6 @@ $(function()
 		$('#list_fileTag > li:last').remove();
 	});
 });*/
-
 
 //파일 업로드 모달 취소 버튼 액션
 $(function()
