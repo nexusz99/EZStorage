@@ -10,7 +10,11 @@
 
     function initHeader() {
         width = window.innerWidth;
-        height = 450;
+        height = window.innerHeight/2.3;
+        if(height < 300)
+        {
+        	height=300;
+        }
         target = {x: 0, y: height};
 
         largeHeader = document.getElementById('container_main');
@@ -67,7 +71,11 @@
 
     function resize() {
         width = window.innerWidth;
-        height = 450;
+        height = window.innerHeight/2.3;
+        if(height < 300)
+        {
+        	height=300;
+        }
         largeHeader.style.height = height+'px';
         canvas.width = width;
         canvas.height = height;

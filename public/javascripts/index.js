@@ -1,3 +1,21 @@
+// 메인 캔버스 요소 동적 중앙정렬 함수
+function draw_by_size() // 
+{
+	var header_canvas_sub= document.getElementById('header_canvas_sub');
+	height = window.innerHeight;
+	if(height<800)
+	{
+		header_canvas_sub.style.top = 52+'%';
+	}
+	else
+	{
+		header_canvas_sub.style.top = 48+'%';
+	}
+}
+draw_by_size();
+// 브라우저 크기가 변할 시 동적으로 위치 조절
+window.addEventListener('resize', draw_by_size);
+
 // 하단 정보창 생성 함수
 $(function()
 {
@@ -12,11 +30,17 @@ $(function()
 	});
 });
 
-// 로그인셋 요소 동적 중앙정렬 배치 함수
-function deploy_on_center() // container_fileSystemGrid의 너비를 윈도우 크기에 맞게 리사이징
+// 로그인셋 요소 동적 중앙정렬 함수
+function deploy_on_center() //
 {
-	var centered_container = document.getElementById('container_loginset');
-	centered_container.style.left = window.innerWidth/2 - 270 + 'px';
+	var centerd_loginset = document.getElementById('container_loginset');
+	centerd_loginset.style.left = window.innerWidth/2 - 270 + 'px';
+	var height = window.innerHeight/2.3;
+	if(height < 300)
+	{
+		height = 300;
+	}
+	centerd_loginset.style.top = height + height/2.5 +'px';
 }
 deploy_on_center();
 // 브라우저 크기가 변할 시 동적으로 위치 조절
