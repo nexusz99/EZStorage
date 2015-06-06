@@ -19,7 +19,7 @@ $(function()
     var $btn = $(this).button('loading');
     
     
-    
+    alert('미구현! 헿. 죄송합니다');
     // business logic...
     
     
@@ -30,7 +30,7 @@ $(function()
  $('#btn_apply_categoryinfo').on('click', function () {
     var $btn = $(this).button('loading');
     
-    
+    alert('미구현! 헿. 죄송합니다');
     
     // business logic...
     
