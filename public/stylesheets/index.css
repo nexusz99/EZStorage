@@ -311,6 +311,13 @@ p.padding_from_left
 	background-color:white;
 	font-weight:none;
 	vertical-align:middle;
+	padding-top:5px;
+	padding-left:20px;
+}
+#logo_KHU
+{
+	height:60px;
+	width:60px;
 }
 .header_top
 {

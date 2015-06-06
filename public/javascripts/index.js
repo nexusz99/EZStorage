@@ -17,9 +17,6 @@ function deploy_on_center() // container_fileSystemGrid의 너비를 윈도우 �
 {
 	var centered_container = document.getElementById('container_loginset');
 	centered_container.style.left = window.innerWidth/2 - 270 + 'px';
-	
-	var centered_logo = document.getElementById('logo_main');
-	centered_logo.style.left = window.innerWidth/2 - 220 + 'px';
 }
 deploy_on_center();
 // 브라우저 크기가 변할 시 동적으로 위치 조절
