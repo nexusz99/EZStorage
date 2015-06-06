@@ -33,8 +33,8 @@ function signup()
 {
 	var id = $("#newusername").val();
 	var pw = $("#newpassword").val();
-	var firstname = $("#firstname").val();
-	var lastname = $("#lastname").val();
+	var firstname = $("#newfirstname").val();
+	var lastname = $("#newlastname").val();
 	var data = {"type": 1, "username": id, "passwd": pw, "firstname": firstname, "lastname": lastname};
 	
 	sendJson(data, "PUT");
