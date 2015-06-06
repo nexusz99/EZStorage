@@ -317,7 +317,12 @@ p.padding_from_left
 #logo_KHU
 {
 	height:60px;
-	width:60px;
+	width:240px;
+}
+#logo_DBLAB
+{
+	height:60px;
+	width:210px;
 }
 .header_top
 {
