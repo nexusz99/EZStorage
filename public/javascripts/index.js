@@ -102,6 +102,9 @@ function sendJson(data, method)
 		statusCode:{
 			409:function(){
 				alert("이미 존재하는 ID입니다.");
+			},
+			403: function() {
+				alert("없는 아이디이거나, 패스워드가 틀렸습니다.");
 			}
 		}
 	});
