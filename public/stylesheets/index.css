@@ -138,7 +138,7 @@ body
 {
 	position:absolute;
 	z-index:100;
-	top:70px;
+	top:50px;
 	left:0;
 	background: linear-gradient(to bottom,RGBA(120,80,160,1),RGBA(80,50,120,1));
 	text-align:center;
@@ -146,7 +146,7 @@ body
 }
 #header_canvas_main
 {
-	top:135px;
+	top:115px;
 	font-size:95px;
 	color:white;
 	position:absolute;
@@ -160,10 +160,10 @@ body
 {
 	font-weight:bold;
 	position:absolute;
-	top:240px;
+	top:210px;
 	z-index: 101;
 	font-size:35px;
-	color:RGBA(255,255,255,0.6);
+	color:RGBA(255,255,255,0.5);
 	text-align:center;
 	width:100%;
 }
@@ -172,7 +172,7 @@ body
 	color:RGBA(200,180,255,1);
 	font-size:18pt;
 	position:absolute;
-	top:320px;
+	top:310px;
 	z-index:103;
 	text-align:center;
 	width:100%;
@@ -306,23 +306,23 @@ p.padding_from_left
 {
 	position:absolute;
 	z-index:200;
-	height:71px;
+	height:51px;
 	width:100%;
 	background-color:white;
 	font-weight:none;
 	vertical-align:middle;
 	padding-top:5px;
-	padding-left:20px;
+	padding-left:40px;
 }
 #logo_KHU
 {
-	height:60px;
-	width:240px;
+	height:40px;
+	width:160px;
 }
 #logo_DBLAB
 {
-	height:60px;
-	width:210px;
+	height:40px;
+	width:140px;
 }
 .header_top
 {
