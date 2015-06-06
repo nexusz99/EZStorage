@@ -9,8 +9,8 @@
     initAnimation();
 
     function initHeader() {
-        width = window.innerWidth-20;
-        height = 400;
+        width = window.innerWidth;
+        height = 450;
         target = {x: 0, y: height};
 
         largeHeader = document.getElementById('container_main');
@@ -66,8 +66,8 @@
     }
 
     function resize() {
-        width = window.innerWidth-20;
-        height = 400;
+        width = window.innerWidth;
+        height = 450;
         largeHeader.style.height = height+'px';
         canvas.width = width;
         canvas.height = height;

@@ -15,6 +15,11 @@
     </head>
   
 	<body>
+		<!-- 최상단 소형 바 -->
+		<div id="container_navbar_top">
+			<span></span>
+		</div>
+	
 		<!-- 벡터 애니메이션 캔버스 -->
 		<div id="container_main" class="container_main">
 			<canvas id="canvas_main"></canvas>
@@ -23,7 +28,12 @@
 			<div class="container-fluid" id="p_canvas">태그와 함께, 쉽고 빠르게.</div>
 			<div class="container-fluid" id="p_canvas_copyright">Copyright @ 2015 All rights reserved by 쿠우쿠우, 경희대학교 데이터베이스 프로젝트 1팀</div>
 		</div>
-	
+		
+		<!-- 로고 컨테이너 -->
+		<!--<div id="logo_main">
+			<img class="center-block" src="/assets/images/logo_main.png"/>
+		</div>-->
+		
 		<!-- 로그인셋 테이블 -->
 		<div id="container_loginset">
 			<div id="container_loginset_sub">
@@ -68,7 +78,8 @@
 						<h3 class="modal-title" id="SignInModalLabel">EZstorage 가입하기</h3>
 						<p class="padding_from_left">
 							태그 기반 파일 관리 시스템, EZStorage에 오신 것을 환영합니다.<br>
-							모든 정보는 비밀번호화되진 않지만, 훔쳐갈 사람은 없으니 안심하셔도 됩니다.
+							모든 정보는 암호화되진 않지만, 아무도 안 훔쳐봅니다. 걱정마세요...<br>
+							
 						</p>
 					</div>
 					<div class="modal-body">
@@ -121,12 +132,16 @@
 		</div>	
 		
 		<!-- 하단 고정 인포메이션 바 -->
-		<nav class="navbar navbar-fixed-bottom container_navbar ">
-	  		<div class="container-fluid">
-	   			<span class="pull-left padding_from_left glyphicon glyphicon-exclamation-sign"></span>
-	   			<p class="pull-left padding_from_left">본 서비스는 최신버전의 Chrome 이외의 브라우저에서는 일부 기능이 제한될 수도 있습니다.</p>
-	  		</div>
-		</nav>
+		<div class="container_navbar_bottom alert alert-info alert-dismissible fade in" role="alert">
+	     	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+      		<span class="glyphicon glyphicon-exclamation-sign"></span>
+      		&nbsp;<strong>Oops!</strong>&nbsp;&nbsp; 본 서비스는 1680*1050 이상의 해상도에 최적화 되어있으며,
+      		<strong>최신버전의 Chrome</strong> 이외의 브라우저에서는 일부 기능이 제한될 수도 있습니다.
+	    </div>
+	    <div class="container_call_navbar_bottom">
+	    	<button type="button" class="btn" id="btn_call_navbar_bottom"><span class="glyphicon glyphicon-asterisk"></span>
+	    	&nbsp;<strong>Oops!</strong></button>
+		</div>
 	</body>
 	
 	<!-- JQuery, Ajax, 부트스트랩 컴포넌트 링킹 -->

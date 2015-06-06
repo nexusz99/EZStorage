@@ -1,3 +1,30 @@
+// 하단 정보창 생성 함수
+$(function()
+{
+	$('#btn_call_navbar_bottom').click(function()
+	{
+		$('body').append(
+			"<div class=\"container_navbar_bottom alert alert-info alert-dismissible fade in\" role=\"alert\">"+
+	     	"<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">×</span></button>"+
+      		"<span class=\"glyphicon glyphicon-exclamation-sign\"></span>"+
+      		"&nbsp;<strong>Oops!</strong>&nbsp;&nbsp; 본 서비스는 1680*1050 이상의 해상도에 최적화 되어있으며, <strong>최신버전의 Chrome</strong> 이외의 브라우저에서는 일부 기능이 제한될 수도 있습니다."+
+	    "</div>");
+	});
+});
+
+// 로그인셋 요소 동적 중앙정렬 배치 함수
+function deploy_on_center() // container_fileSystemGrid의 너비를 윈도우 크기에 맞게 리사이징
+{
+	var centered_container = document.getElementById('container_loginset');
+	centered_container.style.left = window.innerWidth/2 - 270 + 'px';
+	
+	var centered_logo = document.getElementById('logo_main');
+	centered_logo.style.left = window.innerWidth/2 - 220 + 'px';
+}
+deploy_on_center();
+// 브라우저 크기가 변할 시 동적으로 위치 조절
+window.addEventListener('resize', deploy_on_center);
+
 // 비밀번호 확인 함수
 $(function()
 {
