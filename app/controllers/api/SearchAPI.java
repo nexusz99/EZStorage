@@ -35,7 +35,7 @@ public class SearchAPI extends Controller {
 			tags.add(n.asText().trim());
 		}
 		
-		Collection<ResultFile> re = sc.searchFile(user_id, tags);
+		Collection<ResultFile> re = sc.searchFile(user_id, tags, false);
 		List<ResultFile> lre = new ArrayList<ResultFile>();
 		for(ResultFile f: re)
 		{

@@ -19,7 +19,7 @@ public class SearchController {
 
 	private DataSource ds = DB.getDataSource();
 
-	public Collection<ResultFile> searchFile(int user_id, ArrayList<String> tags)
+	public Collection<ResultFile> searchFile(int user_id, ArrayList<String> tags, boolean fullmatch)
 	{
 		
 		Connection con = null;
@@ -86,6 +86,13 @@ public class SearchController {
 				tmp.type = inter.getInt("ft.value");
 				tmp.rate = (m / size)*100;
 				
+				if(fullmatch && tmp.rate != 100.0)
+				{
+					inter.close();
+					subps.close();
+					continue;
+				}
+				
 				if(!re.containsKey(tmp.file_name))
 					re.put(tmp.file_name, tmp);
 				
@@ -117,7 +124,7 @@ public class SearchController {
 		CategoryController cc = new CategoryController();
 		Category c = cc.getCategory(user_id, category_id);
 		
-		Collection<ResultFile> re = searchFile(user_id, c.getTags());
+		Collection<ResultFile> re = searchFile(user_id, c.getTags(), true);
 		return re;
 	}
 
