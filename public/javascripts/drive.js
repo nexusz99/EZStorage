@@ -319,9 +319,9 @@ function clickMouse(type, userid, fileid)
 	{
 		content +=  "<img class=\"img_fileIcon\" src=\"/assets/images/icons/code.png\"></button>";
 	}
-	else if(type ==4)	// Image file (.jpg .gif .png ...)
+	else if(type ==4 || type==7)	// Image file (.jpg .gif .png ...)
 	{
-		content +=  "<img class=\"img_fileIcon\" src=\"/assets/images/icons/picture.png\"></button>";
+		content +=  "<img class=\"img_fileIcon\" src=\"/thumbnail/"+fileid+"-thumbnail\"></button>";
 	}
 	else if(type ==5)	// Media file (.mp3 .mp4 .avi .wav ...)
 	{
@@ -331,6 +331,7 @@ function clickMouse(type, userid, fileid)
 	{
 		content +=  "<img class=\"img_fileIcon\" src=\"/assets/images/icons/PPT.png\"></button>";
 	}
+	
 	else				// etc. file (all other types ...)
 	{
 		content += "<img class=\"img_fileIcon\" src=\"/assets/images/icons/etc.png\"></button>";

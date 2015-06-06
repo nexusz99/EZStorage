@@ -1,6 +1,7 @@
 package controllers;
 
 import java.io.File;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,6 +9,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.sql.DataSource;
+
+import org.apache.tika.Tika;
 
 import play.Logger;
 import play.db.DB;
@@ -54,6 +57,7 @@ public class FileController {
          
             // 로컬 파일 시스템에 해당 파일을 저장한다.
             fileinfo.setId(generateFileUniqueID(fileinfo));
+            int type_id = getTypeID(fileinfo.getName(), con, fileinfo.getBody());
     		String localpath = localfile.store(fileinfo);
     		
     		ps.close();
@@ -67,7 +71,7 @@ public class FileController {
     		ps.setString(3, localpath);
     		ps.setLong(4, fileinfo.getSize());
     		ps.setInt(5, user.getUserId());
-    		ps.setInt(6, getTypeID(fileinfo.getName(), con));
+    		ps.setInt(6, type_id);
     		ps.executeUpdate();
     		
     		tm.saveFileTag(fileinfo);
@@ -291,10 +295,17 @@ public class FileController {
 		con.rollback();
 	}
 	
-	private int getTypeID(String filename, Connection con) throws SQLException
+	private int getTypeID(String filename, Connection con, File f) throws SQLException, IOException
 	{
 		String extension = filename.substring(filename.lastIndexOf('.')+1,
 											  filename.length());
+		
+		Tika t = new Tika();
+		String mine = t.detect(f);
+		if(mine.startsWith("image"))
+		{
+			extension = "image";
+		}
 		String sql = "select id from ezfile_type where extension=?";
 		
 		PreparedStatement ps = con.prepareStatement(sql);
