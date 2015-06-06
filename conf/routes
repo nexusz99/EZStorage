@@ -26,6 +26,7 @@ POST	/category/:user_id/:category_id	controllers.api.CategoryAPI.update(user_id:
 
 # Search API
 POST	/search/file				controllers.api.SearchAPI.searchByTag()
+POST	/search/category			controllers.api.SearchAPI.searchByCategory()
 
 
 # Map static resources from the /public folder to the /assets URL path

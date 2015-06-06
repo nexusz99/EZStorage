@@ -39,6 +39,10 @@ public class Category {
 		return tags.iterator();
 	}
 	
+	public ArrayList<String> getTags() {
+		return tags;
+	}
+	
 	public void addTag(ArrayList<String> list)
 	{
 		for(String t : list)

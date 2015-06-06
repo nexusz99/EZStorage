@@ -51,6 +51,16 @@ $(function()
  $('#btn_apply_categoryadd').on('click', function () {
     var $btn = $(this).button('loading');
 
+    var name = $("#categoryadd_ninput").val()
+    var tags = $("#categoryadd_tinput").val()
+    
+    var user_id = getCookie("userid");
+	if(user_id == "")
+	{
+		alert("비정상적인 접근!");
+		return;
+	}
+    
    	setTimeout(function()
    	{
    		$btn.button('reset');
@@ -58,12 +68,121 @@ $(function()
    		$('#categoryadd_tinput').tagsinput('removeAll');
    		$('#modal_categoryadd').modal('hide');
 	}, 800);
+   	
+   	var data = {"name": name, "tags":tags.split(',')}
+   	var jsondata = JSON.stringify(data);
+   	
+	$.ajax
+	({
+		type: 'PUT',
+		headers:
+		{
+			'Accept': 'application/json',
+			'Content-Type': 'application/json'
+		},
+		url: '/category/'+user_id,
+		async: false,
+		data: jsondata,
+		success: function(result){
+			location.reload();
+		},
+		statusCode:{
+			409:function(){
+				alert("이미 존재하는 카테고리입니다.");
+			}
+		}
+	});
 });
 
 
 $(function() {
 	loadfile();
+	loadCategory();
 });
+
+function loadCategory()
+{
+	var user_id = getCookie("userid");
+	if(user_id == "")
+	{
+		alert("비정상적인 접근!");
+		return;
+	}
+	var u = "/category/"+user_id+"/lists";
+	$.ajax({
+		url: u,
+		dataType:"json",
+		method: "GET",
+		async: false,
+		success:function(result)
+		{
+			var content = ''
+			if(result.length == 0)
+			{
+				content = "<li><a class=\"item_category\" id=\"categoryname\" href=\"#\">카테고리 없음</a>";
+				content += "<button class=\"noncolored nonbordered vertical_mid\">";
+				content += "<span class=\"glyphicon glyphicon-info-sign\" data-toggle=\"modal\" data-target=\"#modal_categoryinfo\"></span>	</button></li>";
+			}
+			for(k = 0; k < result.length; k++)
+			{
+				var file = result[k];
+				var body = "<li><a class=\"item_category\" catid=\""+file.id+"\" id=\"categoryname\" href=\"#\" onclick=searching(this.getAttribute(\"catid\"))>"+file.name+"</a>";
+				body += "<button class=\"noncolored nonbordered vertical_mid\" onclick=getCategoryInfo("+file.id+")>";
+				body += "<span class=\"glyphicon glyphicon-info-sign\" data-toggle=\"modal\" data-target=\"#modal_categoryinfo\"></span>	</button></li>";
+				content += body;
+			}
+			$("#list_category").html(content);
+		}
+	})
+}
+
+function getCategoryInfo(category_id)
+{
+	$('#categoryinfo_tinput').tagsinput('removeAll');
+	var user_id = getCookie("userid");
+	if(user_id == "")
+	{
+		alert("비정상적인 접근!");
+		return;
+	}
+	var u = "/category/"+user_id+"/"+category_id;
+	$.ajax({
+		url: u,
+		dataType:"json",
+		method: "GET",
+		async: false,
+		success:function(result)
+		{
+			$("#categoryinfo_name").html(result.name);
+			for(i = 0; i < result.tags.length; i++)
+			{
+				$('#categoryinfo_tinput').tagsinput("add", result.tags[i]);
+			}
+			$('#categoryinfo_tinput').tagsinput("refresh");
+			$('#btn_delete_categoryInfo').attr('catid', result.id);
+		}
+	})
+}
+
+function deleteCategory(category_id)
+{
+	var user_id = getCookie("userid");
+	if(user_id == "")
+	{
+		alert("비정상적인 접근!");
+		return;
+	}
+	var u = "/category/"+user_id+"/"+category_id;
+	$.ajax({
+		url: u,
+		dataType:"json",
+		method: "DELETE",
+		async: false,
+		success:function(result)
+		{
+		}
+	})
+}
 
 function loadfile()
 {
@@ -99,7 +218,7 @@ function loadfile()
 			})
 }
 
-function search()
+function searching(flg)
 {
 	var user_id = getCookie("userid");
 	if(user_id == "")
@@ -107,8 +226,21 @@ function search()
 		alert("비정상적인 접근!");
 		return;
 	}
-	var tags = $('#tagsArea_search').val().split(",");
-	var str = {"user_id": user_id, "tags": tags}
+	var tags;
+	var str;
+	var url;
+	
+	if(flg == '-1')
+	{
+		tags = $('#tagsArea_search').val().split(",");
+		str = {"user_id": user_id, "tags": tags};
+		url = '/search/file';
+	}
+	else
+	{
+		url = '/search/category';
+		str = {"user_id": user_id, "category_id": flg};
+	}
 	
 	var jsondata = JSON.stringify(str);
 	
@@ -120,7 +252,7 @@ function search()
 			'Accept': 'application/json',
 			'Content-Type': 'application/json'
 		},
-		url: '/search/file',
+		url: url,
 		async: false,
 		data: jsondata,
 		success: function(result){

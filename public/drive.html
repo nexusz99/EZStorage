@@ -55,7 +55,7 @@
 					<p class="help-block"> 태그와 태그 사이는 쉼표(<kbd>,</kbd>)로 구분됩니다.</p>
 				</div> 	
 				<div class="input-group-btn">
-					<button class="btn btn_searchBar" type="submit" onclick=search()>검색 <span class="glyphicon glyphicon-search"></span></button>
+					<button class="btn btn_searchBar" type="submit" onclick=searching('-1')>검색 <span class="glyphicon glyphicon-search"></span></button>
  				</div>
   			</div>
 		</div>
@@ -162,7 +162,7 @@
   						<button type="button" id="btn_apply_categoryinfo" data-loading-text="적용 중.." class="btn btn-primary" autocomplete="off">
   							적용
 						</button>
-    					<button type="button" id="btn_delete_categoryInfo" class="btn btn-danger" data-dismiss="modal">카테고리 제거</button>
+    					<button type="button" id="btn_delete_categoryInfo" class="btn btn-danger" data-dismiss="modal" catid="" onclick="deleteCategory(this.getAttribute('catid'))">카테고리 제거</button>
   					</div>
 				</div>
   			</div>

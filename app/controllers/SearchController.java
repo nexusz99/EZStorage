@@ -11,8 +11,9 @@ import java.util.HashMap;
 import javax.sql.DataSource;
 
 import play.db.DB;
+import Model.Category;
 import Model.ResultFile;
-import Model.User;
+import exception.CategoryException;
 
 public class SearchController {
 
@@ -112,28 +113,12 @@ public class SearchController {
 		return re.values();
 	}
 
-	public String SearchCategory(User user, int id) throws Exception {
-
-		Connection con = null;
-		PreparedStatement ps_getCate = null;
-		String getCate = "select name from ezcategories "
-				+ "where users_id=? and id=?;";
-		String result = null;
-		ResultSet rs = null;
-		try {
-			con=DB.getConnection();
-			ps_getCate = con.prepareStatement(getCate);
-			ps_getCate.setInt(1, user.getUserId());
-			ps_getCate.setInt(2, id);
-			rs = ps_getCate.executeQuery();
-			rs.next();
-			result = rs.getString("name");
-			System.out.println(result);
-		} catch (Exception e) {
-
-			System.out.println(e.getMessage());
-		}
-		return result;
+	public Collection<ResultFile> searchCategory(int user_id, int category_id) throws CategoryException, SQLException {
+		CategoryController cc = new CategoryController();
+		Category c = cc.getCategory(user_id, category_id);
+		
+		Collection<ResultFile> re = searchFile(user_id, c.getTags());
+		return re;
 	}
 
 }

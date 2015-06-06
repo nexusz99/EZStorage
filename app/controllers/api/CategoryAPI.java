@@ -35,7 +35,7 @@ public class CategoryAPI extends Controller {
 		ArrayNode an = (ArrayNode)jn.get("tags");
 		for(JsonNode n : an)
 		{
-			c.addTag(n.asText());
+			c.addTag(n.asText().trim());
 		}
 		
 		boolean result;

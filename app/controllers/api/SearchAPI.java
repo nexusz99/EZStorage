@@ -1,5 +1,6 @@
 package controllers.api;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -16,6 +17,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 
 import controllers.SearchController;
+import exception.CategoryException;
 
 public class SearchAPI extends Controller {
 
@@ -43,4 +45,29 @@ public class SearchAPI extends Controller {
 		return Results.ok(Json.toJson(lre));
 	}
 	
+	
+	public static Result searchByCategory()
+	{
+		JsonNode jn = request().body().asJson();
+		int user_id = jn.get("user_id").asInt();
+		int category_id = jn.get("category_id").asInt();
+		
+		Collection<ResultFile> re = null;
+		
+		try {
+			re = sc.searchCategory(user_id, category_id);
+		} catch (SQLException e) {
+			return internalServerError("데이터베이스 에러");
+		} catch (CategoryException e) {
+			return notFound("카테고리를 찾을 수 없습니다.");
+		}
+		
+		List<ResultFile> lre = new ArrayList<ResultFile>();
+		for(ResultFile f: re)
+		{
+			lre.add(f);
+		}
+		Collections.sort(lre, new ResultFileCompare());
+		return Results.ok(Json.toJson(lre));
+	}
 }
