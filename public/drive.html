@@ -13,6 +13,9 @@
     </head>
   
 	<body>
+		<div id="container_main">
+			<canvas id="canvas_main"></canvas>
+		</div>
 		<!-- 상단 프로필 바 -->
 		<nav class="navbar navbar-default navbar-fixed-top bar_profile">
   			<div class="container-fluid ">
@@ -47,7 +50,7 @@
  					</button>
   				</div>
 				<div id="form_searchTag" class="form_searchTag">
-					<input type="text"  data-role="tagsinput" value="" style="display : none;" id="tagsArea_search"/>
+					<input type="text"  data-role="tagsinput" value="" style="display : none;" id="tagsArea_search" placeholder="검색할 태그를 입력해주세요."/>
 					
 					<p class="help-block"> 태그와 태그 사이는 쉼표(<kbd>,</kbd>)로 구분됩니다.</p>
 				</div> 	
@@ -223,7 +226,9 @@
 					<span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="bottom" title="최근에 업로드되었거나 찾는 태그가 가장 많이 포함된 파일입니다."></span>
 			</div>
 			<div id="container_fileDriveGrid">
-				
+			<img class="center-block" src="/assets/images/simulook.jpg"/>
+			<h1>파일..이.. 없습니다..</h1>
+			<h3>아무거나.. 하나만.. 올려주세요..</h3>
 			<!-- 파일 아이콘 예제 (형식 참고용 주석 코드, 지우지 말 것)-->
 			<!--
 			<ol>
@@ -254,9 +259,14 @@
 			</div>
 		
 	</body>
+	<!-- JQuery, Ajax, Cookie plugin, 부트스트랩 JS 링킹 -->
 	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script src="/assets/javascripts/jquery.cookie.js"></script>
 	<script src="/assets/javascripts/bootstrap.js"></script>
 	<script src="/assets/javascripts/drive.js"></script>
+	
+	<!-- 버블 애니메이션을 위한 JS링킹 -->
+	<script src="/assets/javascripts/animation/vector/rAF.js"></script>
+	<script src="/assets/javascripts/animation/vector/bubble.js"></script>
 </html>

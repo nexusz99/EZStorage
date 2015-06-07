@@ -315,6 +315,7 @@ p.padding_from_left
 	vertical-align:middle;
 	padding-top:5px;
 	padding-left:40px;
+	background:linear-gradient(to top,RGBA(255,255,255,1),RGBA(222,222,222,1));
 }
 #logo_KHU
 {
