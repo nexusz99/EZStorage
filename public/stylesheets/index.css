@@ -89,8 +89,8 @@ body
 	padding-top:8px;
 	font-size:10pt;
 	margin-left:1%;
-	background-color:RGBA(220,180,250,1);
-	color:RGBA(100,80,110,0.85);
+	background-color:RGBA(130,80,160,1);
+	color:RGBA(255,255,255,0.7);
 	z-index:151;
 }
 .container_navbar_bottom> button
@@ -111,7 +111,8 @@ body
 }
 #btn_call_navbar_bottom
 {
-	background-color:RGBA(220,180,250,1);
+	background-color:RGBA(130,80,160,1);
+	color:RGBA(255,255,255,0.7);
 	border:1px solid RGBA(100,80,110,0.85);
 }
 
