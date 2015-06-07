@@ -1,3 +1,4 @@
+
 // (디자인 요소) 툴팁 초기화 함수
 $(function () {
   $('[data-toggle="tooltip"]').tooltip();
@@ -12,6 +13,7 @@ $(function()
 		if(confirm( fileid_to_delete +" 파일이 삭제됩니다! 계속하시겠습니까?"))
 		{$(this).parent().parent().parent().parent().remove();}
 	});
+	
 });
 
 // 파일 정보창 '적용' 함수

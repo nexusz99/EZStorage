@@ -34,7 +34,7 @@
    					<img src="/assets/images/profile.png" class="img_profile"><span id="UserName">사용자</span><span class="caret"></span>
  					</button>
  					<ul class="dropdown-menu dropdown_profile pull-right" role="menu">
-    					<li><a href="#" onclick="signout()">로그 아웃</a></li>
+    					<li><a href="#" onclick="signout()"><span class="glyphicon glyphicon-off"></span>로그 아웃</a></li>
   					</ul>
 				</div>
   			</div>
@@ -226,9 +226,11 @@
 					<span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="bottom" title="최근에 업로드되었거나 찾는 태그가 가장 많이 포함된 파일입니다."></span>
 			</div>
 			<div id="container_fileDriveGrid">
-			<img class="center-block" src="/assets/images/simulook.jpg"/>
-			<h1>올려진 파일이 없습니다 !</h1>
-			<h3>이보시오.. 거기.. 자네.. 파일.. 하나만.. 올려주시게..</h3>
+				<div id="noFile">
+					<img class="center-block" src="/assets/images/simulook.jpg"/>
+					<h1>올려진 파일이 없습니다 !</h1>
+					<h3>이보시오.. 거기.. 자네.. 파일.. 하나만.. 올려주시게..</h3>
+				</div>
 			<!-- 파일 아이콘 예제 (형식 참고용 주석 코드, 지우지 말 것)-->
 			<!--
 			<ol>

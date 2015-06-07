@@ -493,3 +493,20 @@ ol.list_fileTag > li
 {
 	background: linear-gradient(to bottom,RGBA(130,90,180,1),RGBA(80,50,120,1));
 }
+
+/* 손현주 거지짤 */
+#noFile
+{
+	margin-top:100px;
+	margin-left:100px;
+	text-align:center;
+}
+.dropdown_profile> li
+{
+	vertical-align:middle;
+}
+.dropdown_profile> li> a> span
+{
+	padding-right:8px;
+	font-size:9pt;
+}
