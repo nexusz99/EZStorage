@@ -216,6 +216,12 @@ function loadfile()
 					content += "</ol>";
 					$("#container_fileDriveGrid").html(content);
 
+				},
+				statusCode:{
+					400:function(){
+						var content = "<div id='noFile'><img class='center-block' src='/assets/images/simulook.jpg'/><h1>올려진 파일이 없습니다 !</h1><h4>검색창 우측의 버튼을 눌러 파일을 업로드 해주세요.</h3></div>";
+						$("#container_fileDriveGrid").html(content);	
+					}
 				}
 			})
 }
